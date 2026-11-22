@@ -2,30 +2,42 @@
 
 - **Durum:** BAŞARILI
 - **Test zamanı (UTC):** 2026-11-22
-- **Denenen tarih / hipodrom:** 06.03.2026 / İzmir (29. Yarış Günü)
-- **Araç:** `tjk-fetch` (Rust; aktarım curl ile)
+- **Denenen tarih / hipodrom:** 01.03.2026 / Adana (26. Yarış Günü)
+- **Araçlar:** `tjk_ayristirici` 0.11.0 (`tjk_indir`, `tjk_ayristirici`; `cargo build --release --offline`), `tjk-fetch daralt`
+- **SQLite:** kullanılmadı (`--sqlite` verilmedi, dosya oluşmadı)
 
-## Kaynaklar
+## Aday liste (çevrimdışı)
 
-| Kaynak | URL | HTTP |
-|---|---|---|
-| robots.txt | https://medya-cdn.tjk.org/robots.txt | 404 (dosya yok → RFC 9309: kısıtlama yok) |
-| Günlük yarış programı CSV | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-06/CSV/GunlukYarisProgrami/06.03.2026-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 |
-| 2026 resmî takvim PDF | https://medya-cdn.tjk.org/haberftp/2025/2026takvim161225.pdf | 200 |
+- `mart_2026_resmi_takvim.tsv`: 61 satır, **61 benzersiz** tarih–hipodrom çifti
+- Daha önce işlenen 06–10 Mart: **10 çift** çıkarıldı → kalan **51 çift**
+- `tjk_indir liste --ay 2026-03`: 620 aday adres üretildi (indirilmedi, depoya eklenmedi)
+- Tarih **ve** hipodrom eşleşmesi: 51 çift × (1 program + 1 sonuç) = **102 benzersiz URL** → `mart_2026_kalan_102.tsv`
+  (adresler kalıptan üretilmiş adaydır; içerik doğrulaması yalnızca indirilen dosyalar için geçerlidir)
+- Sıralamadaki ilk çift: 2026-03-01 Adana
 
-## Rust doğrulama sonucu
+## İndirilen dosyalar
 
-- **CSV:** 12660 bayt, SHA-256 `45801a1bafe2fdf3bd299759844c25d59766b8d5f753cc2ebf89b0064ffbf594`
-  → beklenen değerle **birebir eşleşti**. UTF-8, 107 satır.
-  - İlk satır: `İzmir;(29. Yarış Günü);06/03/2026`
-  - 1. koşu, 1 numaralı at: `ATİK MEHMET` (ham: `ATİK MEHMET KG DB SK GKR`; sondakiler ekipman kısaltması)
-- **Takvim PDF:** 134596 bayt, SHA-256 `36a2318a2c8f13e8df78883cf2ff686ab38acd4eec1dcf5ebc2777b1713a52e6`
-  - Koordinat tabanlı hizalama: hata yok (tarih–gün uyumu, yuva çakışması, yıllık toplamlar başlıkla aynı; genel toplam 758)
-  - Mart 2026: **61** tarih–hipodrom çifti → `mart_2026_resmi_takvim.tsv` (20.03'teki `RMZ` = Ramazan Bayramı, hariç)
-  - 06.03.2026 takvimde Bursa ve İzmir olarak yer alıyor; CSV ile tutarlı.
+robots.txt: `https://medya-cdn.tjk.org/robots.txt` → HTTP 404 (kural yok, indirmeye izin verildi)
+
+| Rol | Kaynak URL | HTTP | Bayt | SHA-256 | İçerik doğrulaması |
+|---|---|---|---|---|---|
+| Program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-01/CSV/GunlukYarisProgrami/01.03.2026-Adana-GunlukYarisProgrami-TR.csv | 200 | 16347 | `a48bda6342658cecd786505694d40e619d14064610611a246c5c75ff4db7b9a8` | ICERIK_DOGRULANDI: 2026-03-01 Adana program |
+| Sonuç | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-01/CSV/GunlukYarisSonuclari/01.03.2026-Adana-GunlukYarisSonuclari-TR.csv | 200 | 16583 | `c37c3167fcae09ead0365228a8cfdd5e1459e9a2d9c791c5924af57ff9cdec77` | ICERIK_DOGRULANDI: 2026-03-01 Adana sonuc |
+
+Her iki dosyanın ilk satırı: `Adana;(26. Yarış Günü);01/03/2026` (UTF-8 BOM'lu, CRLF, `;` ayıraç).
+Rol kolon başlıklarından çıkarıldı (program: "Son 6 Yarış"; sonuç: "Derece", "Ganyan", "Fark").
+
+## Birlikte ayrıştırma (`tjk_ayristirici PROGRAM SONUC ÇIKTI`)
+
+- Program ve sonuç: 8 koşu, 83 at satırı; koşu başına at sayıları aynı (1:8 2:5 3:8 4:16 5:15 6:7 7:7 8:17)
+- Eşleşme sorunu: yok · Eşleşmeyen sonuç satırı: yok · Çapraz alan farkı: yok
+- Koşu durumları: BITIRDI=81, DERECESIZ=1 (K05 CLEAR SHOT), KOSMAZ=1 (K03 MYTHWAKE)
+- Bahis satırı kontrolü: 24 kontrol, 0 uyumsuz · Derece sırası: tüm koşularda artan
+- Altılı A1 (1.–6. koşu): 2/3/1,3/11/6/7, ödeme 8.315,62 TL
+- Altılı A2 (3.–8. koşu): 1,3/11/6/7/5/6, ödeme 3.475,00 TL
+- **GÜN DURUMU: TAMAM**, çıkış kodu 0. Hata yok.
 
 ## Eklenen ham dosyalar
 
-- `kontrol/ham/06.03.2026-İzmir-GunlukYarisProgrami-TR.csv` (ağdan indirilen ham dosya, değiştirilmedi)
-
-Veri tabanı değiştirilmedi.
+- `kontrol/ham/20260301-ADANA-program.csv`
+- `kontrol/ham/20260301-ADANA-sonuc.csv`

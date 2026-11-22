@@ -1,6 +1,7 @@
 //! TJK arşiv erişim testi: robots.txt kontrolü, curl ile indirme,
 //! SHA-256 doğrulama, CSV inceleme ve resmî takvimden Mart çiftleri.
 
+mod daralt;
 mod takvim;
 
 use sha2::{Digest, Sha256};
@@ -9,7 +10,7 @@ use std::process::{exit, Command};
 fn usage() -> ! {
     eprintln!(
         "kullanım:\n  tjk-fetch robots <url> <yol>...\n  tjk-fetch fetch <url> <çıktı>\n  \
-         tjk-fetch csv <dosya>\n  tjk-fetch takvim <pdf> <çıktı.tsv>"
+         tjk-fetch csv <dosya>\n  tjk-fetch takvim <pdf> <çıktı.tsv>\n  tjk-fetch daralt <takvim.tsv> <liste.tsv> <hariç_ilk> <hariç_son> <beklenen_çift> <beklenen_hariç> <çıktı.tsv>"
     );
     exit(2)
 }
@@ -21,6 +22,7 @@ fn main() {
         Some("fetch") if args.len() == 3 => fetch(&args[1], &args[2]),
         Some("csv") if args.len() == 2 => csv(&args[1]),
         Some("takvim") if args.len() == 3 => takvim::run(&args[1], &args[2]),
+        Some("daralt") => daralt::run(&args[1..]),
         _ => usage(),
     }
 }

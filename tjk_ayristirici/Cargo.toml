@@ -1,0 +1,11 @@
+[package]
+name = "tjk_ayristirici"
+version = "0.11.0"
+edition = "2021"
+description = "TJK günlük program/sonuç CSV dosyalarını program.csv, sonuclar.csv ve altili.json biçimine dönüştürür"
+
+# Bilerek bağımlılıksız: yalnızca Rust standart kütüphanesi.
+[dependencies]
+
+[profile.release]
+opt-level = 3
