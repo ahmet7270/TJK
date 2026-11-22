@@ -1,0 +1,14 @@
+Açık kalan 11 çift (22.11.2026 Adana tamamlandı; ayrıntı: kontrol/yillik/acik12/RAPOR.md)
+İNCELEME_GEREKLI (gün aktarıldı, gerekçeli açık kayıt var):
+  2026-01-11 Adana     erteleme (K4–K8 12.01'de); altılı ödemesi hiçbir belgede yok
+  2026-02-28 İstanbul  4. koşu bahis satırında numaralar kaynakta boş
+  2026-03-15 Adana     iki açık ödeme (3. koşu GANYAN, 1. altılı)
+  2026-04-03 İzmir     yalnızca 9. koşu yayımlanmış
+  2026-10-28 Elazığ    yalnızca 1. koşu yayımlanmış
+EKSIK (sonuç alınamadı, aktarılmadı):
+  2025-12-31 Şanlıurfa  sonuç CSV 0 bayt
+  2026-04-18 Ankara     program/sonuç CSV 404; yalnızca program PDF
+  2026-09-28 Bursa      sonuç CSV 0 bayt
+  2026-09-29 Kocaeli    sonuç CSV 0 bayt
+  2026-10-16 Bursa      sonuç CSV 0 bayt; sonuç PDF yok
+  2026-10-19 Bursa      sonuç CSV 0 bayt; özet PDF satırsız

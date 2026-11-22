@@ -1,0 +1,29 @@
+tjk_yillik.sqlite kontrol özeti (2026-11-22T19:39:50Z)
+SHA-256: 7462e59990a5318388e1edd81082809e260334f2f48663c869e1101907bbf057 (54325248 bayt)
+Yedek: sqlite3 backup API ile salt okunur kaynaktan; tam tablo dökümü kaynakla aynı (a969e87c…fdaed0). Dosya bayt SHA-256'sı kaynaktan farklıdır (sayfa düzeni), içerik aynıdır.
+Kaynak (ZIP'teki eski dosya): ab997fc3…bae5
+integrity_check [('ok',)]
+foreign_key_check 0 satır
+user_version 4
+journal_mode delete
+tablo agf_gozlem 83691
+tablo altili 1356
+tablo altili_ayak 8136
+tablo altili_ayak_gecerli 9366
+tablo altili_odeme 1359
+tablo altili_odeme_ayak 9421
+tablo at 7670
+tablo bahis_sonucu 50940
+tablo bahis_uyarisi 229
+tablo ganyan_kontrol 6198
+tablo inceleme_nedeni 188
+tablo katilim 63598
+tablo kaynak_dosya 1510
+tablo kosu 6198
+tablo sonuc 63598
+tablo yaris_gunu 754
+gun aralığı ('2025-11-22', '2026-11-22')
+tarih_durumu [('ERTELENDI', 20), ('PLANLANDIGI_GUN', 6163), ('SONUC_YOK', 15)]
+
+Kapsam: 760 resmî çift: 749 TAMAM, 5 INCELEME_GEREKLI, 6 EKSIK, 0 denenmedi (kontrol/yillik_durum.md).
+YIL TAMAMLANDI DENEMEZ: 11 çift açık.

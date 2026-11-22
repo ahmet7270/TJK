@@ -1,0 +1,233 @@
+# Son veri testi
+
+- **Durum:** TAMAMLANDI (liste sonuna kadar işlendi)
+- **Çalışma:** Mart 2026 toplu indirme, `/home/user/TJK/kontrol/yillik/listeler/2026-08_liste.tsv`
+- **Araçlar:** `tjk-fetch toplu` (curl ile HTTPS; içerik doğrulaması `tjk_ayristirici/src/ayristir.rs` ile), birlikte ayrıştırma `tjk_ayristirici`
+- **SQLite:** kullanılmadı
+- **Ön kontrol:** 67 çift, 134 satır, 134 benzersiz URL; her çiftte bir program ve bir sonuç
+- **robots.txt:** HTTP 404: robots.txt yok, kural tanımlı değil (RFC 9309: izinli)
+
+## Özet (bu çalışmadaki 67 çift)
+
+| Durum | Çift |
+|---|---|
+| Tamamlandı | 67 |
+| İnceleme gerekli | 0 |
+| Eksik | 0 |
+| Henüz denenmedi | 0 |
+| **Toplam** | **67** |
+
+Önceki çalışmadan SHA-256'sı eşleşerek yeniden kullanılan dosya: 0
+
+## Çiftler
+
+| # | Tarih | Hipodrom | Durum | Gerekçe |
+|---|---|---|---|---|
+| 1 | 2026-08-01 | Ankara | TAMAMLANDI |  |
+| 2 | 2026-08-01 | Diyarbakır | TAMAMLANDI |  |
+| 3 | 2026-08-01 | İzmir | TAMAMLANDI |  |
+| 4 | 2026-08-02 | İstanbul | TAMAMLANDI |  |
+| 5 | 2026-08-02 | İzmir | TAMAMLANDI |  |
+| 6 | 2026-08-03 | Bursa | TAMAMLANDI |  |
+| 7 | 2026-08-03 | Elazığ | TAMAMLANDI |  |
+| 8 | 2026-08-04 | Ankara | TAMAMLANDI |  |
+| 9 | 2026-08-04 | Kocaeli | TAMAMLANDI |  |
+| 10 | 2026-08-05 | Elazığ | TAMAMLANDI |  |
+| 11 | 2026-08-05 | İstanbul | TAMAMLANDI |  |
+| 12 | 2026-08-06 | Ankara | TAMAMLANDI |  |
+| 13 | 2026-08-06 | Kocaeli | TAMAMLANDI |  |
+| 14 | 2026-08-07 | Bursa | TAMAMLANDI |  |
+| 15 | 2026-08-07 | İstanbul | TAMAMLANDI |  |
+| 16 | 2026-08-08 | Ankara | TAMAMLANDI |  |
+| 17 | 2026-08-08 | Diyarbakır | TAMAMLANDI |  |
+| 18 | 2026-08-08 | İzmir | TAMAMLANDI |  |
+| 19 | 2026-08-09 | İstanbul | TAMAMLANDI |  |
+| 20 | 2026-08-09 | İzmir | TAMAMLANDI |  |
+| 21 | 2026-08-10 | Bursa | TAMAMLANDI |  |
+| 22 | 2026-08-10 | Elazığ | TAMAMLANDI |  |
+| 23 | 2026-08-11 | Ankara | TAMAMLANDI |  |
+| 24 | 2026-08-11 | Kocaeli | TAMAMLANDI |  |
+| 25 | 2026-08-12 | Elazığ | TAMAMLANDI |  |
+| 26 | 2026-08-12 | İstanbul | TAMAMLANDI |  |
+| 27 | 2026-08-13 | Ankara | TAMAMLANDI |  |
+| 28 | 2026-08-13 | Kocaeli | TAMAMLANDI |  |
+| 29 | 2026-08-14 | Bursa | TAMAMLANDI |  |
+| 30 | 2026-08-14 | İstanbul | TAMAMLANDI |  |
+| 31 | 2026-08-15 | Ankara | TAMAMLANDI |  |
+| 32 | 2026-08-15 | Diyarbakır | TAMAMLANDI |  |
+| 33 | 2026-08-15 | İzmir | TAMAMLANDI |  |
+| 34 | 2026-08-16 | İstanbul | TAMAMLANDI |  |
+| 35 | 2026-08-16 | İzmir | TAMAMLANDI |  |
+| 36 | 2026-08-17 | Bursa | TAMAMLANDI |  |
+| 37 | 2026-08-17 | Elazığ | TAMAMLANDI |  |
+| 38 | 2026-08-18 | Ankara | TAMAMLANDI |  |
+| 39 | 2026-08-18 | Kocaeli | TAMAMLANDI |  |
+| 40 | 2026-08-19 | Elazığ | TAMAMLANDI |  |
+| 41 | 2026-08-19 | İstanbul | TAMAMLANDI |  |
+| 42 | 2026-08-20 | Ankara | TAMAMLANDI |  |
+| 43 | 2026-08-20 | Kocaeli | TAMAMLANDI |  |
+| 44 | 2026-08-21 | Bursa | TAMAMLANDI |  |
+| 45 | 2026-08-21 | İstanbul | TAMAMLANDI |  |
+| 46 | 2026-08-22 | Ankara | TAMAMLANDI |  |
+| 47 | 2026-08-22 | Diyarbakır | TAMAMLANDI |  |
+| 48 | 2026-08-22 | İzmir | TAMAMLANDI |  |
+| 49 | 2026-08-23 | İstanbul | TAMAMLANDI |  |
+| 50 | 2026-08-23 | İzmir | TAMAMLANDI |  |
+| 51 | 2026-08-24 | Bursa | TAMAMLANDI |  |
+| 52 | 2026-08-24 | Elazığ | TAMAMLANDI |  |
+| 53 | 2026-08-25 | Ankara | TAMAMLANDI |  |
+| 54 | 2026-08-25 | Kocaeli | TAMAMLANDI |  |
+| 55 | 2026-08-26 | Elazığ | TAMAMLANDI |  |
+| 56 | 2026-08-26 | İstanbul | TAMAMLANDI |  |
+| 57 | 2026-08-27 | Ankara | TAMAMLANDI |  |
+| 58 | 2026-08-27 | Kocaeli | TAMAMLANDI |  |
+| 59 | 2026-08-28 | Bursa | TAMAMLANDI |  |
+| 60 | 2026-08-28 | İstanbul | TAMAMLANDI |  |
+| 61 | 2026-08-29 | Ankara | TAMAMLANDI |  |
+| 62 | 2026-08-29 | Diyarbakır | TAMAMLANDI |  |
+| 63 | 2026-08-29 | İzmir | TAMAMLANDI |  |
+| 64 | 2026-08-30 | Adana | TAMAMLANDI |  |
+| 65 | 2026-08-30 | İstanbul | TAMAMLANDI |  |
+| 66 | 2026-08-31 | Bursa | TAMAMLANDI |  |
+| 67 | 2026-08-31 | Elazığ | TAMAMLANDI |  |
+
+## Dosyalar
+
+| Tarih | Hipodrom | Rol | Kaynak URL | HTTP | Bayt | SHA-256 | Doğrulama |
+|---|---|---|---|---|---|---|---|
+| 2026-08-01 | Ankara | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-01/CSV/GunlukYarisProgrami/01.08.2026-Ankara-GunlukYarisProgrami-TR.csv | 200 | 15707 | `8563ef075d0d14731936d88f5de1386993c3d5673e58a7cd3231bb9526ffd732` | ICERIK_DOGRULANDI |
+| 2026-08-01 | Ankara | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-01/CSV/GunlukYarisSonuclari/01.08.2026-Ankara-GunlukYarisSonuclari-TR.csv | 200 | 16197 | `b222a0dde7c2ce416c288a60823b5c74ba4f01d5d85c1f961ea8c141ffb076ca` | ICERIK_DOGRULANDI |
+| 2026-08-01 | Diyarbakır | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-01/CSV/GunlukYarisProgrami/01.08.2026-Diyarbak%C4%B1r-GunlukYarisProgrami-TR.csv | 200 | 14183 | `94c88981cbe54d0802974b681a4aee2a7f145172a4e70ca2d42a0af8d793d6c2` | ICERIK_DOGRULANDI |
+| 2026-08-01 | Diyarbakır | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-01/CSV/GunlukYarisSonuclari/01.08.2026-Diyarbak%C4%B1r-GunlukYarisSonuclari-TR.csv | 200 | 14630 | `7823403df236a39feecdc9bd02c6c31124222e9ad035ff46c3dd66e0cf9a59e4` | ICERIK_DOGRULANDI |
+| 2026-08-01 | İzmir | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-01/CSV/GunlukYarisProgrami/01.08.2026-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 | 16133 | `78fd82d47f6e8c4c3cc9e06220491cb7c15ae88740251321442d0f50e645b538` | ICERIK_DOGRULANDI |
+| 2026-08-01 | İzmir | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-01/CSV/GunlukYarisSonuclari/01.08.2026-%C4%B0zmir-GunlukYarisSonuclari-TR.csv | 200 | 16798 | `cfe06285574a4575bf50adba8f5e3a1a085632a673b3abe33db4b563321f2a00` | ICERIK_DOGRULANDI |
+| 2026-08-02 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-02/CSV/GunlukYarisProgrami/02.08.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 20510 | `9cea284a403e253188472c9ea278a57d343380db97d240fb7e07328e1155c103` | ICERIK_DOGRULANDI |
+| 2026-08-02 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-02/CSV/GunlukYarisSonuclari/02.08.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 21729 | `0c3cef3d9940f497882d82533eb95012f8d66bee8b40d601c70138220be2dbb0` | ICERIK_DOGRULANDI |
+| 2026-08-02 | İzmir | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-02/CSV/GunlukYarisProgrami/02.08.2026-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 | 11777 | `71dfb489b0d9256e20c73fa94aa371fc2b9721bce6e6216cd0633e78dd392864` | ICERIK_DOGRULANDI |
+| 2026-08-02 | İzmir | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-02/CSV/GunlukYarisSonuclari/02.08.2026-%C4%B0zmir-GunlukYarisSonuclari-TR.csv | 200 | 12145 | `09469e0b526fa84e42b9de08ef6b509467bdac6c6ca0a06538f7d851dfbd660b` | ICERIK_DOGRULANDI |
+| 2026-08-03 | Bursa | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-03/CSV/GunlukYarisProgrami/03.08.2026-Bursa-GunlukYarisProgrami-TR.csv | 200 | 16875 | `fd144a9233aeda03209f25916e0f2e58222a5eebca1a71c7aff0129a02e50887` | ICERIK_DOGRULANDI |
+| 2026-08-03 | Bursa | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-03/CSV/GunlukYarisSonuclari/03.08.2026-Bursa-GunlukYarisSonuclari-TR.csv | 200 | 17604 | `b8e740f102edb0997b7562f314500218d6421209a3de4b162bc47e96a2dbecd7` | ICERIK_DOGRULANDI |
+| 2026-08-03 | Elazığ | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-03/CSV/GunlukYarisProgrami/03.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisProgrami-TR.csv | 200 | 16940 | `5cdf85fb648cf0793b9c9dcd38bb91c03fa9f284cbd5ebc9abb909a5dce69163` | ICERIK_DOGRULANDI |
+| 2026-08-03 | Elazığ | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-03/CSV/GunlukYarisSonuclari/03.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisSonuclari-TR.csv | 200 | 17537 | `9e5fc101957915f1a54e0e1469351a77f6449f32a5fbd211c0ff456beb59fdd2` | ICERIK_DOGRULANDI |
+| 2026-08-04 | Ankara | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-04/CSV/GunlukYarisProgrami/04.08.2026-Ankara-GunlukYarisProgrami-TR.csv | 200 | 14878 | `01380b14cbe734bc7aecb868f563029ace3063bd17ac36798bb1bd85186abd56` | ICERIK_DOGRULANDI |
+| 2026-08-04 | Ankara | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-04/CSV/GunlukYarisSonuclari/04.08.2026-Ankara-GunlukYarisSonuclari-TR.csv | 200 | 15572 | `1f6162638e584b2b91ef3b3029c0c462eea68ad7dada72766f37161874ba4226` | ICERIK_DOGRULANDI |
+| 2026-08-04 | Kocaeli | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-04/CSV/GunlukYarisProgrami/04.08.2026-Kocaeli-GunlukYarisProgrami-TR.csv | 200 | 15467 | `2801cfcfa105c451babe6aff33c4011d3824f50fcf47c1cd6197decdce5fe208` | ICERIK_DOGRULANDI |
+| 2026-08-04 | Kocaeli | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-04/CSV/GunlukYarisSonuclari/04.08.2026-Kocaeli-GunlukYarisSonuclari-TR.csv | 200 | 16048 | `aff088a6d1ecea6aba222d2fc25781ba5eb8a346809c5f8abf7190a424dd827f` | ICERIK_DOGRULANDI |
+| 2026-08-05 | Elazığ | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-05/CSV/GunlukYarisProgrami/05.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisProgrami-TR.csv | 200 | 17423 | `eb3b5ce8d8f19397ee21caf66f51accaa94b83213a87705d7608cd5197353af6` | ICERIK_DOGRULANDI |
+| 2026-08-05 | Elazığ | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-05/CSV/GunlukYarisSonuclari/05.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisSonuclari-TR.csv | 200 | 18278 | `dd191cc3a73cccaf77a49584ae9a6b2344e41fdc9eab119e4ecf895d795d3fdf` | ICERIK_DOGRULANDI |
+| 2026-08-05 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-05/CSV/GunlukYarisProgrami/05.08.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 15998 | `6320b112252f35a7db52e7dd503241a27f793dc434957f3fcf30f41dcfdb66d3` | ICERIK_DOGRULANDI |
+| 2026-08-05 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-05/CSV/GunlukYarisSonuclari/05.08.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 16609 | `221b49980e9d9c853ed8fde34de5f5e6558925f8b0355a5e496829baac0712b1` | ICERIK_DOGRULANDI |
+| 2026-08-06 | Ankara | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-06/CSV/GunlukYarisProgrami/06.08.2026-Ankara-GunlukYarisProgrami-TR.csv | 200 | 13365 | `b48b2048fab3b9d18f6ce6f51d7b71eb1e4ac45ad34cac2267860b3787aaf901` | ICERIK_DOGRULANDI |
+| 2026-08-06 | Ankara | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-06/CSV/GunlukYarisSonuclari/06.08.2026-Ankara-GunlukYarisSonuclari-TR.csv | 200 | 14176 | `0423ea6b0d64521473aee41722f6a11bd0235b5cb0adb4e3b8f7259c96891edd` | ICERIK_DOGRULANDI |
+| 2026-08-06 | Kocaeli | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-06/CSV/GunlukYarisProgrami/06.08.2026-Kocaeli-GunlukYarisProgrami-TR.csv | 200 | 14917 | `12d50c8ad2a35c50e4464cb98d3401f668b3a3a793ab90b83e1700c1438e0697` | ICERIK_DOGRULANDI |
+| 2026-08-06 | Kocaeli | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-06/CSV/GunlukYarisSonuclari/06.08.2026-Kocaeli-GunlukYarisSonuclari-TR.csv | 200 | 15795 | `ddce4b0f1b861567e7832d301b30dfb03e1eac2ae3188121624bd0d2770302cb` | ICERIK_DOGRULANDI |
+| 2026-08-07 | Bursa | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-07/CSV/GunlukYarisProgrami/07.08.2026-Bursa-GunlukYarisProgrami-TR.csv | 200 | 17380 | `d2a7db8b03c28e6884f1653e3176c803553dd5d776fbdcb704c12af7beafe2c5` | ICERIK_DOGRULANDI |
+| 2026-08-07 | Bursa | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-07/CSV/GunlukYarisSonuclari/07.08.2026-Bursa-GunlukYarisSonuclari-TR.csv | 200 | 17824 | `8b5a60074def49e9c50d555db85c86362c9951c33cf17ff672757b896f8dc6dd` | ICERIK_DOGRULANDI |
+| 2026-08-07 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-07/CSV/GunlukYarisProgrami/07.08.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 20143 | `31493e473142b905fd7e04cd877649de5611785c05a20d1835355ff6db694527` | ICERIK_DOGRULANDI |
+| 2026-08-07 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-07/CSV/GunlukYarisSonuclari/07.08.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 20879 | `e528c3c9f26388eb640a078141e4738d15fc2e9b529aa068d7b63025aa50a84c` | ICERIK_DOGRULANDI |
+| 2026-08-08 | Ankara | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-08/CSV/GunlukYarisProgrami/08.08.2026-Ankara-GunlukYarisProgrami-TR.csv | 200 | 14300 | `5431e2e48431b42aa92157dd8e94f085e8f45a9209f80101f6c325b506ec60d6` | ICERIK_DOGRULANDI |
+| 2026-08-08 | Ankara | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-08/CSV/GunlukYarisSonuclari/08.08.2026-Ankara-GunlukYarisSonuclari-TR.csv | 200 | 14881 | `453822550fcad0a38fda3094ebc3ebe31a5099d34090cd36984c25362754daf7` | ICERIK_DOGRULANDI |
+| 2026-08-08 | Diyarbakır | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-08/CSV/GunlukYarisProgrami/08.08.2026-Diyarbak%C4%B1r-GunlukYarisProgrami-TR.csv | 200 | 12604 | `1c68b3950a79fb5e712983f230573446be620cccf7617a00f9c470a60cc26cd5` | ICERIK_DOGRULANDI |
+| 2026-08-08 | Diyarbakır | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-08/CSV/GunlukYarisSonuclari/08.08.2026-Diyarbak%C4%B1r-GunlukYarisSonuclari-TR.csv | 200 | 13126 | `782c4d8105b3398c73e3dfe03f92146783a2e2de9cd115f6f73701709e90ef13` | ICERIK_DOGRULANDI |
+| 2026-08-08 | İzmir | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-08/CSV/GunlukYarisProgrami/08.08.2026-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 | 14165 | `0efdb14960449d60e486887fbf15a9592fd918053f33653e889e86b0d3ea7fc7` | ICERIK_DOGRULANDI |
+| 2026-08-08 | İzmir | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-08/CSV/GunlukYarisSonuclari/08.08.2026-%C4%B0zmir-GunlukYarisSonuclari-TR.csv | 200 | 15109 | `f40b01ad9714af5f25e38fd2cbe8db59fa7b5e4be1b535c1e0ec7549e36f502f` | ICERIK_DOGRULANDI |
+| 2026-08-09 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-09/CSV/GunlukYarisProgrami/09.08.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 14157 | `6995dffaa29ab8ef9131250dff5f34c2984d24125b3a456d2e9e6890029ef832` | ICERIK_DOGRULANDI |
+| 2026-08-09 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-09/CSV/GunlukYarisSonuclari/09.08.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 14406 | `50e9d3e305b4df05bcf79aec6931dc05670c42353c6af9b67e40b52936eb2c04` | ICERIK_DOGRULANDI |
+| 2026-08-09 | İzmir | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-09/CSV/GunlukYarisProgrami/09.08.2026-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 | 16286 | `5c6bf29e6d45dfc5258a63a871b6ba348e3d5dcc1b302449d349cca9ec9e0cce` | ICERIK_DOGRULANDI |
+| 2026-08-09 | İzmir | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-09/CSV/GunlukYarisSonuclari/09.08.2026-%C4%B0zmir-GunlukYarisSonuclari-TR.csv | 200 | 16862 | `b4f113405ffab3585d163db30859ec640c41904e0701d7188ce1ee8fa8f068d3` | ICERIK_DOGRULANDI |
+| 2026-08-10 | Bursa | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-10/CSV/GunlukYarisProgrami/10.08.2026-Bursa-GunlukYarisProgrami-TR.csv | 200 | 23344 | `27a0673ff2f41806e4ab2eced292de05dd28203b88ab4ab06a4c0bf2ea05fdd2` | ICERIK_DOGRULANDI |
+| 2026-08-10 | Bursa | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-10/CSV/GunlukYarisSonuclari/10.08.2026-Bursa-GunlukYarisSonuclari-TR.csv | 200 | 23887 | `385ef4be2a5f68f1caa4ecd1e22fbe4e4ec725e0573b60aa7478b57dcd591968` | ICERIK_DOGRULANDI |
+| 2026-08-10 | Elazığ | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-10/CSV/GunlukYarisProgrami/10.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisProgrami-TR.csv | 200 | 16234 | `554cc7e5a45a6e0e94f251844fc4d33331d41cb26c669d59af5ba896ee73aa20` | ICERIK_DOGRULANDI |
+| 2026-08-10 | Elazığ | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-10/CSV/GunlukYarisSonuclari/10.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisSonuclari-TR.csv | 200 | 16930 | `1b5abf4f2a420cb00ee1e3775ff3655919600386b158ae544f3325d581e195ac` | ICERIK_DOGRULANDI |
+| 2026-08-11 | Ankara | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-11/CSV/GunlukYarisProgrami/11.08.2026-Ankara-GunlukYarisProgrami-TR.csv | 200 | 17758 | `4916d6a80ad62de78c23f4390026fb05aa55b0efe2807ed09d3d09ec14e8c0b2` | ICERIK_DOGRULANDI |
+| 2026-08-11 | Ankara | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-11/CSV/GunlukYarisSonuclari/11.08.2026-Ankara-GunlukYarisSonuclari-TR.csv | 200 | 18228 | `4be587e9cdf0bb3bc9850f636996893a4a542359b6e209c1299baddb2b87584a` | ICERIK_DOGRULANDI |
+| 2026-08-11 | Kocaeli | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-11/CSV/GunlukYarisProgrami/11.08.2026-Kocaeli-GunlukYarisProgrami-TR.csv | 200 | 16821 | `eb5b070d652f235080042ecdb027ce747f0a5590646af81a8ff5afe0f31e057c` | ICERIK_DOGRULANDI |
+| 2026-08-11 | Kocaeli | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-11/CSV/GunlukYarisSonuclari/11.08.2026-Kocaeli-GunlukYarisSonuclari-TR.csv | 200 | 17385 | `8993325878931c4cf3d71c3f8e19a643bde2e2e280b1253185746abdb455196c` | ICERIK_DOGRULANDI |
+| 2026-08-12 | Elazığ | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-12/CSV/GunlukYarisProgrami/12.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisProgrami-TR.csv | 200 | 17246 | `776992a52c167b8ce01adc107202e02d97be48c40bc18be350e6973d3a43d370` | ICERIK_DOGRULANDI |
+| 2026-08-12 | Elazığ | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-12/CSV/GunlukYarisSonuclari/12.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisSonuclari-TR.csv | 200 | 18034 | `75a9e13ab69aa1ba1a49cab720af4dd1e06b520a719e4708b212dc4466f302dc` | ICERIK_DOGRULANDI |
+| 2026-08-12 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-12/CSV/GunlukYarisProgrami/12.08.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 20143 | `cc9cf582e9025e9d5af69fc6e64803cd8c0d297c2c2b4601666f60cf57563116` | ICERIK_DOGRULANDI |
+| 2026-08-12 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-12/CSV/GunlukYarisSonuclari/12.08.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 20758 | `3de50eb7af7e119842c21ba0e73b54feb65f74dd797084b598a51c01ee50659e` | ICERIK_DOGRULANDI |
+| 2026-08-13 | Ankara | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-13/CSV/GunlukYarisProgrami/13.08.2026-Ankara-GunlukYarisProgrami-TR.csv | 200 | 16263 | `14bcae69d272e7d5bfad148d8266141619fbeee27874ed085683e771162c54e3` | ICERIK_DOGRULANDI |
+| 2026-08-13 | Ankara | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-13/CSV/GunlukYarisSonuclari/13.08.2026-Ankara-GunlukYarisSonuclari-TR.csv | 200 | 16883 | `a365c9dacc2e11e49725f18fa07bf1eb0b1f04852091372eed247a975871c1b3` | ICERIK_DOGRULANDI |
+| 2026-08-13 | Kocaeli | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-13/CSV/GunlukYarisProgrami/13.08.2026-Kocaeli-GunlukYarisProgrami-TR.csv | 200 | 17419 | `7a6261944cf897fd287a3004938c8cd2ef41f10e03ad0bba8af3b74cb788c447` | ICERIK_DOGRULANDI |
+| 2026-08-13 | Kocaeli | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-13/CSV/GunlukYarisSonuclari/13.08.2026-Kocaeli-GunlukYarisSonuclari-TR.csv | 200 | 18091 | `806743b3e8df5b1e729f3f27f014d3ff92e2d283254d9891a9d5d2ea66ec20e7` | ICERIK_DOGRULANDI |
+| 2026-08-14 | Bursa | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-14/CSV/GunlukYarisProgrami/14.08.2026-Bursa-GunlukYarisProgrami-TR.csv | 200 | 20778 | `5564a2efc325c6e6c201106474ac02db6950177ec0046245d9e3b1cea3d7845f` | ICERIK_DOGRULANDI |
+| 2026-08-14 | Bursa | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-14/CSV/GunlukYarisSonuclari/14.08.2026-Bursa-GunlukYarisSonuclari-TR.csv | 200 | 21379 | `dbbed9bd106389d7b20cd3d715017ca52bd94f2d7439ff637de71f0476506ca7` | ICERIK_DOGRULANDI |
+| 2026-08-14 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-14/CSV/GunlukYarisProgrami/14.08.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 14149 | `8a6e5e45c879ae4a618121b68096f5bb5ebf8ce016fe25b0a04e9fbda205c504` | ICERIK_DOGRULANDI |
+| 2026-08-14 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-14/CSV/GunlukYarisSonuclari/14.08.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 14542 | `2273a76b237bd496b814e80b9b2b837ea21eab21de842816f1533514a94660ae` | ICERIK_DOGRULANDI |
+| 2026-08-15 | Ankara | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-15/CSV/GunlukYarisProgrami/15.08.2026-Ankara-GunlukYarisProgrami-TR.csv | 200 | 15955 | `5a238c43ed9bb33de3b42b449ee18890924296d127e57e015274b930fcf8b2cf` | ICERIK_DOGRULANDI |
+| 2026-08-15 | Ankara | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-15/CSV/GunlukYarisSonuclari/15.08.2026-Ankara-GunlukYarisSonuclari-TR.csv | 200 | 16202 | `667b984c070dce73e7f4cfe079b8c52eb2dd69e3cc054c3e9ef11717b09118a4` | ICERIK_DOGRULANDI |
+| 2026-08-15 | Diyarbakır | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-15/CSV/GunlukYarisProgrami/15.08.2026-Diyarbak%C4%B1r-GunlukYarisProgrami-TR.csv | 200 | 11626 | `36ef77e162788992446132d38da3834320ae448d11a50b4a973a41a3b679d464` | ICERIK_DOGRULANDI |
+| 2026-08-15 | Diyarbakır | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-15/CSV/GunlukYarisSonuclari/15.08.2026-Diyarbak%C4%B1r-GunlukYarisSonuclari-TR.csv | 200 | 11948 | `9301947b7a7dc9a1f4387cf027c8764e5458a9ee80af1d205a2b5ba1168face3` | ICERIK_DOGRULANDI |
+| 2026-08-15 | İzmir | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-15/CSV/GunlukYarisProgrami/15.08.2026-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 | 15598 | `805a02af16e35df72079fe6ec150ecd4bdd21779e6fb44cfea287a196fce56c1` | ICERIK_DOGRULANDI |
+| 2026-08-15 | İzmir | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-15/CSV/GunlukYarisSonuclari/15.08.2026-%C4%B0zmir-GunlukYarisSonuclari-TR.csv | 200 | 16198 | `6146b3ed969887d38beba78b6ceb3abc6ac9f40ffc24a8733db433b0c6668f67` | ICERIK_DOGRULANDI |
+| 2026-08-16 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-16/CSV/GunlukYarisProgrami/16.08.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 18364 | `3c9f92d411ca10baa058e4f08189c342ec5fe824e53c286d8f890790da5ece41` | ICERIK_DOGRULANDI |
+| 2026-08-16 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-16/CSV/GunlukYarisSonuclari/16.08.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 19128 | `30b5ed6a288d2d0e58eff9b0d21c2c50ead661a2d884dfb7345def45d95990fb` | ICERIK_DOGRULANDI |
+| 2026-08-16 | İzmir | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-16/CSV/GunlukYarisProgrami/16.08.2026-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 | 13646 | `16c1c3ba142f57fcc37f461af37561f8209d8cde847164dab0a7f6e6f4912e97` | ICERIK_DOGRULANDI |
+| 2026-08-16 | İzmir | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-16/CSV/GunlukYarisSonuclari/16.08.2026-%C4%B0zmir-GunlukYarisSonuclari-TR.csv | 200 | 14225 | `1dc4a2f4de7d99d679fb9d7d840c3079570e8eb2addca72730ce9b57326a59f1` | ICERIK_DOGRULANDI |
+| 2026-08-17 | Bursa | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-17/CSV/GunlukYarisProgrami/17.08.2026-Bursa-GunlukYarisProgrami-TR.csv | 200 | 21284 | `eb18cbaf118c84514fe51bf7fadd55892de4db307900d56b25af02016e5db3f8` | ICERIK_DOGRULANDI |
+| 2026-08-17 | Bursa | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-17/CSV/GunlukYarisSonuclari/17.08.2026-Bursa-GunlukYarisSonuclari-TR.csv | 200 | 21933 | `4568c0fa11979c5ff0c2fb72036440631c66dd04aa7ae91676ec11bcc4fe99e1` | ICERIK_DOGRULANDI |
+| 2026-08-17 | Elazığ | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-17/CSV/GunlukYarisProgrami/17.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisProgrami-TR.csv | 200 | 18850 | `46069cd9ffe3aa070c545144308339cd4bdedb041b776b846a51b5a7f6ab4428` | ICERIK_DOGRULANDI |
+| 2026-08-17 | Elazığ | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-17/CSV/GunlukYarisSonuclari/17.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisSonuclari-TR.csv | 200 | 19513 | `127312fbc58043ea509331162f271833e6acbe96ad5eb6f8020ddd315511917b` | ICERIK_DOGRULANDI |
+| 2026-08-18 | Ankara | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-18/CSV/GunlukYarisProgrami/18.08.2026-Ankara-GunlukYarisProgrami-TR.csv | 200 | 12367 | `18b66e5e33388ff8db88452124a573d29366fa0aca36b7686e30591d8f207803` | ICERIK_DOGRULANDI |
+| 2026-08-18 | Ankara | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-18/CSV/GunlukYarisSonuclari/18.08.2026-Ankara-GunlukYarisSonuclari-TR.csv | 200 | 12552 | `d6317794132ad9b6caedb1da073a9d5b8d6bfa648a7367c9d89cd529e216fc78` | ICERIK_DOGRULANDI |
+| 2026-08-18 | Kocaeli | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-18/CSV/GunlukYarisProgrami/18.08.2026-Kocaeli-GunlukYarisProgrami-TR.csv | 200 | 16032 | `e9ca65e529c60cddceb3312df8f0437f1543c0435ae706308fa6725683589eaa` | ICERIK_DOGRULANDI |
+| 2026-08-18 | Kocaeli | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-18/CSV/GunlukYarisSonuclari/18.08.2026-Kocaeli-GunlukYarisSonuclari-TR.csv | 200 | 16429 | `6aadb286a5decc781064ab21ee72be66162eef51d76b513ea84383d021ca3a39` | ICERIK_DOGRULANDI |
+| 2026-08-19 | Elazığ | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-19/CSV/GunlukYarisProgrami/19.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisProgrami-TR.csv | 200 | 17388 | `c551c7b7ec6ac3cfa59212b1edcd0a502fd6214c4ddecce1406e77dc24c24d37` | ICERIK_DOGRULANDI |
+| 2026-08-19 | Elazığ | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-19/CSV/GunlukYarisSonuclari/19.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisSonuclari-TR.csv | 200 | 17941 | `a74b774035266a0d0d9c499003004a2b2122afefce925b088d06a1f78d48d067` | ICERIK_DOGRULANDI |
+| 2026-08-19 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-19/CSV/GunlukYarisProgrami/19.08.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 16599 | `6c0186085f9b5b75874acfaad6430ef8d4d028ca53f078272def08c4302d590c` | ICERIK_DOGRULANDI |
+| 2026-08-19 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-19/CSV/GunlukYarisSonuclari/19.08.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 17088 | `4f882f9f9227f9c2dae4e1fc99bd591db5bb9173a2db390f6a16ae739dd364e4` | ICERIK_DOGRULANDI |
+| 2026-08-20 | Ankara | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-20/CSV/GunlukYarisProgrami/20.08.2026-Ankara-GunlukYarisProgrami-TR.csv | 200 | 16246 | `92e2660a3557eb8c549830bbacf0a5891f96b20480309fd5587683157c30bf3c` | ICERIK_DOGRULANDI |
+| 2026-08-20 | Ankara | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-20/CSV/GunlukYarisSonuclari/20.08.2026-Ankara-GunlukYarisSonuclari-TR.csv | 200 | 16812 | `d38d838e85d510acaf6505d76ba293395f9e6fe77b600023c3439607a4ff3119` | ICERIK_DOGRULANDI |
+| 2026-08-20 | Kocaeli | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-20/CSV/GunlukYarisProgrami/20.08.2026-Kocaeli-GunlukYarisProgrami-TR.csv | 200 | 18381 | `04e59a7edc54a8a48af3c13627ad35efa35349baa9e5343ed5693e95cb2503cb` | ICERIK_DOGRULANDI |
+| 2026-08-20 | Kocaeli | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-20/CSV/GunlukYarisSonuclari/20.08.2026-Kocaeli-GunlukYarisSonuclari-TR.csv | 200 | 19138 | `12fe4ab2291916c2c268b2e7127bf35112b2d0d4d3308f0dc27ee5a75ce37127` | ICERIK_DOGRULANDI |
+| 2026-08-21 | Bursa | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-21/CSV/GunlukYarisProgrami/21.08.2026-Bursa-GunlukYarisProgrami-TR.csv | 200 | 21701 | `c2872c2c0bf967ab592d5119a096583a002de4196422ba87e49c0a5f5ab41108` | ICERIK_DOGRULANDI |
+| 2026-08-21 | Bursa | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-21/CSV/GunlukYarisSonuclari/21.08.2026-Bursa-GunlukYarisSonuclari-TR.csv | 200 | 22730 | `04b68220aae467f1ced7b9b2cca45867caedc1af4739c12ca111806115a86928` | ICERIK_DOGRULANDI |
+| 2026-08-21 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-21/CSV/GunlukYarisProgrami/21.08.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 18491 | `abc6df469ed6982a17c71c2c5aebbb324b793fa3092c9e906841e8fb84b31b5a` | ICERIK_DOGRULANDI |
+| 2026-08-21 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-21/CSV/GunlukYarisSonuclari/21.08.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 19503 | `c7d8804d6573decdfa4ba48036d61cd4ce670949e0a758bcf9deee5d909afe34` | ICERIK_DOGRULANDI |
+| 2026-08-22 | Ankara | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-22/CSV/GunlukYarisProgrami/22.08.2026-Ankara-GunlukYarisProgrami-TR.csv | 200 | 11135 | `d04faa65e2e8fb6dca052799f6f3fd80ab21fef217b1a6b680de362483308680` | ICERIK_DOGRULANDI |
+| 2026-08-22 | Ankara | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-22/CSV/GunlukYarisSonuclari/22.08.2026-Ankara-GunlukYarisSonuclari-TR.csv | 200 | 11443 | `aa6c914c673c6c0a3da782d25e761ff05af3b9386df230887b2a7846d7a43029` | ICERIK_DOGRULANDI |
+| 2026-08-22 | Diyarbakır | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-22/CSV/GunlukYarisProgrami/22.08.2026-Diyarbak%C4%B1r-GunlukYarisProgrami-TR.csv | 200 | 13496 | `c458460773f48c09c499fa72bad88859d7e420cfc06e96ccbe086797883aad41` | ICERIK_DOGRULANDI |
+| 2026-08-22 | Diyarbakır | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-22/CSV/GunlukYarisSonuclari/22.08.2026-Diyarbak%C4%B1r-GunlukYarisSonuclari-TR.csv | 200 | 13932 | `e2310f14b1a95b7a2b9e59c6a3a7da6c4cb323d8d8052e454c9827846d093c42` | ICERIK_DOGRULANDI |
+| 2026-08-22 | İzmir | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-22/CSV/GunlukYarisProgrami/22.08.2026-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 | 12330 | `b3f5b030c85653e0bb2af166e57c95cccf50fe5801f4cd918d3472015f776ab1` | ICERIK_DOGRULANDI |
+| 2026-08-22 | İzmir | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-22/CSV/GunlukYarisSonuclari/22.08.2026-%C4%B0zmir-GunlukYarisSonuclari-TR.csv | 200 | 12818 | `f96a7a9b92e4c3de9f9428e2d4d1d8cfaa586aecf493d7cf14d5e1dc1ff7489a` | ICERIK_DOGRULANDI |
+| 2026-08-23 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-23/CSV/GunlukYarisProgrami/23.08.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 14990 | `3e5b070b3bcabad55fcda09ab1b17c8a5037b6a5528dbc02a676e4a94dc23fbf` | ICERIK_DOGRULANDI |
+| 2026-08-23 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-23/CSV/GunlukYarisSonuclari/23.08.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 15531 | `365a2eb925d59709b32274536723847cd32f634cd2b7c2f5812f3ca2821da5aa` | ICERIK_DOGRULANDI |
+| 2026-08-23 | İzmir | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-23/CSV/GunlukYarisProgrami/23.08.2026-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 | 14689 | `c227d397751c930b6383bad26d0736c91a7400fb24587b9a8cd775cd160e2d47` | ICERIK_DOGRULANDI |
+| 2026-08-23 | İzmir | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-23/CSV/GunlukYarisSonuclari/23.08.2026-%C4%B0zmir-GunlukYarisSonuclari-TR.csv | 200 | 15233 | `2a2dbb29bdc249a6c8e197a2161c9c70de70fc6f889b67e67795fb750c56131f` | ICERIK_DOGRULANDI |
+| 2026-08-24 | Bursa | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-24/CSV/GunlukYarisProgrami/24.08.2026-Bursa-GunlukYarisProgrami-TR.csv | 200 | 18535 | `a5190a595984da872c460f61907ad3b160aaf4fe4b6194e0c3dbd0d85eb7e51f` | ICERIK_DOGRULANDI |
+| 2026-08-24 | Bursa | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-24/CSV/GunlukYarisSonuclari/24.08.2026-Bursa-GunlukYarisSonuclari-TR.csv | 200 | 18918 | `54d4c57d2db495d97487dc9d82a6ba2acadf5b273572e372b040f909bc352e28` | ICERIK_DOGRULANDI |
+| 2026-08-24 | Elazığ | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-24/CSV/GunlukYarisProgrami/24.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisProgrami-TR.csv | 200 | 17312 | `06daeba7ba03efd5034ffe5f2abc8b98f9b45677309826d52191337051940822` | ICERIK_DOGRULANDI |
+| 2026-08-24 | Elazığ | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-24/CSV/GunlukYarisSonuclari/24.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisSonuclari-TR.csv | 200 | 17895 | `9d1d846ebcc9f8470bad18b9753c0427200a5d5868ef9cbacba57533768731a1` | ICERIK_DOGRULANDI |
+| 2026-08-25 | Ankara | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-25/CSV/GunlukYarisProgrami/25.08.2026-Ankara-GunlukYarisProgrami-TR.csv | 200 | 16954 | `6b1917618a752da3b852ac92ecba6ba0232ae9f3de680eb0209ef469718111cf` | ICERIK_DOGRULANDI |
+| 2026-08-25 | Ankara | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-25/CSV/GunlukYarisSonuclari/25.08.2026-Ankara-GunlukYarisSonuclari-TR.csv | 200 | 17345 | `1a903e1cd903fca1dfdacd85a11abcc899be2909a8beb700943d4ea921aaeb95` | ICERIK_DOGRULANDI |
+| 2026-08-25 | Kocaeli | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-25/CSV/GunlukYarisProgrami/25.08.2026-Kocaeli-GunlukYarisProgrami-TR.csv | 200 | 16179 | `22f429954c7a6051748db4d892f92712f7c2ab39418c68e06e9cacddebe93d1c` | ICERIK_DOGRULANDI |
+| 2026-08-25 | Kocaeli | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-25/CSV/GunlukYarisSonuclari/25.08.2026-Kocaeli-GunlukYarisSonuclari-TR.csv | 200 | 16634 | `92dc9b4e3e3cb9600f8a3aa6a4e9edd7b6fb5b33cc01a9384dc2d374f6e3c1a6` | ICERIK_DOGRULANDI |
+| 2026-08-26 | Elazığ | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-26/CSV/GunlukYarisProgrami/26.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisProgrami-TR.csv | 200 | 19015 | `9bd1dae6b575de1dd74bab2c61367a18a1b461d50925f37eb0995e45ba7c438f` | ICERIK_DOGRULANDI |
+| 2026-08-26 | Elazığ | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-26/CSV/GunlukYarisSonuclari/26.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisSonuclari-TR.csv | 200 | 19878 | `3d27cc1a968d9d3783a898ffa6982bd12f13efcaa0af7447d05a16ab275afd3b` | ICERIK_DOGRULANDI |
+| 2026-08-26 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-26/CSV/GunlukYarisProgrami/26.08.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 21319 | `0b030587874f862ec9c56ee3aaf1e396a7f5aa99c32446f532a2387adf8f3226` | ICERIK_DOGRULANDI |
+| 2026-08-26 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-26/CSV/GunlukYarisSonuclari/26.08.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 21880 | `0e6f08322301a7b1b160556ddb205a567d8175e69b4e334b779116ef078e24bb` | ICERIK_DOGRULANDI |
+| 2026-08-27 | Ankara | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-27/CSV/GunlukYarisProgrami/27.08.2026-Ankara-GunlukYarisProgrami-TR.csv | 200 | 14783 | `51a6be9b1ab112b93ef7a343752554933c57de30866eea0870d5c949807d6b2d` | ICERIK_DOGRULANDI |
+| 2026-08-27 | Ankara | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-27/CSV/GunlukYarisSonuclari/27.08.2026-Ankara-GunlukYarisSonuclari-TR.csv | 200 | 15354 | `763c47f92303b8a0419fc14525fa24838a46dd63c437cdb009f21a58ff069d88` | ICERIK_DOGRULANDI |
+| 2026-08-27 | Kocaeli | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-27/CSV/GunlukYarisProgrami/27.08.2026-Kocaeli-GunlukYarisProgrami-TR.csv | 200 | 17718 | `a8702f4d4ccb011107c4ea7600f6881a0ed1cf11a6c7ebaa6d28739b7bfe289e` | ICERIK_DOGRULANDI |
+| 2026-08-27 | Kocaeli | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-27/CSV/GunlukYarisSonuclari/27.08.2026-Kocaeli-GunlukYarisSonuclari-TR.csv | 200 | 18332 | `5cfc26656cfdbf626397967c575c8cefe9312de75211c51194e8444ed613b258` | ICERIK_DOGRULANDI |
+| 2026-08-28 | Bursa | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-28/CSV/GunlukYarisProgrami/28.08.2026-Bursa-GunlukYarisProgrami-TR.csv | 200 | 19231 | `2762617a75a0a20181164809b6e9c37aef1aa0d3d2d2ee35bee5e7eb5013719a` | ICERIK_DOGRULANDI |
+| 2026-08-28 | Bursa | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-28/CSV/GunlukYarisSonuclari/28.08.2026-Bursa-GunlukYarisSonuclari-TR.csv | 200 | 19525 | `5087c6f23f8ba012c92194e878fbff933ecfc16f6091a201efcd3513d6c6d44c` | ICERIK_DOGRULANDI |
+| 2026-08-28 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-28/CSV/GunlukYarisProgrami/28.08.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 18150 | `9da2bce413193f0d60d3fe8b8ce52377e1c1a433d468aba6f16ce1aeb5712222` | ICERIK_DOGRULANDI |
+| 2026-08-28 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-28/CSV/GunlukYarisSonuclari/28.08.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 18688 | `e771f42473dbb36301d315953e07a0a52d01e851119ac29b6abcd7481a1b4c29` | ICERIK_DOGRULANDI |
+| 2026-08-29 | Ankara | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-29/CSV/GunlukYarisProgrami/29.08.2026-Ankara-GunlukYarisProgrami-TR.csv | 200 | 15975 | `e5cae4a0bbf15acf490811a7d706c6653972916c6507c031c8ee9b3adbaaa7e9` | ICERIK_DOGRULANDI |
+| 2026-08-29 | Ankara | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-29/CSV/GunlukYarisSonuclari/29.08.2026-Ankara-GunlukYarisSonuclari-TR.csv | 200 | 16465 | `3021f4b272e13102c2a08379ee31a2322c722354690577229a72e9c94ff73678` | ICERIK_DOGRULANDI |
+| 2026-08-29 | Diyarbakır | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-29/CSV/GunlukYarisProgrami/29.08.2026-Diyarbak%C4%B1r-GunlukYarisProgrami-TR.csv | 200 | 13285 | `cb544de859b4447ae7156387553b985427b6ce70ecb7645c36e75786ce45ac64` | ICERIK_DOGRULANDI |
+| 2026-08-29 | Diyarbakır | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-29/CSV/GunlukYarisSonuclari/29.08.2026-Diyarbak%C4%B1r-GunlukYarisSonuclari-TR.csv | 200 | 13810 | `71be0c8f5328778ee02ec3f6ac6365729c27b97677905301b98e92caaf74f1d0` | ICERIK_DOGRULANDI |
+| 2026-08-29 | İzmir | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-29/CSV/GunlukYarisProgrami/29.08.2026-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 | 11269 | `7fbb77ebc0ab295c729bb45cc2ae70db7e2e65ef5961d84d0c070bb0b47f49df` | ICERIK_DOGRULANDI |
+| 2026-08-29 | İzmir | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-29/CSV/GunlukYarisSonuclari/29.08.2026-%C4%B0zmir-GunlukYarisSonuclari-TR.csv | 200 | 11637 | `ce65e059a0a09376d2dc609dea77378a275667a4b34bc006ad9440bba5f30483` | ICERIK_DOGRULANDI |
+| 2026-08-30 | Adana | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-30/CSV/GunlukYarisProgrami/30.08.2026-Adana-GunlukYarisProgrami-TR.csv | 200 | 19671 | `f23915e2e91baac8cf744c1200a3c84d26b027adb67e9b249fe9e9dd63e585de` | ICERIK_DOGRULANDI |
+| 2026-08-30 | Adana | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-30/CSV/GunlukYarisSonuclari/30.08.2026-Adana-GunlukYarisSonuclari-TR.csv | 200 | 20831 | `1f320325fc311284cb2ee427ca3b4bce7cd6a2c92bcf90b7f172eff299abd3fc` | ICERIK_DOGRULANDI |
+| 2026-08-30 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-30/CSV/GunlukYarisProgrami/30.08.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 15359 | `db7af482331384dcb23553559c825f9f39cf7834a7a2282530cb674e48049738` | ICERIK_DOGRULANDI |
+| 2026-08-30 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-30/CSV/GunlukYarisSonuclari/30.08.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 15859 | `86b9715ced4abd3a27fc4e5e73e54fe87045b73972bca3829a1f3e5ecec1b7d3` | ICERIK_DOGRULANDI |
+| 2026-08-31 | Bursa | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-31/CSV/GunlukYarisProgrami/31.08.2026-Bursa-GunlukYarisProgrami-TR.csv | 200 | 22668 | `da460240f7c7de0d4a463fa405ecb90d6846de1c4749502ab49aa682c408f16c` | ICERIK_DOGRULANDI |
+| 2026-08-31 | Bursa | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-31/CSV/GunlukYarisSonuclari/31.08.2026-Bursa-GunlukYarisSonuclari-TR.csv | 200 | 22663 | `292bf893f7cd0a29f2f685043b8aafa92719cc7d65ddcd492cb2d055ad915326` | ICERIK_DOGRULANDI |
+| 2026-08-31 | Elazığ | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-31/CSV/GunlukYarisProgrami/31.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisProgrami-TR.csv | 200 | 16556 | `0f4992bbb4d7d627b538127d8898ad8219f33c7c37379c9c88e23954aba08565` | ICERIK_DOGRULANDI |
+| 2026-08-31 | Elazığ | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-08-31/CSV/GunlukYarisSonuclari/31.08.2026-Elaz%C4%B1%C4%9F-GunlukYarisSonuclari-TR.csv | 200 | 16261 | `aeb98bd4566198cc69bd61917509cbff0f827a1a2b1928b62b133ad1fbfe7ff0` | ICERIK_DOGRULANDI |
+
+Doğrulanan ham CSV'ler `/home/user/TJK/kontrol/ham/2026-08` altında (`yerel_dosya` adlarıyla). Ayrıntılı kayıt: `/home/user/TJK/kontrol/yillik/listeler/2026-08_durum.tsv`.

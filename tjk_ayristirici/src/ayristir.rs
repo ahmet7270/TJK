@@ -6,7 +6,7 @@ pub const KOSMAZ_IBARE: &str = "(Koşmaz)";
 /// "YP": Mart 2026 dosyalarında 20 at satırında, her seferinde başka kodlardan sonra ("SK YP", "K YP") görülüyor.
 /// Listede yokken ayıklama son kelimede duruyor, ad tüm kodlarla kalıyordu ve eküri eşleşmesi bozuluyordu
 /// (21.03.2026 İstanbul 6. koşu, LEONİDAS). Ham ad program.csv'de `at_isim_ham` olarak aynen korunur.
-const KOD_BELIRTECLERI: [&str; 9] = ["KG", "K", "DB", "SK", "SKG", "GKR", "ÖG", "SGKR", "YP"];
+const KOD_BELIRTECLERI: [&str; 11] = ["KG", "K", "DB", "SK", "SKG", "GKR", "ÖG", "SGKR", "YP", "BB", "TGK"];
 
 pub fn rakamlar(s: &str) -> bool {
     !s.is_empty() && s.bytes().all(|b| b.is_ascii_digit())
@@ -547,6 +547,17 @@ mod tests {
 
     /// 21.03.2026 İstanbul 6. koşu: programda "6;LEONİDAS SKG SK YP;…", eküri ibaresinde "(6)LEONİDAS".
     /// "YP" kod listesinde yokken ayıklama son kelimede durur; ad "LEONİDAS SKG SK YP" kalır ve eküri eşleşmez.
+    #[test]
+    fn bb_ve_tgk_kod_belirtecleri() {
+        // 2026 dosyalarında bilinen kodların ardından gelen iki donanım kodu (0.15.0)
+        let i = isim_coz("LADY SUPRISE DB SKG SK BB");
+        assert_eq!((i.ad.as_str(), i.kodlar.as_str()), ("LADY SUPRISE", "DB SKG SK BB"));
+        assert_eq!(isim_coz("LO SIENTO BB SK").ad, "LO SIENTO");
+        let i = isim_coz("MERİHİN YILDIZI KG DB SK TGK");
+        assert_eq!((i.ad.as_str(), i.kodlar.as_str()), ("MERİHİN YILDIZI", "KG DB SK TGK"));
+        assert_eq!(isim_coz("BB").ad, "BB", "tek kelimelik ad ayıklanmaz");
+    }
+
     #[test]
     fn yp_eki_ve_ekuri_adi() {
         let ham = "LEONİDAS SKG SK YP";

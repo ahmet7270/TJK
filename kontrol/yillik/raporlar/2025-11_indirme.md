@@ -1,0 +1,86 @@
+# Son veri testi
+
+- **Durum:** TAMAMLANDI (liste sonuna kadar işlendi)
+- **Çalışma:** Mart 2026 toplu indirme, `/home/user/TJK/kontrol/yillik/listeler/2025-11_liste.tsv`
+- **Araçlar:** `tjk-fetch toplu` (curl ile HTTPS; içerik doğrulaması `tjk_ayristirici/src/ayristir.rs` ile), birlikte ayrıştırma `tjk_ayristirici`
+- **SQLite:** kullanılmadı
+- **Ön kontrol:** 18 çift, 36 satır, 36 benzersiz URL; her çiftte bir program ve bir sonuç
+- **robots.txt:** HTTP 404: robots.txt yok, kural tanımlı değil (RFC 9309: izinli)
+
+## Özet (bu çalışmadaki 18 çift)
+
+| Durum | Çift |
+|---|---|
+| Tamamlandı | 18 |
+| İnceleme gerekli | 0 |
+| Eksik | 0 |
+| Henüz denenmedi | 0 |
+| **Toplam** | **18** |
+
+Önceki çalışmadan SHA-256'sı eşleşerek yeniden kullanılan dosya: 0
+
+## Çiftler
+
+| # | Tarih | Hipodrom | Durum | Gerekçe |
+|---|---|---|---|---|
+| 1 | 2025-11-22 | Adana | TAMAMLANDI |  |
+| 2 | 2025-11-22 | İstanbul | TAMAMLANDI |  |
+| 3 | 2025-11-23 | Adana | TAMAMLANDI |  |
+| 4 | 2025-11-23 | İzmir | TAMAMLANDI |  |
+| 5 | 2025-11-24 | Bursa | TAMAMLANDI |  |
+| 6 | 2025-11-24 | Şanlıurfa | TAMAMLANDI |  |
+| 7 | 2025-11-25 | Adana | TAMAMLANDI |  |
+| 8 | 2025-11-25 | Antalya | TAMAMLANDI |  |
+| 9 | 2025-11-26 | Elazığ | TAMAMLANDI |  |
+| 10 | 2025-11-26 | İstanbul | TAMAMLANDI |  |
+| 11 | 2025-11-27 | Antalya | TAMAMLANDI |  |
+| 12 | 2025-11-27 | İzmir | TAMAMLANDI |  |
+| 13 | 2025-11-28 | Antalya | TAMAMLANDI |  |
+| 14 | 2025-11-28 | İzmir | TAMAMLANDI |  |
+| 15 | 2025-11-29 | Adana | TAMAMLANDI |  |
+| 16 | 2025-11-29 | İstanbul | TAMAMLANDI |  |
+| 17 | 2025-11-30 | Adana | TAMAMLANDI |  |
+| 18 | 2025-11-30 | İzmir | TAMAMLANDI |  |
+
+## Dosyalar
+
+| Tarih | Hipodrom | Rol | Kaynak URL | HTTP | Bayt | SHA-256 | Doğrulama |
+|---|---|---|---|---|---|---|---|
+| 2025-11-22 | Adana | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-22/CSV/GunlukYarisProgrami/22.11.2025-Adana-GunlukYarisProgrami-TR.csv | 200 | 17083 | `bfacf671d331008cae787e3d008629e6a1e30aff21e837d15e0e55aa92fa1d61` | ICERIK_DOGRULANDI |
+| 2025-11-22 | Adana | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-22/CSV/GunlukYarisSonuclari/22.11.2025-Adana-GunlukYarisSonuclari-TR.csv | 200 | 17873 | `c48399b31169b1ddc3c61b92fed1c21e9df36920ab3bb6b414c7ae100858c2e3` | ICERIK_DOGRULANDI |
+| 2025-11-22 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-22/CSV/GunlukYarisProgrami/22.11.2025-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 17342 | `62d5b6ea44cf6b1f6f70f1cc8b8ddf4f2d0b87843087b90adc78d9676b1eb89d` | ICERIK_DOGRULANDI |
+| 2025-11-22 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-22/CSV/GunlukYarisSonuclari/22.11.2025-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 18005 | `9f88be6c814b00472ed706bd3a4777fc5a5db6f7bba9320d5e9098e8e2614674` | ICERIK_DOGRULANDI |
+| 2025-11-23 | Adana | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-23/CSV/GunlukYarisProgrami/23.11.2025-Adana-GunlukYarisProgrami-TR.csv | 200 | 12659 | `b8b88d97e7b54b46b57323583bed6d134003051193d467698e8597cc560f0e04` | ICERIK_DOGRULANDI |
+| 2025-11-23 | Adana | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-23/CSV/GunlukYarisSonuclari/23.11.2025-Adana-GunlukYarisSonuclari-TR.csv | 200 | 13040 | `98790cc774b817d8222be410a71bb5c8111d426856890f93b148f1efdc36204c` | ICERIK_DOGRULANDI |
+| 2025-11-23 | İzmir | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-23/CSV/GunlukYarisProgrami/23.11.2025-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 | 17367 | `5ea604f61edbca65f39e5f7d27a7e03f7241909257ebb65f9c65189e26e504e1` | ICERIK_DOGRULANDI |
+| 2025-11-23 | İzmir | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-23/CSV/GunlukYarisSonuclari/23.11.2025-%C4%B0zmir-GunlukYarisSonuclari-TR.csv | 200 | 18076 | `4deab4417741272c4c87d11ee8d368929c9b0a0c351920fbfa0a581af4e8ab7d` | ICERIK_DOGRULANDI |
+| 2025-11-24 | Bursa | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-24/CSV/GunlukYarisProgrami/24.11.2025-Bursa-GunlukYarisProgrami-TR.csv | 200 | 16596 | `c17b4572de388647c0a1cf1f49c1c9fbaba6e8041479e9ba4d257c52bb066efc` | ICERIK_DOGRULANDI |
+| 2025-11-24 | Bursa | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-24/CSV/GunlukYarisSonuclari/24.11.2025-Bursa-GunlukYarisSonuclari-TR.csv | 200 | 17214 | `d3f473c469f96bc4855eed44f00978c8492bfcf393aed205b336ff1b2ce7566e` | ICERIK_DOGRULANDI |
+| 2025-11-24 | Şanlıurfa | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-24/CSV/GunlukYarisProgrami/24.11.2025-%C5%9Eanl%C4%B1urfa-GunlukYarisProgrami-TR.csv | 200 | 22587 | `9de68c66baf0feae46c850233d8dcd7736a12f42e156abeb02093ebbda74e36f` | ICERIK_DOGRULANDI |
+| 2025-11-24 | Şanlıurfa | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-24/CSV/GunlukYarisSonuclari/24.11.2025-%C5%9Eanl%C4%B1urfa-GunlukYarisSonuclari-TR.csv | 200 | 23423 | `eeabad8acad8e0753742e72f9e12c45cee90ddc9b3c74ea9a7ca0cfa71604937` | ICERIK_DOGRULANDI |
+| 2025-11-25 | Adana | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-25/CSV/GunlukYarisProgrami/25.11.2025-Adana-GunlukYarisProgrami-TR.csv | 200 | 19810 | `131d520240311d5c51a5b3036045b7808744449b569304a2e1d8877e560b565e` | ICERIK_DOGRULANDI |
+| 2025-11-25 | Adana | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-25/CSV/GunlukYarisSonuclari/25.11.2025-Adana-GunlukYarisSonuclari-TR.csv | 200 | 20464 | `2765cdaf1af35c8b8e50d7b663e3a933e05004a16c5e9ac9a6d70608c400d06a` | ICERIK_DOGRULANDI |
+| 2025-11-25 | Antalya | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-25/CSV/GunlukYarisProgrami/25.11.2025-Antalya-GunlukYarisProgrami-TR.csv | 200 | 13799 | `3c8151fd1f5a18cc602523049826a0f92504fff17870db544ce49cefb667896f` | ICERIK_DOGRULANDI |
+| 2025-11-25 | Antalya | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-25/CSV/GunlukYarisSonuclari/25.11.2025-Antalya-GunlukYarisSonuclari-TR.csv | 200 | 14233 | `a1845325a749f021d232e20fca20f60d2655772fe925e0490619e53eda911f7a` | ICERIK_DOGRULANDI |
+| 2025-11-26 | Elazığ | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-26/CSV/GunlukYarisProgrami/26.11.2025-Elaz%C4%B1%C4%9F-GunlukYarisProgrami-TR.csv | 200 | 13647 | `aefeb38c5dbfe95105c89b8416a87020e75ad68e0eef28adc5391009755c234c` | ICERIK_DOGRULANDI |
+| 2025-11-26 | Elazığ | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-26/CSV/GunlukYarisSonuclari/26.11.2025-Elaz%C4%B1%C4%9F-GunlukYarisSonuclari-TR.csv | 200 | 13772 | `c2dc8446644e943a975a0d0c2b5fda8149b39ed9b3d1c7b7af29343b44993542` | ICERIK_DOGRULANDI |
+| 2025-11-26 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-26/CSV/GunlukYarisProgrami/26.11.2025-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 17721 | `828cd16f03a638accf0e321fbb61627ad92c1e480f5bca687ce5378cf9fea782` | ICERIK_DOGRULANDI |
+| 2025-11-26 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-26/CSV/GunlukYarisSonuclari/26.11.2025-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 18266 | `4f4e43e91328a2e2c00fddedcb912b7c136023b6d0e4961286e10132ad094189` | ICERIK_DOGRULANDI |
+| 2025-11-27 | Antalya | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-27/CSV/GunlukYarisProgrami/27.11.2025-Antalya-GunlukYarisProgrami-TR.csv | 200 | 16088 | `c318edd3472e10eeff2a61cca247992772cbeced22abd036feae97ed86fc46bc` | ICERIK_DOGRULANDI |
+| 2025-11-27 | Antalya | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-27/CSV/GunlukYarisSonuclari/27.11.2025-Antalya-GunlukYarisSonuclari-TR.csv | 200 | 16934 | `6eded123a08bee4f6b267155806d5c4b455d5d1a17493a7a03bd598213e2651d` | ICERIK_DOGRULANDI |
+| 2025-11-27 | İzmir | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-27/CSV/GunlukYarisProgrami/27.11.2025-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 | 11289 | `252aa96536ed930e98ad3e7cd747a29a6956a52d38320e6bfd840b3f775f4bc9` | ICERIK_DOGRULANDI |
+| 2025-11-27 | İzmir | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-27/CSV/GunlukYarisSonuclari/27.11.2025-%C4%B0zmir-GunlukYarisSonuclari-TR.csv | 200 | 11679 | `38b50c6c44afff25e9a5ecfd6026ce58fa099011c9b24f82fc0b1e9b5e53d780` | ICERIK_DOGRULANDI |
+| 2025-11-28 | Antalya | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-28/CSV/GunlukYarisProgrami/28.11.2025-Antalya-GunlukYarisProgrami-TR.csv | 200 | 16532 | `e94c8621735941529a02c89d4761ae43a125294024686d8684c1c7358532950d` | ICERIK_DOGRULANDI |
+| 2025-11-28 | Antalya | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-28/CSV/GunlukYarisSonuclari/28.11.2025-Antalya-GunlukYarisSonuclari-TR.csv | 200 | 17253 | `57fdfff80afb6153b33636ad0c3ab4af85681bf704f80e40d249b578652c1b47` | ICERIK_DOGRULANDI |
+| 2025-11-28 | İzmir | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-28/CSV/GunlukYarisProgrami/28.11.2025-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 | 9965 | `95a86c4f79d11a2ba981c17bf5aebc8a912801ee04b90fdda763d1ff80210881` | ICERIK_DOGRULANDI |
+| 2025-11-28 | İzmir | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-28/CSV/GunlukYarisSonuclari/28.11.2025-%C4%B0zmir-GunlukYarisSonuclari-TR.csv | 200 | 10091 | `13649fe1ecf2d5dd540a30e9a897d4911bcdbe260ba38658c62ee2b3c98ad66f` | ICERIK_DOGRULANDI |
+| 2025-11-29 | Adana | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-29/CSV/GunlukYarisProgrami/29.11.2025-Adana-GunlukYarisProgrami-TR.csv | 200 | 15824 | `c8fff8936fcd63120e4334bd4abae37d41bf7d0b89418e049a410100721e4a41` | ICERIK_DOGRULANDI |
+| 2025-11-29 | Adana | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-29/CSV/GunlukYarisSonuclari/29.11.2025-Adana-GunlukYarisSonuclari-TR.csv | 200 | 15994 | `ac71c6101c9d5f967ae1a7b54513935605321bc336565d996b00a59fab400f20` | ICERIK_DOGRULANDI |
+| 2025-11-29 | İstanbul | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-29/CSV/GunlukYarisProgrami/29.11.2025-%C4%B0stanbul-GunlukYarisProgrami-TR.csv | 200 | 13513 | `2a850bc64b2c813167fcc19b233476f8ac9d87b76341a7cf228b74938abc610d` | ICERIK_DOGRULANDI |
+| 2025-11-29 | İstanbul | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-29/CSV/GunlukYarisSonuclari/29.11.2025-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv | 200 | 14506 | `e5aa7c2c63fee283f927fc5fab0e1dbcd306459c173066fc61e8ffd92d1df3f0` | ICERIK_DOGRULANDI |
+| 2025-11-30 | Adana | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-30/CSV/GunlukYarisProgrami/30.11.2025-Adana-GunlukYarisProgrami-TR.csv | 200 | 15224 | `02ddfa93868651577d47d2400ec631b04f940606e35e1ac8ac471fea35361703` | ICERIK_DOGRULANDI |
+| 2025-11-30 | Adana | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-30/CSV/GunlukYarisSonuclari/30.11.2025-Adana-GunlukYarisSonuclari-TR.csv | 200 | 15502 | `42d114700828e0f865ac09f68f51fbfee31ad1bfdc4c0491b200ce2ef4df0c64` | ICERIK_DOGRULANDI |
+| 2025-11-30 | İzmir | program | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-30/CSV/GunlukYarisProgrami/30.11.2025-%C4%B0zmir-GunlukYarisProgrami-TR.csv | 200 | 19288 | `191e49a12fa742a4014c97832888e1576a8e905b595fc43d16c18e87dcd66bb6` | ICERIK_DOGRULANDI |
+| 2025-11-30 | İzmir | sonuc | https://medya-cdn.tjk.org/raporftp/TJKPDF/2025/2025-11-30/CSV/GunlukYarisSonuclari/30.11.2025-%C4%B0zmir-GunlukYarisSonuclari-TR.csv | 200 | 19940 | `b7507ba0d03afb89c470a1301ddca42112b5ff8610dd1df4ddaa1cd2dfc52e80` | ICERIK_DOGRULANDI |
+
+Doğrulanan ham CSV'ler `/home/user/TJK/kontrol/ham/2025-11` altında (`yerel_dosya` adlarıyla). Ayrıntılı kayıt: `/home/user/TJK/kontrol/yillik/listeler/2025-11_durum.tsv`.
