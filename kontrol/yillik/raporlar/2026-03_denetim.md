@@ -74,19 +74,19 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 
 | Tablo | Bu ay | Tüm veri tabanı |
 |---|---|---|
-| yaris_gunu | 61 | 63 |
-| kosu | 481 | 497 |
-| katilim | 4776 | 4901 |
-| sonuc | 4776 | 4901 |
-| agf_gozlem | 6342 | 6532 |
-| bahis_sonucu | 3828 | 3926 |
-| ganyan_kontrol | 481 | 497 |
-| altili | 105 | 109 |
-| altili_ayak | 630 | 654 |
-| altili_odeme | 105 | 105 |
-| inceleme_nedeni | 2 | 2 |
-| kaynak_dosya (ayın kullandığı) | 123 | 127 |
-| at (tüm) | – | 2810 |
+| yaris_gunu | 61 | 125 |
+| kosu | 481 | 966 |
+| katilim | 4776 | 9511 |
+| sonuc | 4776 | 9511 |
+| agf_gozlem | 6342 | 12326 |
+| bahis_sonucu | 3828 | 7625 |
+| ganyan_kontrol | 481 | 966 |
+| altili | 105 | 206 |
+| altili_ayak | 630 | 1236 |
+| altili_odeme | 105 | 200 |
+| inceleme_nedeni | 2 | 4 |
+| kaynak_dosya (ayın kullandığı) | 123 | 252 |
+| at (tüm) | – | 3619 |
 
 ## 3. İnceleme nedenleri
 
@@ -125,7 +125,12 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 
 ## 6. Yarış günü numarası sürekliliği (hipodrom başına, önceki DB günüyle)
 
-- Adana: 2025-12-28 no 18 → 2026-03-01 no 26
+- Adana: 2026-01-31 no 13 → 2026-03-01 no 26
+- Antalya: 2026-01-30 no 12 → 2026-03-03 no 23
+- Bursa: 2026-01-26 no 6 → 2026-03-02 no 13
+- İstanbul: 2026-01-31 no 9 → 2026-03-04 no 18
+- İzmir: 2026-01-30 no 14 → 2026-03-01 no 27
+- Şanlıurfa: 2026-01-28 no 8 → 2026-03-02 no 17
 
 ## 7. Altılı kombinasyon ve ödemeleri
 
@@ -139,8 +144,8 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 - `PRAGMA user_version`: 4
 - `PRAGMA foreign_key_check`: 0 satır
 - `PRAGMA integrity_check`: ok
-- Tam döküm SHA-256 (16 tablo): `d85bb4ab9f988773739ee967af7a9425456685c5d1704a888640bce05113850e`
-- Tablo satırları: agf_gozlem 6532, altili 109, altili_ayak 654, altili_ayak_gecerli 740, altili_odeme 105, altili_odeme_ayak 716, at 2810, bahis_sonucu 3926, bahis_uyarisi 20, ganyan_kontrol 497, inceleme_nedeni 2, katilim 4901, kaynak_dosya 127, kosu 497, sonuc 4901, yaris_gunu 63
+- Tam döküm SHA-256 (16 tablo): `e31cfe596c7c7ec52e1f3b2fa9def041f47a182ec20780a3f02d6708a28e945d`
+- Tablo satırları: agf_gozlem 12326, altili 206, altili_ayak 1236, altili_ayak_gecerli 1388, altili_odeme 200, altili_odeme_ayak 1364, at 3619, bahis_sonucu 7625, bahis_uyarisi 35, ganyan_kontrol 966, inceleme_nedeni 4, katilim 9511, kaynak_dosya 252, kosu 966, sonuc 9511, yaris_gunu 125
 
 ## Sonuç
 

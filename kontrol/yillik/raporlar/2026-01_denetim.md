@@ -128,7 +128,7 @@ Bu ayda numara boşluğu yok (önceki gün DB'de olan hipodromlar için).
 - `PRAGMA user_version`: 4
 - `PRAGMA foreign_key_check`: 0 satır
 - `PRAGMA integrity_check`: ok
-- Tam döküm SHA-256 (16 tablo): `0fd2a76c31c7f008f6fbacb1d166ab949f98557582b574e7b8d8bca5e622ac6f`
+- Tam döküm SHA-256 (16 tablo): `3320b58d0719ee8fe7ddb7490f68dc0b78fa690a62e6d676c0b81c4c5934f399`
 - Tablo satırları: agf_gozlem 12326, altili 206, altili_ayak 1236, altili_ayak_gecerli 1388, altili_odeme 200, altili_odeme_ayak 1364, at 3619, bahis_sonucu 7625, bahis_uyarisi 35, ganyan_kontrol 966, inceleme_nedeni 4, katilim 9511, kaynak_dosya 252, kosu 966, sonuc 9511, yaris_gunu 125
 
 ## Sonuç

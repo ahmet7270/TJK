@@ -39,7 +39,7 @@ const KULLANIM: &str = "Kullanım: tjk_ayristirici PROGRAM.csv SONUC.csv CIKTI_K
 [--ek-sonuc SONUC2.csv]... [--ertelenme-notu METIN]";
 /// Ayrıştırma mantığının sürümü (yalnızca ayrıştırma/doğrulama davranışı değişince artırılır).
 /// Veri tabanındaki yaris_gunu.ayristirici_surumu bu değerdir; toplu aktarımda "aynı sürüm" kontrolü buna bakar.
-pub const AYRISTIRICI_SURUMU: &str = "0.13.0";
+pub const AYRISTIRICI_SURUMU: &str = "0.14.0";
 const ALTILI_IBARE: &str = "6'LI GANYAN Bu koşudan başlar";
 const ESLESME_YONTEMI: &str = "tarih+hipodrom+kosu_no+at_adi (sonuç CSV'sinde program no yok)";
 const ZAMAN_UYARI_KOSMAZLI: &str = "Arşiv dosyası anlık görüntü; zaman damgası yok. Aynı dosyada 'Koşmaz' ibaresi \
@@ -409,7 +409,7 @@ fn gunu_isle<T>(
     let tanimlar = altili_tanimlari(pg, &gun_id);
     let prog = program_satirlari(&p, &gun_id, &tanimlar)?;
     let (mut son, sonuc_ham, bahis_kosu, sorunlar, eslesmeyen) = eslestir(&p, &s, &prog, &gun_id)?;
-    let (ortak_json, ortak_inceleme) = ortak_birincilik(&mut son, &bahis_kosu);
+    let (ortak_json, ortak_inceleme) = ortak_birincilik(&mut son, &bahis_kosu, &prog);
     let bk = bahis_kontrol(&bahis_kosu, &mut son);
     let (ganyan_json, ganyan_inceleme) = ganyan_kontrolu(&p, &prog, &son, &bahis_kosu);
 
@@ -1035,6 +1035,16 @@ fn kosu_tarihleri(sec: &Secenekler, p: &Kaynak, s: &Kaynak, gun_id: &str) -> Vec
         .collect()
 }
 
+/// Birden çok GANYAN ödemesi, kazananın eküri eşlerine aynı tutarla ödenmiş olarak açıklanıyor mu (bkz. ortak_birincilik)?
+fn ekuri_ganyani(kn: u32, g: &[&Bahis], odeme: &[(i64, f64, String)], son: &[SonucSatir], prog: &[ProgAt]) -> bool {
+    if odeme.len() != g.len() || odeme.len() < 2 || odeme.iter().any(|o| o.1 != odeme[0].1) {
+        return false;
+    }
+    let ayni_ekuri = prog.iter().any(|r| r.kosu_no == kn && odeme.iter().all(|o| r.ekuri.contains(&o.0)));
+    let birinci = son.iter().find(|x| x.kosu_no == kn && x.durum == "BITIRDI" && x.liste_sirasi == Some(1));
+    ayni_ekuri && birinci.is_some_and(|b| odeme.iter().any(|o| o.0 == b.program_at_no && b.ganyan == Some(o.1)))
+}
+
 /// Ortak birincilik (ölü yarış) yalnızca dosyadaki şu kanıtların HEPSİ varsa kabul edilir:
 ///   1. bahis satırında birden çok ayrı, tek numaralı ve tutarlı GANYAN ödemesi,
 ///   2. bu numaralar sonuç listesinin ilk N sırasındaki (BITIRDI) atlar,
@@ -1043,7 +1053,14 @@ fn kosu_tarihleri(sec: &Secenekler, p: &Kaynak, s: &Kaynak, gun_id: &str) -> Vec
 ///   5. dereceleri aynı (destekleyici; tek başına kanıt sayılmaz).
 /// Kabul edilirse bu atların bitiş sırası 1 olur (liste sırası korunur). Aksi hâlde hiçbir şey değişmez ve
 /// gün incelemeye düşer. Tek GANYAN ödemeli koşulara dokunulmaz.
-fn ortak_birincilik(son: &mut [SonucSatir], bahis_kosu: &[KosuBahis]) -> (Vec<Json>, Vec<String>) {
+///
+/// Eküri ödemesi (0.14.0): ortak birincilik kanıtı TUTMAZSA ve şu koşulların hepsi varsa bu bir ölü yarış adayı
+/// değildir, inceleme nedeni yazılmaz (GANYAN kontrolü koşuyu EKURI_ILE_ACIKLANDI olarak kaydeder):
+///   a. her GANYAN ödemesi tek numaralı ve tutarlı, tutarların hepsi aynı,
+///   b. bu numaraların hepsi programdaki AYNI eküri grubunda,
+///   c. sonuç listesinin 1. sırasındaki (BITIRDI) at bu numaralardan biri ve ganyan oranı ödemeye eşit.
+/// Bitiş sıraları değişmez.
+fn ortak_birincilik(son: &mut [SonucSatir], bahis_kosu: &[KosuBahis], prog: &[ProgAt]) -> (Vec<Json>, Vec<String>) {
     let mut out = Vec::new();
     let mut inceleme = Vec::new();
     for kb in bahis_kosu {
@@ -1096,6 +1113,9 @@ fn ortak_birincilik(son: &mut [SonucSatir], bahis_kosu: &[KosuBahis]) -> (Vec<Js
             sorun.push(format!("dereceler farklı {dereceler:?}"));
         }
         if !sorun.is_empty() {
+            if ekuri_ganyani(kn, &g, &odeme, son, prog) {
+                continue;
+            }
             inceleme.push(format!("ORTAK_BIRINCILIK_DOGRULANAMADI: {kn}. koşu GANYAN {nums:?}: {}", sorun.join("; ")));
             continue;
         }
