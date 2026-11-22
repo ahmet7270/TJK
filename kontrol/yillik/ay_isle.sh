@@ -22,7 +22,8 @@ if [ "$AY" = "2026-03" ]; then
   DURUM=(--durum "$KOK/kontrol/mart_indirme_durumu.tsv" --durum "$L/2026-03_durum_ek.tsv")
 else
   HAM="$KOK/kontrol/ham/$AY"; GIRDI="$L/${AY}_girdiler.tsv"
-  DURUM=(--durum "$L/${AY}_durum.tsv")
+  DURUM=()
+  [ -f "$L/${AY}_durum.tsv" ] && DURUM+=(--durum "$L/${AY}_durum.tsv")
 fi
 # Ek adaylar (ertelenen koşuların başka tarihli dosyaları): AY_ek_liste.tsv -> AY_ek_durum.tsv
 [ -f "$L/${AY}_ek_durum.tsv" ] && DURUM+=(--durum "$L/${AY}_ek_durum.tsv")
@@ -73,6 +74,12 @@ aktar)
   ;;
 denetim)
   denetim 0; cp "$W/denetim_0.md" "$R/${AY}_denetim.md"
+  if [ -f "$W/dokum_2.txt" ] && cmp -s "$W/dokum_1.txt" "$W/dokum_2.txt" && cmp -s "$W/dokum_2.txt" "$W/dokum_0.txt"; then
+    { echo; echo "## İkinci aktarım"; echo; echo "Aynı girdilerle ikinci aktarımdan sonra tüm tabloların sıralı tam dökümü birinciyle bayt bayt aynı (\`cmp\`); bu denetimdeki döküm de aynı."; } >> "$R/${AY}_denetim.md"
+  fi
+  ;;
+ozet)   # yalnızca okuma; rapor kopyalanmaz (durum_yaz.sh kullanır)
+  "$BIN/tjk_denetim" --db "$DB" --ay "$AY" --takvim "$TAKVIM" "${DURUM[@]}" --cikti "$W/denetim_ozet.md"
   ;;
 *) echo "işlem: indir|aktar|denetim"; exit 2;;
 esac

@@ -4,7 +4,7 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 
 ## 1. Takvim kapsamı
 
-**takvim 56 çift: TAMAMLANDI 55, INCELEME_GEREKLI 1, EKSIK 0, HENUZ_DENENMEDI 0; takvim dışı DB günü 0**
+**takvim 56 çift: TAMAMLANDI 55, INCELEME_GEREKLI 1, EKSIK 0, AKTARILMADI 0, HENUZ_DENENMEDI 0; takvim dışı DB günü 0**
 
 | Tarih | Hipodrom | Durum | Yarış günü no | Ayrıntı |
 |---|---|---|---|---|
@@ -129,3 +129,7 @@ Bu ayda numara boşluğu yok (önceki gün DB'de olan hipodromlar için).
 ## Sonuç
 
 Sert hata yok.
+
+## İkinci aktarım
+
+Aynı girdilerle ikinci aktarımdan sonra tüm tabloların sıralı tam dökümü birinciyle bayt bayt aynı (`cmp`); bu denetimdeki döküm de aynı.

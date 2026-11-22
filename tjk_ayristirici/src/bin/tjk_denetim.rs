@@ -125,8 +125,11 @@ fn calistir() -> Result<(), String> {
             Some(g) => ("INCELEME_GEREKLI", g[4].metin(), g[5].metin()),
             None => {
                 let k = cift_kayitlari(t, h);
+                let dogru = |rol: &str| k.iter().any(|x| x.starts_with(rol) && x.ends_with("HTTP 200 ICERIK_DOGRULANDI"));
                 if k.is_empty() {
                     ("HENUZ_DENENMEDI", String::new(), String::new())
+                } else if dogru("program ") && dogru("sonuc ") {
+                    ("AKTARILMADI", String::new(), format!("iki dosya doğrulandı, veri tabanına henüz aktarılmadı: {}", k.join("; ")))
                 } else {
                     ("EKSIK", String::new(), k.join("; "))
                 }
@@ -138,11 +141,12 @@ fn calistir() -> Result<(), String> {
     let disarida: Vec<String> = gunler.iter().filter(|g| !takvimde.contains(&g[0].metin())).map(|g| g[0].metin()).collect();
     let say = |k: &str| siniflar.get(k).map_or(0, Vec::len);
     let ozet = format!(
-        "takvim {} çift: TAMAMLANDI {}, INCELEME_GEREKLI {}, EKSIK {}, HENUZ_DENENMEDI {}; takvim dışı DB günü {}",
+        "takvim {} çift: TAMAMLANDI {}, INCELEME_GEREKLI {}, EKSIK {}, AKTARILMADI {}, HENUZ_DENENMEDI {}; takvim dışı DB günü {}",
         ciftler.len(),
         say("TAMAMLANDI"),
         say("INCELEME_GEREKLI"),
         say("EKSIK"),
+        say("AKTARILMADI"),
         say("HENUZ_DENENMEDI"),
         disarida.len()
     );
