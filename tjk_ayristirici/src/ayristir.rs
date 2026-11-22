@@ -3,7 +3,10 @@
 
 pub const KOSMAZ_IBARE: &str = "(Koşmaz)";
 /// Bu dosyalarda at adının sonunda görülen kod belirteçleri (takı olduğu varsayılıyor; anlamları dosyada yok).
-const KOD_BELIRTECLERI: [&str; 8] = ["KG", "K", "DB", "SK", "SKG", "GKR", "ÖG", "SGKR"];
+/// "YP": Mart 2026 dosyalarında 20 at satırında, her seferinde başka kodlardan sonra ("SK YP", "K YP") görülüyor.
+/// Listede yokken ayıklama son kelimede duruyor, ad tüm kodlarla kalıyordu ve eküri eşleşmesi bozuluyordu
+/// (21.03.2026 İstanbul 6. koşu, LEONİDAS). Ham ad program.csv'de `at_isim_ham` olarak aynen korunur.
+const KOD_BELIRTECLERI: [&str; 9] = ["KG", "K", "DB", "SK", "SKG", "GKR", "ÖG", "SGKR", "YP"];
 
 pub fn rakamlar(s: &str) -> bool {
     !s.is_empty() && s.bytes().all(|b| b.is_ascii_digit())
@@ -540,6 +543,23 @@ mod tests {
         assert_eq!(sure_sn("2:08.28"), Some(128.28));
         assert_eq!(sure_sn("Koşmaz"), None);
         assert_eq!(yas_coz("3y d  e"), Some(3));
+    }
+
+    /// 21.03.2026 İstanbul 6. koşu: programda "6;LEONİDAS SKG SK YP;…", eküri ibaresinde "(6)LEONİDAS".
+    /// "YP" kod listesinde yokken ayıklama son kelimede durur; ad "LEONİDAS SKG SK YP" kalır ve eküri eşleşmez.
+    #[test]
+    fn yp_eki_ve_ekuri_adi() {
+        let ham = "LEONİDAS SKG SK YP";
+        let i = isim_coz(ham);
+        assert_eq!((i.ad.as_str(), i.kodlar.as_str(), i.kosmaz), ("LEONİDAS", "SKG SK YP", false));
+        let (g, _) = ekuri_ayir("[(5)LAZMAN,(6)LEONİDAS,] eküridir.2. 3'LÜ GANYAN");
+        assert_eq!(g, vec![vec![(5, "LAZMAN".to_string()), (6, "LEONİDAS".to_string())]]);
+        assert_eq!(g[0][1].1, i.ad, "eküri adı, ekleri ayıklanmış program adıyla aynı olmalı");
+        // Mart dosyalarındaki diğer YP örnekleri (hepsi başka kodlardan sonra geliyor)
+        assert_eq!(isim_coz("KAYLA MARLA K YP").ad, "KAYLA MARLA");
+        assert_eq!(isim_coz("BIG RUGGED DB SK YP").kodlar, "DB SK YP");
+        // Tek kelimelik ad ayıklanmaz
+        assert_eq!(isim_coz("YP").ad, "YP");
     }
 
     #[test]

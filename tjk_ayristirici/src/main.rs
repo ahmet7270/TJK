@@ -4,11 +4,16 @@
 //!   tjk_ayristirici PROGRAM.csv SONUC.csv CIKTI_KLASORU
 //!       [--kontrol-komb "6 / 1,4 / 6 / 4 / 7 / 4"] [--kontrol-odeme "29.789,50 TL"]
 //!       [--ilgili-url URL] [--ilgili-not METIN]
+//!       [--ek-sonuc SONUC2.csv]... [--ertelenme-notu METIN]
 //!
 //! Kurallar:
 //!   * Sonuç dosyasından program çıktısına hiçbir değer taşınmaz.
 //!   * Dosyada olmayan değer üretilmez; boş kalır ve gerekçesi kaydedilir.
 //!   * --kontrol-* seçenekleri tekrarlanabilir; k. değer günün k. altılısına uygulanır.
+//!   * --ek-sonuc: aynı yarış gününün (hipodrom + yarış günü no) başka bir sonuç dosyasındaki koşuları
+//!     (ör. ertelenen koşular). Bir koşu iki sonuç dosyasında varsa hata verilir (ikinci kez sayılmaz).
+//!     Programdan farklı tarihli bir sonuç dosyası yalnızca --ertelenme-notu verilirse kabul edilir;
+//!     planlanan ve gerçekleşen tarih `kosu_tarihleri.csv`'ye ayrı yazılır.
 
 mod ayristir;
 mod csvw;
@@ -30,10 +35,11 @@ use std::collections::{HashMap, HashSet};
 use std::path::Path;
 
 const KULLANIM: &str = "Kullanım: tjk_ayristirici PROGRAM.csv SONUC.csv CIKTI_KLASORU \
-[--kontrol-komb KOMB] [--kontrol-odeme TUTAR] [--ilgili-url URL] [--ilgili-not METIN] [--sqlite VERITABANI.sqlite]";
+[--kontrol-komb KOMB] [--kontrol-odeme TUTAR] [--ilgili-url URL] [--ilgili-not METIN] [--sqlite VERITABANI.sqlite] \
+[--ek-sonuc SONUC2.csv]... [--ertelenme-notu METIN]";
 /// Ayrıştırma mantığının sürümü (yalnızca ayrıştırma/doğrulama davranışı değişince artırılır).
 /// Veri tabanındaki yaris_gunu.ayristirici_surumu bu değerdir; toplu aktarımda "aynı sürüm" kontrolü buna bakar.
-pub const AYRISTIRICI_SURUMU: &str = "0.9.0";
+pub const AYRISTIRICI_SURUMU: &str = "0.12.0";
 const ALTILI_IBARE: &str = "6'LI GANYAN Bu koşudan başlar";
 const ESLESME_YONTEMI: &str = "tarih+hipodrom+kosu_no+at_adi (sonuç CSV'sinde program no yok)";
 const ZAMAN_UYARI_KOSMAZLI: &str = "Arşiv dosyası anlık görüntü; zaman damgası yok. Aynı dosyada 'Koşmaz' ibaresi \
@@ -78,6 +84,10 @@ struct Secenekler {
     ilgili_url: Option<String>,
     ilgili_not: Option<String>,
     sqlite: Option<String>,
+    /// Aynı yarış gününün ek sonuç dosyaları (ertelenen koşular)
+    ek_sonuc: Vec<String>,
+    /// Programdan farklı tarihli sonuç dosyasını kabul etmenin gerekçesi (ör. "TJK duyuru 52071")
+    ertelenme_notu: Option<String>,
 }
 
 struct Kaynak {
@@ -85,6 +95,22 @@ struct Kaynak {
     sha: String,
     kodlama: String,
     gun: Gun,
+    /// Birleştirilmiş sonuçta koşunun geldiği dosya: (koşu no, dosya, sha256, dosyadaki tarih). Boşsa hepsi bu dosyadan.
+    kosu_kaynagi: Vec<(u32, String, String, String)>,
+}
+
+impl Kaynak {
+    /// Koşunun kaynak dosyası ve sha256'sı (tek dosyalı kaynakta dosyanın kendisi).
+    fn kaynak_of(&self, kn: u32) -> (&str, &str) {
+        self.kosu_kaynagi
+            .iter()
+            .find(|x| x.0 == kn)
+            .map_or((self.ad.as_str(), self.sha.as_str()), |x| (x.1.as_str(), x.2.as_str()))
+    }
+    /// Koşunun sonuç dosyasındaki tarih (tek dosyalı kaynakta dosyanın tarihi).
+    fn tarih_of(&self, kn: u32) -> &str {
+        self.kosu_kaynagi.iter().find(|x| x.0 == kn).map_or(self.gun.tarih.as_str(), |x| x.3.as_str())
+    }
 }
 
 struct ProgAt {
@@ -243,6 +269,7 @@ fn deger(it: &mut impl Iterator<Item = String>, ad: &str) -> Result<String, Stri
 fn argumanlar() -> Result<Secenekler, String> {
     let mut poz = Vec::new();
     let (mut kk, mut ko, mut iu, mut inot, mut sq) = (Vec::new(), Vec::new(), None, None, None);
+    let (mut ek, mut en) = (Vec::new(), None);
     let mut it = std::env::args().skip(1);
     while let Some(a) = it.next() {
         match a.as_str() {
@@ -251,6 +278,8 @@ fn argumanlar() -> Result<Secenekler, String> {
             "--ilgili-url" => iu = Some(deger(&mut it, &a)?),
             "--ilgili-not" => inot = Some(deger(&mut it, &a)?),
             "--sqlite" => sq = Some(deger(&mut it, &a)?),
+            "--ek-sonuc" => ek.push(deger(&mut it, &a)?),
+            "--ertelenme-notu" => en = Some(deger(&mut it, &a)?),
             "-h" | "--help" => return Err(KULLANIM.into()),
             s if s.starts_with("--") => return Err(format!("bilinmeyen seçenek: {s}\n{KULLANIM}")),
             _ => poz.push(a),
@@ -268,6 +297,8 @@ fn argumanlar() -> Result<Secenekler, String> {
         ilgili_url: iu,
         ilgili_not: inot,
         sqlite: sq,
+        ek_sonuc: ek,
+        ertelenme_notu: en,
     })
 }
 
@@ -276,7 +307,7 @@ fn yukle(yol: &str) -> Result<Kaynak, String> {
     let (metin, kodlama) = kodlama::coz(&bytes);
     let gun = gun_ayristir(&metin).map_err(|e| format!("{yol}: {e}"))?;
     let ad = Path::new(yol).file_name().map(|s| s.to_string_lossy().into_owned()).unwrap_or_else(|| yol.into());
-    Ok(Kaynak { ad, sha: sha256::hex(&bytes), kodlama, gun })
+    Ok(Kaynak { ad, sha: sha256::hex(&bytes), kodlama, gun, kosu_kaynagi: Vec::new() })
 }
 
 fn hipodrom_slug(h: &str) -> String {
@@ -347,7 +378,8 @@ fn calistir() -> Result<(), String> {
     let sec = argumanlar()?;
     let p = yukle(&sec.program)?;
     let s = yukle(&sec.sonuc)?;
-    gunu_isle(&sec, p, s, true, |gv| {
+    let ek = sec.ek_sonuc.iter().map(|y| yukle(y)).collect::<Result<Vec<_>, _>>()?;
+    gunu_isle(&sec, p, s, ek, true, |gv| {
         if let Some(yol) = &sec.sqlite {
             let o = veritabani::aktar(yol, gv)?;
             println!(
@@ -364,22 +396,19 @@ fn gunu_isle<T>(
     sec: &Secenekler,
     p: Kaynak,
     s: Kaynak,
+    ek: Vec<Kaynak>,
     ayrintili: bool,
     sonra: impl FnOnce(&GunVerisi) -> Result<T, String>,
 ) -> Result<T, String> {
-    let (pg, sg) = (&p.gun, &s.gun);
-    if (&pg.tarih, &pg.hipodrom, pg.yaris_gunu_no) != (&sg.tarih, &sg.hipodrom, sg.yaris_gunu_no) {
-        return Err(format!(
-            "Program ({} {} {}) ile sonuç ({} {} {}) aynı yarış gününe ait değil",
-            pg.tarih, pg.hipodrom, pg.yaris_gunu_no, sg.tarih, sg.hipodrom, sg.yaris_gunu_no
-        ));
-    }
+    let (s, erteleme_inceleme) = sonuclari_birlestir(sec, &p, s, ek)?;
+    let (pg, _sg) = (&p.gun, &s.gun);
     let gun_id = format!("{}-{}", pg.tarih.replace('-', ""), hipodrom_slug(&pg.hipodrom));
     std::fs::create_dir_all(&sec.cikti).map_err(|e| format!("{} oluşturulamadı: {e}", sec.cikti))?;
 
     let tanimlar = altili_tanimlari(pg, &gun_id);
     let prog = program_satirlari(&p, &gun_id, &tanimlar)?;
     let (mut son, sonuc_ham, bahis_kosu, sorunlar, eslesmeyen) = eslestir(&p, &s, &prog, &gun_id)?;
+    let (ortak_json, ortak_inceleme) = ortak_birincilik(&mut son, &bahis_kosu);
     let bk = bahis_kontrol(&bahis_kosu, &mut son);
     let (ganyan_json, ganyan_inceleme) = ganyan_kontrolu(&p, &prog, &son, &bahis_kosu);
 
@@ -387,11 +416,13 @@ fn gunu_isle<T>(
     let mut uyarilar = Vec::new();
     for kb in &bahis_kosu {
         for h in &kb.okunamayan {
-            uyarilar.push(format!("BAHIS_PARCASI_OKUNAMADI: {} satır {} ({}. koşu): {h}", s.ad, kb.satir_no, kb.kosu_no));
+            uyarilar.push(format!("BAHIS_PARCASI_OKUNAMADI: {} satır {} ({}. koşu): {h}", s.kaynak_of(kb.kosu_no).0, kb.satir_no, kb.kosu_no));
         }
     }
     let mut inceleme: Vec<String> = sorunlar.clone();
     inceleme.extend(eslesmeyen.iter().cloned());
+    inceleme.extend(erteleme_inceleme);
+    inceleme.extend(ortak_inceleme);
     let (ekuri_inceleme, ekuri_ozet) = ekuri_kontrolu(&p, &s, &prog);
     if ayrintili {
         println!("Eküri kontrolü         : {ekuri_ozet}");
@@ -433,14 +464,30 @@ fn gunu_isle<T>(
         .map(|r| kosu_altililari(&tanimlar, r.kosu_no).len())
         .sum();
 
-    let altili_json = obj(vec![
+    let tarih_satirlari = kosu_tarihleri(sec, &p, &s, &gun_id);
+    let ertelemeler: Vec<Json> = tarih_satirlari
+        .iter()
+        .filter(|r| r.iter().any(|(k, v)| *k == "tarih_durumu" && *v == Json::Str("ERTELENDI".into())))
+        .map(|r| obj(r.iter().map(|(k, v)| (*k, v.clone())).collect()))
+        .collect();
+    let mut altili_alanlari: Vec<(&str, Json)> = vec![
         ("gun_id", (&gun_id).into()),
         ("tarih", (&pg.tarih).into()),
         ("hipodrom", (&pg.hipodrom).into()),
         ("yaris_gunu_no", pg.yaris_gunu_no.into()),
         ("gun_durumu", gun_durumu.into()),
         ("inceleme_nedenleri", inceleme.clone().into()),
-        ("ganyan_kontrolu", Json::Arr(ganyan_json.clone())),
+    ];
+    // Yalnızca durum varsa yazılır: normal günlerin altili.json'u değişmez.
+    if !ertelemeler.is_empty() {
+        altili_alanlari.push(("ertelenen_kosular", Json::Arr(ertelemeler.clone())));
+        altili_alanlari.push(("ertelenme_notu", sec.ertelenme_notu.clone().into()));
+    }
+    if !ortak_json.is_empty() {
+        altili_alanlari.push(("ortak_birincilikler", Json::Arr(ortak_json.clone())));
+    }
+    altili_alanlari.push(("ganyan_kontrolu", Json::Arr(ganyan_json.clone())));
+    altili_alanlari.extend(vec![
         (
             "kosmaz_ozeti",
             obj(vec![
@@ -453,16 +500,37 @@ fn gunu_isle<T>(
         ("altililar", Json::Arr(altililar.clone())),
         ("uyarilar", uyarilar.clone().into()),
     ]);
+    let altili_json = obj(altili_alanlari);
 
     // yaz
     let cik = |ad: &str| Path::new(&sec.cikti).join(ad).to_string_lossy().into_owned();
     csvw::yaz(&cik("program.csv"), &prog.iter().map(|r| r.satir.clone()).collect::<Vec<_>>())?;
     csvw::yaz(&cik("sonuclar.csv"), &son.iter().map(SonucSatir::satir).collect::<Vec<_>>())?;
     std::fs::write(cik("altili.json"), altili_json.guzel()).map_err(|e| format!("altili.json yazılamadı: {e}"))?;
+    csvw::yaz(&cik("kosu_tarihleri.csv"), &tarih_satirlari)?;
 
     if ayrintili {
         rapor(&p, &s, &tanimlar, &prog, &son, &sonuc_ham, &sorunlar, &eslesmeyen, &bk, &altililar, &uyarilar);
         println!("Koşmaz özeti           : {} benzersiz katılım, altılılar içinde {altili_ici} kayıt", kosmaz_idler.len());
+        for e in &ertelemeler {
+            if let Json::Obj(v) = e {
+                let al = |k: &str| v.iter().find(|(x, _)| x == k).map(|(_, j)| j.hucre()).unwrap_or_default();
+                println!(
+                    "Ertelenen koşu         : {}. koşu planlanan {} {} -> gerçekleşen {} {} | pist {} -> {} | {}",
+                    al("kosu_no"),
+                    al("planlanan_tarih"),
+                    al("planlanan_saat"),
+                    al("gerceklesen_tarih"),
+                    al("gerceklesen_saat"),
+                    al("pist_program"),
+                    al("pist_sonuc"),
+                    al("sonuc_kaynak_dosya")
+                );
+            }
+        }
+        for o in &ortak_json {
+            println!("Ortak birincilik       : {}", kisa(o));
+        }
         println!("GÜN DURUMU             : {gun_durumu}");
         for n in &inceleme {
             println!("  - {n}");
@@ -700,9 +768,9 @@ fn eslestir(p: &Kaynak, s: &Kaynak, prog: &[ProgAt], gun_id: &str) -> Result<Esl
             eslesme_yontemi: String::new(),
             capraz: String::new(),
             bahis_dogrulama: String::new(),
-            kaynak_dosya: s.ad.clone(),
+            kaynak_dosya: s.kaynak_of(r.kosu_no).0.to_string(),
             kaynak_satir: None,
-            sha: s.sha.clone(),
+            sha: s.kaynak_of(r.kosu_no).1.to_string(),
         };
         if adaylar.is_empty() {
             // 1. aşamada tam ad eşleşmesi yok: 2. aşamada (ülke eki kuralı) yeniden denenir.
@@ -800,16 +868,36 @@ fn eslestir(p: &Kaynak, s: &Kaynak, prog: &[ProgAt], gun_id: &str) -> Result<Esl
 fn bahis_kontrol(bahis_kosu: &[KosuBahis], son: &mut [SonucSatir]) -> Vec<BahisKontrol> {
     let mut bk = Vec::new();
     for kb in bahis_kosu {
-        let sira_no: HashMap<i64, i64> = son
+        // (bitiş, liste sırası, program no). Ortak birincilikte aynı bitiş sırasını paylaşan atlar, paylaştıkları
+        // sıra aralığındaki her konuma kabul edilir (ör. 1. sırada iki at: 1. ve 2. konum ikisini de kabul eder).
+        // Paylaşım yoksa her konum tek ata karşılık gelir (eski davranışla aynı).
+        let bitirenler: Vec<(i64, i64, i64)> = son
             .iter()
             .filter(|x| x.kosu_no == kb.kosu_no)
-            .filter_map(|x| x.bitis.map(|b| (b, x.program_at_no)))
+            .filter_map(|x| x.bitis.map(|b| (b, x.liste_sirasi.unwrap_or(i64::MAX), x.program_at_no)))
             .collect();
+        let kabul = |j: i64| -> Vec<i64> {
+            let mut v: Vec<(i64, i64)> = bitirenler
+                .iter()
+                .filter(|(b, _, _)| {
+                    let c = bitirenler.iter().filter(|y| y.0 == *b).count() as i64;
+                    *b <= j && j < *b + c
+                })
+                .map(|(_, l, n)| (*l, *n))
+                .collect();
+            v.sort();
+            v.into_iter().map(|x| x.1).collect()
+        };
         for b in &kb.bahisler {
             if let Some((_, n)) = SIRALI.iter().find(|(o, _)| *o == b.oyun) {
-                let beklenen: Vec<Option<i64>> = (1..=*n as i64).map(|i| sira_no.get(&i).copied()).collect();
+                let beklenen: Vec<Option<i64>> = (1..=*n as i64).map(|i| kabul(i).first().copied()).collect();
                 let gercek: Vec<i64> = b.ayaklar.iter().filter_map(|a| a.first().copied()).collect();
-                let uyumlu = gercek.len() == beklenen.len() && gercek.iter().zip(&beklenen).all(|(g, e)| Some(*g) == *e);
+                let mut farkli = gercek.clone();
+                farkli.sort();
+                farkli.dedup();
+                let uyumlu = gercek.len() == beklenen.len()
+                    && farkli.len() == gercek.len()
+                    && gercek.iter().enumerate().all(|(j, g)| kabul(j as i64 + 1).contains(g));
                 bk.push(BahisKontrol { kosu_no: kb.kosu_no, oyun: b.oyun.clone(), bahis: gercek, eslesmeden: beklenen, uyumlu });
             }
         }
@@ -823,6 +911,248 @@ fn bahis_kontrol(bahis_kosu: &[KosuBahis], son: &mut [SonucSatir]) -> Vec<BahisK
             .join(", ");
     }
     bk
+}
+
+// ---------------------------------------------------------------- ertelenen koşular, ortak birincilik
+
+/// Sonuç dosyalarını (ana + ek) programın yarış gününe göre doğrular ve tek kaynakta birleştirir.
+/// Tek dosya ve program tarihiyle aynı tarih ise kaynak olduğu gibi döner (eski davranış).
+fn sonuclari_birlestir(sec: &Secenekler, p: &Kaynak, mut s: Kaynak, ek: Vec<Kaynak>) -> Result<(Kaynak, Vec<String>), String> {
+    let pg = &p.gun;
+    for k in std::iter::once(&s).chain(ek.iter()) {
+        let g = &k.gun;
+        let ayni_gun = (&g.hipodrom, g.yaris_gunu_no) == (&pg.hipodrom, pg.yaris_gunu_no);
+        if !ayni_gun || (g.tarih != pg.tarih && sec.ertelenme_notu.is_none()) {
+            return Err(format!(
+                "Program ({} {} {}) ile sonuç ({} {} {}) aynı yarış gününe ait değil{}",
+                pg.tarih,
+                pg.hipodrom,
+                pg.yaris_gunu_no,
+                g.tarih,
+                g.hipodrom,
+                g.yaris_gunu_no,
+                if ayni_gun { " (farklı tarihli sonuç dosyası yalnızca --ertelenme-notu ile kabul edilir)" } else { "" }
+            ));
+        }
+        if g.tarih < pg.tarih {
+            return Err(format!("Sonuç {} tarihi ({}) programdan ({}) önce; ertelenen koşu olamaz", k.ad, g.tarih, pg.tarih));
+        }
+    }
+    if ek.is_empty() && s.gun.tarih == pg.tarih {
+        return Ok((s, Vec::new()));
+    }
+    let mut kaynak: Vec<(u32, String, String, String)> =
+        s.gun.kosular.iter().map(|k| (k.kosu_no, s.ad.clone(), s.sha.clone(), s.gun.tarih.clone())).collect();
+    let mut kosular = std::mem::take(&mut s.gun.kosular);
+    for e in ek {
+        for k in e.gun.kosular {
+            if let Some(x) = kaynak.iter().find(|x| x.0 == k.kosu_no) {
+                return Err(format!(
+                    "{}. koşu iki sonuç dosyasında var ({} ve {}); aynı koşu ikinci kez sayılmaz",
+                    k.kosu_no, x.1, e.ad
+                ));
+            }
+            kaynak.push((k.kosu_no, e.ad.clone(), e.sha.clone(), e.gun.tarih.clone()));
+            kosular.push(k);
+        }
+    }
+    kosular.sort_by_key(|k| k.kosu_no);
+    // Farklı tarihte koşulan her koşunun kimliği programdaki koşuyla karşılaştırılır (yarış günü no ve hipodrom
+    // yukarıda doğrulandı). Saat ve pist değişebilir; bunlar kosu_tarihleri.csv'ye yazılır. Atlar eşleşmede doğrulanır.
+    let mut inceleme = Vec::new();
+    for k in &kosular {
+        let t = &kaynak.iter().find(|x| x.0 == k.kosu_no).map(|x| x.3.clone()).unwrap_or_default();
+        if *t == pg.tarih {
+            continue;
+        }
+        match pg.kosular.iter().find(|q| q.kosu_no == k.kosu_no) {
+            None => inceleme.push(format!("ERTELENEN_KOSU_PROGRAMDA_YOK: {}. koşu (sonuç tarihi {t})", k.kosu_no)),
+            Some(q) => {
+                let mut farklar: Vec<String> = [
+                    ("koşu cinsi", &q.kosu_cinsi, &k.kosu_cinsi),
+                    ("yaş grubu", &q.yas_grubu, &k.yas_grubu),
+                    ("kilo şartları", &q.kilo_sartlari, &k.kilo_sartlari),
+                    ("koşu adı", &q.kosu_adi, &k.kosu_adi),
+                ]
+                .iter()
+                .filter(|(_, a, b)| a != b)
+                .map(|(n, a, b)| format!("{n}: program '{a}', sonuç '{b}'"))
+                .collect();
+                if q.mesafe_m != k.mesafe_m {
+                    farklar.push(format!("mesafe: program {} m, sonuç {} m", q.mesafe_m, k.mesafe_m));
+                }
+                if !farklar.is_empty() {
+                    inceleme.push(format!("ERTELENEN_KOSU_OZELLIK_FARKI: {}. koşu ({t}): {}", k.kosu_no, farklar.join("; ")));
+                }
+            }
+        }
+    }
+    s.gun.kosular = kosular;
+    s.kosu_kaynagi = kaynak;
+    Ok((s, inceleme))
+}
+
+/// Her program koşusu için planlanan ve gerçekleşen tarih (gerçekleşen: koşunun bulunduğu sonuç dosyasının
+/// ilk satırındaki tarih). Normal günde iki tarih aynıdır.
+fn kosu_tarihleri(sec: &Secenekler, p: &Kaynak, s: &Kaynak, gun_id: &str) -> Vec<Satir> {
+    p.gun
+        .kosular
+        .iter()
+        .map(|q| {
+            let kn = q.kosu_no;
+            let sk = s.gun.kosular.iter().find(|k| k.kosu_no == kn);
+            let (dosya, sha) = if sk.is_some() { s.kaynak_of(kn) } else { ("", "") };
+            let gt = if sk.is_some() { s.tarih_of(kn) } else { "" };
+            let durum = match sk {
+                None => "SONUC_YOK",
+                Some(_) if gt == p.gun.tarih => "PLANLANDIGI_GUN",
+                Some(_) => "ERTELENDI",
+            };
+            vec![
+                ("gun_id", gun_id.into()),
+                ("kosu_id", format!("{gun_id}-K{kn:02}").into()),
+                ("kosu_no", kn.into()),
+                ("yaris_gunu_no", p.gun.yaris_gunu_no.into()),
+                ("planlanan_tarih", (&p.gun.tarih).into()),
+                ("planlanan_saat", (&q.saat).into()),
+                ("gerceklesen_tarih", gt.into()),
+                ("gerceklesen_saat", sk.map(|k| k.saat.clone()).into()),
+                ("pist_program", (&q.pist).into()),
+                ("pist_sonuc", sk.map(|k| k.pist.clone()).into()),
+                ("tarih_durumu", durum.into()),
+                ("gerceklesen_tarih_dayanagi", if sk.is_some() { "sonuç dosyasının ilk satırındaki tarih" } else { "" }.into()),
+                ("sonuc_kaynak_dosya", dosya.into()),
+                ("sonuc_kaynak_sha256", sha.into()),
+                ("ertelenme_notu", if durum == "ERTELENDI" { sec.ertelenme_notu.clone() } else { None }.into()),
+            ]
+        })
+        .collect()
+}
+
+/// Ortak birincilik (ölü yarış) yalnızca dosyadaki şu kanıtların HEPSİ varsa kabul edilir:
+///   1. bahis satırında birden çok ayrı, tek numaralı ve tutarlı GANYAN ödemesi,
+///   2. bu numaralar sonuç listesinin ilk N sırasındaki (BITIRDI) atlar,
+///   3. her atın sonuç satırındaki ganyan oranı kendi GANYAN ödemesine eşit,
+///   4. aralarındaki Fark hücresi "At Başı",
+///   5. dereceleri aynı (destekleyici; tek başına kanıt sayılmaz).
+/// Kabul edilirse bu atların bitiş sırası 1 olur (liste sırası korunur). Aksi hâlde hiçbir şey değişmez ve
+/// gün incelemeye düşer. Tek GANYAN ödemeli koşulara dokunulmaz.
+fn ortak_birincilik(son: &mut [SonucSatir], bahis_kosu: &[KosuBahis]) -> (Vec<Json>, Vec<String>) {
+    let mut out = Vec::new();
+    let mut inceleme = Vec::new();
+    for kb in bahis_kosu {
+        let kn = kb.kosu_no;
+        let g: Vec<&Bahis> = kb.bahisler.iter().filter(|b| b.oyun == "GANYAN").collect();
+        if g.len() < 2 {
+            continue;
+        }
+        let mut sorun: Vec<String> = Vec::new();
+        let mut odeme: Vec<(i64, f64, String)> = Vec::new();
+        for b in &g {
+            match (b.ayaklar.as_slice(), b.tutar_tl) {
+                ([a], Some(t)) if a.len() == 1 => odeme.push((a[0], t, format!("GANYAN({}) :{}", b.kombinasyon_ham, b.tutar_ham))),
+                _ => sorun.push(format!("'{}' tek numaralı ve tutarlı bir GANYAN ödemesi değil", b.ham_ibare)),
+            }
+        }
+        let mut nums: Vec<i64> = odeme.iter().map(|x| x.0).collect();
+        nums.sort();
+        nums.dedup();
+        if nums.len() != odeme.len() {
+            sorun.push("aynı numaraya birden çok GANYAN ödemesi".into());
+        }
+        let mut ust: Vec<usize> = (0..son.len())
+            .filter(|&i| son[i].kosu_no == kn && son[i].durum == "BITIRDI" && son[i].liste_sirasi.is_some())
+            .collect();
+        ust.sort_by_key(|&i| son[i].liste_sirasi);
+        ust.truncate(g.len());
+        let siralar: Vec<i64> = ust.iter().filter_map(|&i| son[i].liste_sirasi).collect();
+        if siralar != (1..=g.len() as i64).collect::<Vec<_>>() {
+            sorun.push(format!("sonuç listesinin ilk {} sırası okunamadı (sıralar {siralar:?})", g.len()));
+        }
+        let mut ust_no: Vec<i64> = ust.iter().map(|&i| son[i].program_at_no).collect();
+        ust_no.sort();
+        if ust_no != nums {
+            sorun.push(format!("ilk {} sıradaki program numaraları {ust_no:?}, GANYAN ödemeleri {nums:?}", g.len()));
+        }
+        for &i in &ust {
+            if let Some(o) = odeme.iter().find(|o| o.0 == son[i].program_at_no) {
+                if son[i].ganyan != Some(o.1) {
+                    sorun.push(format!("{} numaranın ganyan oranı {:?}, GANYAN ödemesi {}", o.0, son[i].ganyan, o.1));
+                }
+            }
+        }
+        let farklar: Vec<String> = ust.iter().take(ust.len().saturating_sub(1)).map(|&i| son[i].fark.clone()).collect();
+        if ust.len() < 2 || farklar.iter().any(|f| *f != "At Başı") {
+            sorun.push(format!("ortak birinciler arasındaki Fark hücreleri {farklar:?}; 'At Başı' bekleniyordu"));
+        }
+        let dereceler: Vec<String> = ust.iter().map(|&i| son[i].derece_ham.clone()).collect();
+        if dereceler.windows(2).any(|w| w[0] != w[1]) {
+            sorun.push(format!("dereceler farklı {dereceler:?}"));
+        }
+        if !sorun.is_empty() {
+            inceleme.push(format!("ORTAK_BIRINCILIK_DOGRULANAMADI: {kn}. koşu GANYAN {nums:?}: {}", sorun.join("; ")));
+            continue;
+        }
+        for &i in &ust {
+            son[i].bitis = Some(1);
+        }
+        let adlar: Vec<String> = ust.iter().map(|&i| format!("{} {}", son[i].program_at_no, son[i].at_adi)).collect();
+        let kaynak = format!("{} satır {}", son[ust[0]].kaynak_dosya, kb.satir_no);
+        out.push(obj(vec![
+            ("kosu_no", kn.into()),
+            ("kosu_id", (&son[ust[0]].kosu_id).into()),
+            ("ozet", format!("{kn}. koşu ortak birinci: {}", adlar.join(" + ")).into()),
+            (
+                "ortak_birinciler",
+                Json::Arr(
+                    ust.iter()
+                        .map(|&i| {
+                            let x = &son[i];
+                            let o = odeme.iter().find(|o| o.0 == x.program_at_no).map(|o| o.2.clone());
+                            obj(vec![
+                                ("program_at_no", x.program_at_no.into()),
+                                ("at_adi", (&x.at_adi).into()),
+                                ("kayit_id", (&x.kayit_id).into()),
+                                ("bitis_sirasi", 1i64.into()),
+                                ("sonuc_liste_sirasi", x.liste_sirasi.into()),
+                                ("derece_ham", (&x.derece_ham).into()),
+                                ("fark_ham", (&x.fark).into()),
+                                ("ganyan_oran", x.ganyan.into()),
+                                ("ganyan_odemesi_ham", o.into()),
+                                ("kaynak", format!("{} satır {}", x.kaynak_dosya, x.kaynak_satir.map(|v| v.to_string()).unwrap_or_default()).into()),
+                            ])
+                        })
+                        .collect(),
+                ),
+            ),
+            (
+                "kanitlar",
+                vec![
+                    format!("Bahis satırında {} ayrı GANYAN ödemesi: {}", odeme.len(), odeme.iter().map(|o| o.2.as_str()).collect::<Vec<_>>().join(", ")),
+                    format!("GANYAN numaraları {nums:?} sonuç listesinin ilk {} sırasındaki atlar", g.len()),
+                    "Her atın sonuç satırındaki ganyan oranı kendi GANYAN ödemesine eşit".to_string(),
+                    format!("Fark hücresi: {farklar:?} ('At Başı')"),
+                    format!("Dereceler aynı {dereceler:?} (destekleyici; tek başına ortak birincilik kanıtı sayılmaz)"),
+                ]
+                .into(),
+            ),
+            ("bahis_satiri", kaynak.into()),
+        ]));
+    }
+    (out, inceleme)
+}
+
+/// Rapor satırı için nesnenin düz alanları (dizi/nesne alanları atlanır).
+fn kisa(j: &Json) -> String {
+    match j {
+        Json::Obj(v) => v
+            .iter()
+            .filter(|(_, x)| !matches!(x, Json::Arr(_) | Json::Obj(_)) && *x != Json::Null)
+            .map(|(k, x)| format!("{k}={}", x.hucre()))
+            .collect::<Vec<_>>()
+            .join(", "),
+        x => x.hucre(),
+    }
 }
 
 // ---------------------------------------------------------------- altılı
@@ -882,8 +1212,12 @@ fn tek_altili(
     let son_kb = bahis_kosu.iter().find(|k| k.kosu_no == son_kosu);
     let mut acik: Vec<String> = Vec::new();
 
-    let altili_bahis: Option<&Bahis> = son_kb.and_then(|kb| {
-        kb.bahisler.iter().find(|b| b.oyun == oyun).or_else(|| {
+    // Son ayak satırındaki bu altılıya ait TÜM ödemeler (ortak birincilikte her kazanan kombinasyonun kendi ödemesi var).
+    let adaylar: Vec<&Bahis> =
+        son_kb.map(|kb| kb.bahisler.iter().filter(|b| b.oyun == oyun).collect()).unwrap_or_default();
+    let coklu = adaylar.len() > 1;
+    let altili_bahis: Option<&Bahis> = adaylar.first().copied().or_else(|| {
+        son_kb.and_then(|kb| {
             let c: Vec<&Bahis> = kb.bahisler.iter().filter(|b| b.oyun.ends_with("6'LI GANYAN")).collect();
             (c.len() == 1 && toplam == 1).then(|| c[0])
         })
@@ -908,10 +1242,12 @@ fn tek_altili(
     for (i, &kn) in ayak_kosulari.iter().enumerate() {
         let ayak = i + 1;
         let birinciler: Vec<&SonucSatir> = son.iter().filter(|x| x.kosu_no == kn && x.bitis == Some(1)).collect();
+        // Bitiş sırası 1 olan birden çok at yalnızca doğrulanmış ortak birincilikte olur (ortak_birincilik()).
+        let birinci_nolar: Vec<i64> = birinciler.iter().map(|x| x.program_at_no).collect();
         if birinciler.len() > 1 {
             acik.push(format!(
-                "{ayak}. ayakta ({kn}. koşu) bitiriş sırası 1 olan {} at var; birinci olarak ilk satır alındı.",
-                birinciler.len()
+                "{ayak}. ayakta ({kn}. koşu) ortak birincilik (ölü yarış): {birinci_nolar:?}; kanıtlar altili.json → ortak_birincilikler. \
+'birinci' alanında liste sırası ilk olan at, tümü 'ortak_birinciler' alanında."
             ));
         }
         let birinci = birinciler.first().copied();
@@ -929,9 +1265,18 @@ fn tek_altili(
             eksik("sonuç kombinasyonunda bu ayak yok".into());
         }
         let birinci_no = birinci.map(|x| x.program_at_no);
-        let gecerli: Option<Vec<i64>> = altili_bahis.and_then(|ab| ab.ayaklar.get(i).cloned());
+        let gecerli: Option<Vec<i64>> = if coklu {
+            // Birden çok kazanan kombinasyon: ayaktaki geçerli numaraların birleşimi
+            let mut v: Vec<i64> = adaylar.iter().filter_map(|b| b.ayaklar.get(i)).flatten().copied().collect();
+            v.sort();
+            v.dedup();
+            (!v.is_empty()).then_some(v)
+        } else {
+            altili_bahis.and_then(|ab| ab.ayaklar.get(i).cloned())
+        };
         let kb = bahis_kosu.iter().find(|k| k.kosu_no == kn);
         let gny = kb.and_then(|k| k.bahisler.iter().find(|b| b.oyun == "GANYAN"));
+        let gny_hepsi: Vec<&Bahis> = kb.map(|k| k.bahisler.iter().filter(|b| b.oyun == "GANYAN").collect()).unwrap_or_default();
         let kosu_prog: Vec<&ProgAt> = prog.iter().filter(|r| r.kosu_no == kn).collect();
         let kosmazlar: Vec<&ProgAt> = kosu_prog.iter().copied().filter(|r| r.kosmaz).collect();
         // Bu koşu birden çok altılıdaysa AGF hücresinde altılı başına bir değer bekleniyor.
@@ -985,7 +1330,7 @@ fn tek_altili(
             }
         }
         let birinci_disi: Option<Vec<i64>> =
-            gecerli.as_ref().map(|g| g.iter().copied().filter(|n| Some(*n) != birinci_no).collect());
+            gecerli.as_ref().map(|g| g.iter().copied().filter(|n| !birinci_nolar.contains(n)).collect());
 
         let mut ack = String::new();
         if let Some(bd) = birinci_disi.as_ref().filter(|v| !v.is_empty()) {
@@ -1068,7 +1413,7 @@ fn tek_altili(
             ]));
         }
 
-        ayaklar_json.push(obj(vec![
+        let mut ayak_alanlari: Vec<(&str, Json)> = vec![
             ("ayak", ayak.into()),
             ("kosu_no", kn.into()),
             ("kosu_id", format!("{gun_id}-K{kn:02}").into()),
@@ -1083,7 +1428,7 @@ fn tek_altili(
                         ("kayit_id", (&x.kayit_id).into()),
                         (
                             "kaynak",
-                            format!("{} satır {}", s.ad, x.kaynak_satir.map(|v| v.to_string()).unwrap_or_default()).into(),
+                            format!("{} satır {}", s.kaynak_of(kn).0, x.kaynak_satir.map(|v| v.to_string()).unwrap_or_default()).into(),
                         ),
                     ])
                 }),
@@ -1125,9 +1470,28 @@ fn tek_altili(
             (
                 "ganyan_bahis_sonucu",
                 match (gny, kb) {
+                    (Some(_), Some(k)) if gny_hepsi.len() > 1 => {
+                        let mut gn: Vec<i64> = gny_hepsi.iter().flat_map(|b| b.ayaklar.iter().flatten().copied()).collect();
+                        gn.sort();
+                        let mut bn = birinci_nolar.clone();
+                        bn.sort();
+                        obj(vec![
+                            (
+                                "ham",
+                                gny_hepsi
+                                    .iter()
+                                    .map(|b| format!("GANYAN({}) :{}", b.kombinasyon_ham, b.tutar_ham))
+                                    .collect::<Vec<_>>()
+                                    .join(", ")
+                                    .into(),
+                            ),
+                            ("kaynak", format!("{} satır {}", s.kaynak_of(kn).0, k.satir_no).into()),
+                            ("birinci_ile_uyumlu", (!bn.is_empty() && gn == bn).into()),
+                        ])
+                    }
                     (Some(g), Some(k)) => obj(vec![
                         ("ham", format!("GANYAN({}) :{}", g.kombinasyon_ham, g.tutar_ham).into()),
-                        ("kaynak", format!("{} satır {}", s.ad, k.satir_no).into()),
+                        ("kaynak", format!("{} satır {}", s.kaynak_of(kn).0, k.satir_no).into()),
                         (
                             "birinci_ile_uyumlu",
                             birinci_no.map(|b| g.ayaklar.first() == Some(&vec![b])).into(),
@@ -1136,7 +1500,93 @@ fn tek_altili(
                     _ => Json::Null,
                 },
             ),
-        ]));
+        ];
+        if birinciler.len() > 1 {
+            ayak_alanlari.push((
+                "ortak_birinciler",
+                Json::Arr(
+                    birinciler
+                        .iter()
+                        .map(|x| {
+                            obj(vec![
+                                ("program_at_no", x.program_at_no.into()),
+                                ("at_adi", (&x.at_adi).into()),
+                                ("kayit_id", (&x.kayit_id).into()),
+                                ("kaynak", format!("{} satır {}", s.kaynak_of(kn).0, x.kaynak_satir.map(|v| v.to_string()).unwrap_or_default()).into()),
+                            ])
+                        })
+                        .collect(),
+                ),
+            ));
+        }
+        ayaklar_json.push(obj(ayak_alanlari));
+    }
+
+    // ---- birden çok kazanan kombinasyon: yalnızca ortak birincilikle açıklanırsa ayrı ayrı korunur
+    let mut kazanan: Vec<Json> = Vec::new();
+    if coklu {
+        let mut sorun: Vec<String> = Vec::new();
+        if adaylar.iter().any(|b| b.ayaklar.len() != 6) {
+            sorun.push("6 parçalı olmayan kombinasyon var".into());
+        } else {
+            let mut beklenen_sayi = 1usize;
+            for i in 0..6 {
+                if adaylar.iter().all(|b| b.ayaklar[i] == adaylar[0].ayaklar[i]) {
+                    continue;
+                }
+                let kn = ayak_kosulari[i];
+                let mut bir: Vec<i64> = son.iter().filter(|x| x.kosu_no == kn && x.bitis == Some(1)).map(|x| x.program_at_no).collect();
+                bir.sort();
+                let mut v: Vec<i64> = adaylar.iter().flat_map(|b| b.ayaklar[i].iter().copied()).collect();
+                v.sort();
+                v.dedup();
+                if bir.len() < 2 {
+                    sorun.push(format!("{}. ayakta ({kn}. koşu) kombinasyonlar farklı ama doğrulanmış ortak birincilik yok", i + 1));
+                } else if adaylar.iter().any(|b| b.ayaklar[i].len() != 1) || v != bir {
+                    sorun.push(format!("{}. ayakta ({kn}. koşu) kombinasyon numaraları {v:?}, ortak birinciler {bir:?}", i + 1));
+                } else {
+                    beklenen_sayi *= bir.len();
+                }
+            }
+            let mut farkli: Vec<&Vec<Vec<i64>>> = adaylar.iter().map(|b| &b.ayaklar).collect();
+            farkli.sort();
+            farkli.dedup();
+            if sorun.is_empty() && (farkli.len() != adaylar.len() || adaylar.len() != beklenen_sayi) {
+                sorun.push(format!("{} ödeme var, {} farklı kombinasyon, beklenen {beklenen_sayi}", adaylar.len(), farkli.len()));
+            }
+            if adaylar.iter().any(|b| b.sonuc_durumu != "ODENDI" || b.tutar_tl.is_none()) {
+                sorun.push("ödemesi okunamayan kombinasyon var".into());
+            }
+        }
+        if sorun.is_empty() {
+            kazanan = adaylar
+                .iter()
+                .map(|b| {
+                    obj(vec![
+                        ("kombinasyon_ham", (&b.kombinasyon_ham).into()),
+                        ("kombinasyon_listesi", b.ayaklar.clone().into()),
+                        ("odeme_ham", (&b.tutar_ham).into()),
+                        ("odeme_tl", b.tutar_tl.into()),
+                        ("sonuc_durumu", b.sonuc_durumu.into()),
+                        (
+                            "odeme_kaniti",
+                            obj(vec![
+                                ("dosya", s.kaynak_of(son_kosu).0.into()),
+                                ("satir", son_kb.map(|k| k.satir_no).into()),
+                                ("ibare", (&b.ham_ibare).into()),
+                            ]),
+                        ),
+                    ])
+                })
+                .collect();
+        } else {
+            inceleme.push(format!(
+                "ALTILI_COKLU_ODEME_ACIKLANAMADI: {} son ayakta {} '{oyun}' ödemesi: {}",
+                t.altili_id,
+                adaylar.len(),
+                sorun.join("; ")
+            ));
+        }
     }
 
     // ---- koşmaz hipotez testi (yalnızca dosyadaki gözlemlerle)
@@ -1273,12 +1723,14 @@ hangi altılıya ait olduğu dosyada yazmıyor ve resmî 1./2. AGF tabloları bu
     let kullanici = if kk.is_none() && ko.is_none() {
         Json::Null
     } else {
-        let komb_esit = match (kk, altili_bahis) {
-            (Some(k), Some(ab)) => komb_coz(k).map(|v| v == ab.ayaklar),
+        let hepsi: Vec<&Bahis> = if coklu { adaylar.clone() } else { altili_bahis.into_iter().collect() };
+        let komb_esit = match kk {
+            Some(k) if !hepsi.is_empty() => komb_coz(k).map(|v| hepsi.iter().any(|ab| v == ab.ayaklar)),
             _ => None,
         };
-        let odeme_esit = match (ko, altili_bahis.and_then(|ab| ab.tutar_tl)) {
-            (Some(o), Some(t)) => tr_num(o.trim().trim_end_matches("TL")).map(|v| v == t),
+        let odemeler: Vec<f64> = hepsi.iter().filter_map(|ab| ab.tutar_tl).collect();
+        let odeme_esit = match ko {
+            Some(o) if !odemeler.is_empty() => tr_num(o.trim().trim_end_matches("TL")).map(|v| odemeler.contains(&v)),
             _ => None,
         };
         obj(vec![
@@ -1314,6 +1766,13 @@ hangi altılıya ait olduğu dosyada yazmıyor ve resmî 1./2. AGF tabloları bu
         }
         n
     };
+    let mut sonuc_kaynaklari: Vec<(String, String, String, Vec<u32>)> = Vec::new();
+    for (kn, ad, sha, tarih) in &s.kosu_kaynagi {
+        match sonuc_kaynaklari.iter_mut().find(|x| x.1 == *sha) {
+            Some(x) => x.3.push(*kn),
+            None => sonuc_kaynaklari.push((ad.clone(), sha.clone(), tarih.clone(), vec![*kn])),
+        }
+    }
     let mut kaynaklar = vec![
         obj(vec![
             ("rol", "program".into()),
@@ -1332,6 +1791,22 @@ hangi altılıya ait olduğu dosyada yazmıyor ve resmî 1./2. AGF tabloları bu
             ("not", kaynak_notu(s).into()),
         ]),
     ];
+    if !sonuc_kaynaklari.is_empty() {
+        // Birleştirilmiş sonuç: her sonuç dosyası ayrı kaynak olarak, içerdiği koşularla
+        kaynaklar.truncate(1);
+        for (ad, sha, tarih, kosular) in &sonuc_kaynaklari {
+            kaynaklar.push(obj(vec![
+                ("rol", "sonuc".into()),
+                ("dosya", ad.into()),
+                ("sha256", sha.into()),
+                ("kodlama", (&s.kodlama).into()),
+                ("dosyadaki_tarih", tarih.into()),
+                ("kosular", kosular.clone().into()),
+                ("kaynak_url", Json::Null),
+                ("not", "TJK indirme URL'si dosyada yok.".into()),
+            ]));
+        }
+    }
     if let Some(u) = &sec.ilgili_url {
         kaynaklar.push(obj(vec![
             ("rol", "ilgili_kaynak_bu_turda_acilmadi".into()),
@@ -1356,7 +1831,7 @@ hangi altılıya ait olduğu dosyada yazmıyor ve resmî 1./2. AGF tabloları bu
         })
         .collect();
 
-    Ok(obj(vec![
+    let mut alanlar: Vec<(&str, Json)> = vec![
         ("altili_id", (&t.altili_id).into()),
         ("eksik_ayaklar", eksik_ayaklar.clone().into()),
         ("oyun_adi", oyun.into()),
@@ -1383,7 +1858,7 @@ hangi altılıya ait olduğu dosyada yazmıyor ve resmî 1./2. AGF tabloları bu
             "odeme_kaniti",
             match (altili_bahis, son_kb) {
                 (Some(b), Some(k)) => obj(vec![
-                    ("dosya", (&s.ad).into()),
+                    ("dosya", s.kaynak_of(son_kosu).0.into()),
                     ("satir", k.satir_no.into()),
                     ("ibare", (&b.ham_ibare).into()),
                 ]),
@@ -1424,7 +1899,30 @@ hangi altılıya ait olduğu dosyada yazmıyor ve resmî 1./2. AGF tabloları bu
         ("agf_ayak_toplamlari", Json::Arr(agf_toplamlari)),
         ("acik_sorular", sorular.into()),
         ("kaynaklar", Json::Arr(kaynaklar)),
-    ]))
+    ];
+    if coklu {
+        // Tek bir kombinasyon/ödeme alanı bilerek boş: her kazanan kombinasyon kendi ödemesiyle ayrı tutulur.
+        for (k, v) in alanlar.iter_mut() {
+            if matches!(*k, "kombinasyon_ham" | "kombinasyon_listesi" | "odeme_ham" | "odeme_tl" | "sonuc_durumu" | "devir_ham" | "devir_tl" | "odeme_kaniti") {
+                *v = Json::Null;
+            }
+        }
+        let yer = alanlar.iter().position(|(k, _)| *k == "odeme_kaniti").map_or(alanlar.len(), |i| i + 1);
+        alanlar.insert(yer, ("kazanan_kombinasyonlar", Json::Arr(kazanan)));
+        alanlar.insert(
+            yer + 1,
+            (
+                "odeme_notu",
+                format!(
+                    "Son ayakta {} ayrı '{oyun}' ödemesi var; tek ödeme alanları bilerek boş. Her kazanan kombinasyon kendi \
+ödemesiyle 'kazanan_kombinasyonlar' alanında (ortak birincilikle açıklanamazsa liste boş ve gün incelemede).",
+                    adaylar.len()
+                )
+                .into(),
+            ),
+        );
+    }
+    Ok(obj(alanlar))
 }
 
 // ---------------------------------------------------------------- rapor (stdout)
@@ -1515,13 +2013,35 @@ fn rapor(
     for a in altililar {
         if let Json::Obj(v) = a {
             let al = |k: &str| v.iter().find(|(x, _)| x == k).map(|(_, j)| j.hucre()).unwrap_or_default();
-            println!(
-                "Altılı {}: başlangıç {}. koşu | kombinasyon {} | ödeme {}",
-                al("altili_id"),
-                al("baslangic_kosusu"),
-                al("kombinasyon_ham"),
-                al("odeme_ham")
-            );
+            let coklu = v.iter().find(|(x, _)| x == "kazanan_kombinasyonlar").map(|(_, j)| j);
+            match coklu {
+                Some(Json::Arr(kl)) if !kl.is_empty() => {
+                    let parca: Vec<String> = kl
+                        .iter()
+                        .filter_map(|k| match k {
+                            Json::Obj(f) => {
+                                let g = |n: &str| f.iter().find(|(x, _)| x == n).map(|(_, j)| j.hucre()).unwrap_or_default();
+                                Some(format!("{} -> {}", g("kombinasyon_ham"), g("odeme_ham")))
+                            }
+                            _ => None,
+                        })
+                        .collect();
+                    println!(
+                        "Altılı {}: başlangıç {}. koşu | {} kazanan kombinasyon: {}",
+                        al("altili_id"),
+                        al("baslangic_kosusu"),
+                        kl.len(),
+                        parca.join(" ; ")
+                    );
+                }
+                _ => println!(
+                    "Altılı {}: başlangıç {}. koşu | kombinasyon {} | ödeme {}",
+                    al("altili_id"),
+                    al("baslangic_kosusu"),
+                    al("kombinasyon_ham"),
+                    al("odeme_ham")
+                ),
+            }
         }
     }
     for u in uyarilar {

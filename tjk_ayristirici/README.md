@@ -69,3 +69,16 @@ iki altılı, ortak koşu bağlantıları, AGF ve eküri ayrımı için sınanı
 - `program.csv` → `agf_altili1_*`, `agf_altili2_*`: yalnızca eşleşme belirliyse (tek değer + tek altılı) doludur.
   Çok değerli hücrede, resmî 1./2. AGF tablosuyla doğrulanmadıkça boş kalır; ham hücre ve iki değer korunur.
   Yarış öncesi zaman doğrulaması ayrı sütundadır (`agf_oncesi_dogrulandi`).
+
+## v0.12: ertelenen koşular, ortak birincilik, YP eki
+
+- `--ek-sonuc DOSYA` (tekrarlanabilir) ve `--ertelenme-notu METİN`: aynı yarış gününün (hipodrom + yarış günü no) başka
+  sonuç dosyalarındaki koşular birleştirilir. Farklı tarihli sonuç yalnızca not verilirse kabul edilir; aynı koşu iki
+  dosyada varsa hata (ikinci kez sayılmaz). Ertelenen koşunun cinsi/yaş grubu/kilo/adı/mesafesi programla karşılaştırılır.
+- Yeni çıktı `kosu_tarihleri.csv`: koşu başına planlanan ve gerçekleşen tarih/saat, pist, kaynak dosya, erteleme notu.
+- Ortak birincilik yalnızca birden çok ayrı GANYAN ödemesi + ilk N sıra + ganyan oranı = ödeme + `At Başı` farkı + aynı derece
+  birlikteyse kabul edilir (aynı derece tek başına yetmez). `altili.json` → `ortak_birincilikler`; bitiş sırası ortak 1.
+  Birden çok altılı ödemesi `kazanan_kombinasyonlar` içinde her biri kendi ödemesiyle tutulur.
+- `YP` at adı kod belirteçlerine eklendi (ham ad `at_isim_ham`'da korunur).
+- Yeni alanlar yalnızca ilgili durum varsa yazılır; normal günlerin `program.csv`/`sonuclar.csv`/`altili.json` çıktısı değişmez.
+- Uçtan uca testler: `tests/mart_istisnalar.rs` (girdi: `../kontrol/ham`).

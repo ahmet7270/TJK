@@ -2,6 +2,7 @@
 //! SHA-256 doğrulama, CSV inceleme ve resmî takvimden Mart çiftleri.
 
 mod daralt;
+mod karsilastir;
 mod toplu;
 mod takvim;
 
@@ -24,6 +25,7 @@ fn main() {
         Some("csv") if args.len() == 2 => csv(&args[1]),
         Some("takvim") if args.len() == 3 => takvim::run(&args[1], &args[2]),
         Some("daralt") => daralt::run(&args[1..]),
+        Some("karsilastir") => karsilastir::run(&args[1..]),
         Some("toplu") => toplu::run(&args[1..]),
         _ => usage(),
     }

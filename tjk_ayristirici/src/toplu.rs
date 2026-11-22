@@ -286,11 +286,13 @@ pub fn calistir(args: &[String]) -> Result<(), String> {
                     ilgili_url: None,
                     ilgili_not: None,
                     sqlite: None,
+                    ek_sonuc: vec![],
+                    ertelenme_notu: None,
                 };
                 let sonuc = (|| -> Result<(Karar, String), String> {
                     let p = yukle(&gs.program)?;
                     let s = yukle(&gs.sonuc)?;
-                    gunu_isle(&gs, p, s, false, |gv| Ok((veritabani::aktar_kosullu(&db, gv)?, gv.gun_durumu.to_string())))
+                    gunu_isle(&gs, p, s, vec![], false, |gv| Ok((veritabani::aktar_kosullu(&db, gv)?, gv.gun_durumu.to_string())))
                 })();
                 match sonuc {
                     Ok((k, yeni_durum)) => {
