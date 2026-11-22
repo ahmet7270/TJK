@@ -1,7 +1,7 @@
 # Yıllık durum: 22.11.2025 – 22.11.2026
 
-Üretim: `kontrol/yillik/durum_yaz.sh` (her ay için `tjk_denetim`, veri tabanı salt okunur) · 2026-11-22T17:06Z
-Veri tabanı: `tjk_yillik.sqlite` · SHA-256 `60edc984bdf0f62f701dec38f61ac11a134cc9df16e4fefc0273082546c1d83d`
+Üretim: `kontrol/yillik/durum_yaz.sh` (her ay için `tjk_denetim`, veri tabanı salt okunur) · 2026-11-22T17:18Z
+Veri tabanı: `tjk_yillik.sqlite` · SHA-256 `93162689bf92d00f5b11d85db626cf7189dd352285affdb39ec0d8492f6bec0a`
 
 Takvim: resmî 2025 ve 2026 PDF'leri (`kontrol/yillik/takvim/KAYNAKLAR.md`), 760 çift. Sınıflar: TAMAMLANDI (gün TAMAM),
 INCELEME_GEREKLI (gün aktarıldı, gerekçeli açık kayıt var), EKSIK (denendi, dosya alınamadı/doğrulanamadı),
@@ -9,20 +9,20 @@ AKTARILMADI (iki dosya doğrulandı, aktarım bekliyor), HENUZ_DENENMEDI (indirm
 
 | Ay | Takvim çifti | Tamam | İnceleme | Eksik | İndirildi, aktarılmadı | Denenmedi | Takvim dışı | Koşu | Katılım | Altılı | FK | integrity | 2. aktarım | Sert hata | Durum |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-11 | 18 | 18 | 0 | 0 | 0 | 0 | 0 | 149 | 1489 | 31 | 0 | ok | — | yok | tamamlandı |
-| 2025-12 | 62 | 1 | 0 | 0 | 0 | 61 | 0 | 8 | 68 | 2 | 0 | ok | — | **VAR** | denenmedi |
-| 2026-01 | 62 | 61 | 1 | 0 | 0 | 0 | 0 | 469 | 4610 | 97 | 0 | ok | — | yok | inceleme var |
-| 2026-02 | 56 | 55 | 1 | 0 | 0 | 0 | 0 | 431 | 4203 | 96 | 0 | ok | — | yok | inceleme var |
-| 2026-03 | 61 | 60 | 1 | 0 | 0 | 0 | 0 | 481 | 4776 | 105 | 0 | ok | — | yok | inceleme var |
+| 2025-11 | 18 | 18 | 0 | 0 | 0 | 0 | 0 | 149 | 1489 | 31 | 0 | ok | aynı | yok | tamamlandı |
+| 2025-12 | 62 | 61 | 0 | 1 | 0 | 0 | 0 | 490 | 4849 | 103 | 0 | ok | aynı | yok | eksik var |
+| 2026-01 | 62 | 61 | 1 | 0 | 0 | 0 | 0 | 469 | 4610 | 97 | 0 | ok | aynı | yok | inceleme var |
+| 2026-02 | 56 | 55 | 1 | 0 | 0 | 0 | 0 | 431 | 4203 | 96 | 0 | ok | aynı | yok | inceleme var |
+| 2026-03 | 61 | 60 | 1 | 0 | 0 | 0 | 0 | 481 | 4776 | 105 | 0 | ok | aynı | yok | inceleme var |
 | 2026-04 | 62 | 60 | 1 | 1 | 0 | 0 | 0 | 507 | 5229 | 114 | 0 | ok | aynı | yok | eksik var |
-| 2026-05 | 66 | 0 | 0 | 0 | 39 | 27 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | denenmedi |
-| 2026-06 | 64 | 1 | 0 | 0 | 0 | 63 | 0 | 8 | 57 | 2 | 0 | ok | — | **VAR** | denenmedi |
-| 2026-07 | 66 | 0 | 0 | 0 | 0 | 66 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | henüz başlanmadı |
+| 2026-05 | 66 | 66 | 0 | 0 | 0 | 0 | 0 | 562 | 6052 | 126 | 0 | ok | aynı | yok | tamamlandı |
+| 2026-06 | 64 | 64 | 0 | 0 | 0 | 0 | 0 | 533 | 5630 | 121 | 0 | ok | aynı | yok | tamamlandı |
+| 2026-07 | 66 | 0 | 0 | 1 | 64 | 1 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | denenmedi |
 | 2026-08 | 67 | 0 | 0 | 0 | 0 | 67 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | henüz başlanmadı |
 | 2026-09 | 63 | 0 | 0 | 0 | 0 | 63 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | henüz başlanmadı |
 | 2026-10 | 67 | 0 | 0 | 0 | 0 | 67 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | henüz başlanmadı |
 | 2026-11 | 46 | 0 | 0 | 0 | 0 | 46 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | henüz başlanmadı |
-| **Toplam** | **760** | **256** | **4** | **1** | **39** | **460** | | | | | | | | | |
+| **Toplam** | **760** | **445** | **4** | **3** | **64** | **244** | | | | | | | | | |
 
 ## Tamamlanmamış çiftler (ay bazında)
 
@@ -34,7 +34,9 @@ Altılı, birden çok kazanan kombinasyonlu: 20251127-ANTALYA-A1, 20251127-ANTAL
 
 ### 2025-12
 
-Henüz denenmeyen: 2025-12-01 Bursa, 2025-12-01 Şanlıurfa, 2025-12-02 Adana, 2025-12-02 Antalya, 2025-12-03 İstanbul, 2025-12-03 Şanlıurfa, 2025-12-04 İzmir, 2025-12-04 Antalya, 2025-12-05 Bursa, 2025-12-05 İzmir, 2025-12-06 Adana, 2025-12-06 İstanbul, 2025-12-07 İzmir, 2025-12-07 Adana, 2025-12-08 Bursa, 2025-12-08 Şanlıurfa, 2025-12-09 Adana, 2025-12-09 Antalya, 2025-12-10 İstanbul, 2025-12-10 Şanlıurfa, 2025-12-11 İzmir, 2025-12-11 Antalya, 2025-12-12 Antalya, 2025-12-12 İzmir, 2025-12-13 Adana, 2025-12-13 İstanbul, 2025-12-14 İzmir, 2025-12-14 Adana, 2025-12-15 Bursa, 2025-12-15 Şanlıurfa, 2025-12-16 Adana, 2025-12-16 Antalya, 2025-12-17 İstanbul, 2025-12-17 Şanlıurfa, 2025-12-18 İzmir, 2025-12-18 Antalya, 2025-12-19 Bursa, 2025-12-19 İzmir, 2025-12-20 Adana, 2025-12-20 İstanbul, 2025-12-21 İzmir, 2025-12-21 Adana, 2025-12-22 Bursa, 2025-12-22 Şanlıurfa, 2025-12-23 Adana, 2025-12-23 Antalya, 2025-12-24 İstanbul, 2025-12-24 Şanlıurfa, 2025-12-25 İzmir, 2025-12-25 Antalya, 2025-12-26 Antalya, 2025-12-26 İzmir, 2025-12-27 Adana, 2025-12-27 İstanbul, 2025-12-28 İzmir, 2025-12-29 Bursa, 2025-12-29 Şanlıurfa, 2025-12-30 Adana, 2025-12-30 Antalya, 2025-12-31 İstanbul, 2025-12-31 Şanlıurfa
+| Tarih | Hipodrom | Durum | Yarış günü no | Ayrıntı |
+|---|---|---|---|---|
+| 2025-12-31 | Şanlıurfa | EKSIK |  | program HTTP 200 ICERIK_DOGRULANDI; sonuc HTTP 200 BICIM_HATASI |
 
 ### 2026-01
 
@@ -73,15 +75,21 @@ Planlandığı gün dışında koşulan koşu: 8 (ayrıntı: `raporlar/2026-04_d
 
 ### 2026-05
 
-Henüz denenmeyen: 2026-05-19 Ankara, 2026-05-19 Kocaeli, 2026-05-20 İstanbul, 2026-05-20 Elazığ, 2026-05-21 Ankara, 2026-05-21 İzmir, 2026-05-22 Bursa, 2026-05-22 İstanbul, 2026-05-23 İzmir, 2026-05-23 Ankara, 2026-05-23 Diyarbakır, 2026-05-24 İstanbul, 2026-05-24 Adana, 2026-05-25 Bursa, 2026-05-25 Şanlıurfa, 2026-05-26 Ankara, 2026-05-26 Kocaeli, 2026-05-27 İstanbul, 2026-05-28 Ankara, 2026-05-28 İzmir, 2026-05-29 Bursa, 2026-05-29 İstanbul, 2026-05-30 Ankara, 2026-05-30 İzmir, 2026-05-30 Diyarbakır, 2026-05-31 İstanbul, 2026-05-31 Adana
+Takvimdeki tüm çiftler TAMAMLANDI.
 
 ### 2026-06
 
-Henüz denenmeyen: 2026-06-01 Bursa, 2026-06-01 Şanlıurfa, 2026-06-02 Ankara, 2026-06-02 Kocaeli, 2026-06-03 İstanbul, 2026-06-03 Elazığ, 2026-06-04 Ankara, 2026-06-04 Kocaeli, 2026-06-05 Bursa, 2026-06-05 İstanbul, 2026-06-06 İzmir, 2026-06-06 Ankara, 2026-06-06 Diyarbakır, 2026-06-07 İstanbul, 2026-06-07 İzmir, 2026-06-08 Bursa, 2026-06-08 Şanlıurfa, 2026-06-09 Ankara, 2026-06-09 Kocaeli, 2026-06-10 İstanbul, 2026-06-10 Elazığ, 2026-06-11 Ankara, 2026-06-11 Kocaeli, 2026-06-12 Bursa, 2026-06-12 İstanbul, 2026-06-13 Ankara, 2026-06-13 İzmir, 2026-06-13 Diyarbakır, 2026-06-14 İstanbul, 2026-06-14 İzmir, 2026-06-15 Bursa, 2026-06-15 Şanlıurfa, 2026-06-16 Ankara, 2026-06-16 Kocaeli, 2026-06-17 İstanbul, 2026-06-17 Elazığ, 2026-06-18 Ankara, 2026-06-18 Kocaeli, 2026-06-19 Bursa, 2026-06-19 İstanbul, 2026-06-20 Ankara, 2026-06-20 İzmir, 2026-06-20 Diyarbakır, 2026-06-21 İstanbul, 2026-06-21 İzmir, 2026-06-22 Bursa, 2026-06-22 Elazığ, 2026-06-23 Ankara, 2026-06-23 Kocaeli, 2026-06-24 İstanbul, 2026-06-24 Elazığ, 2026-06-25 Bursa, 2026-06-25 İstanbul, 2026-06-26 Ankara, 2026-06-26 Kocaeli, 2026-06-27 Ankara, 2026-06-27 İzmir, 2026-06-27 Diyarbakır, 2026-06-28 İstanbul, 2026-06-28 İzmir, 2026-06-29 Bursa, 2026-06-29 Elazığ, 2026-06-30 Kocaeli
+Takvimdeki tüm çiftler TAMAMLANDI.
+
+Altılı, birden çok kazanan kombinasyonlu: 20260621-ISTANBUL-A2 (her kombinasyon kendi ödemesine bağlı).
 
 ### 2026-07
 
-Henüz denenmeyen: 2026-07-01 İstanbul, 2026-07-01 Elazığ, 2026-07-02 Ankara, 2026-07-02 Kocaeli, 2026-07-03 Bursa, 2026-07-03 İstanbul, 2026-07-04 Ankara, 2026-07-04 İzmir, 2026-07-04 Diyarbakır, 2026-07-05 İstanbul, 2026-07-05 İzmir, 2026-07-06 Bursa, 2026-07-06 Elazığ, 2026-07-07 Ankara, 2026-07-07 Kocaeli, 2026-07-08 İstanbul, 2026-07-08 Elazığ, 2026-07-09 Ankara, 2026-07-09 Kocaeli, 2026-07-10 Bursa, 2026-07-10 İstanbul, 2026-07-11 İzmir, 2026-07-11 Ankara, 2026-07-11 Diyarbakır, 2026-07-12 İstanbul, 2026-07-12 İzmir, 2026-07-13 Bursa, 2026-07-13 Elazığ, 2026-07-14 Ankara, 2026-07-14 Kocaeli, 2026-07-15 İstanbul, 2026-07-15 Elazığ, 2026-07-16 Ankara, 2026-07-16 Kocaeli, 2026-07-17 Bursa, 2026-07-17 İstanbul, 2026-07-18 İzmir, 2026-07-18 Ankara, 2026-07-18 Diyarbakır, 2026-07-19 İstanbul, 2026-07-19 İzmir, 2026-07-20 Bursa, 2026-07-20 Elazığ, 2026-07-21 Ankara, 2026-07-21 Kocaeli, 2026-07-22 İstanbul, 2026-07-22 Elazığ, 2026-07-23 Ankara, 2026-07-23 Kocaeli, 2026-07-24 Bursa, 2026-07-24 İstanbul, 2026-07-25 İzmir, 2026-07-25 Ankara, 2026-07-25 Diyarbakır, 2026-07-26 İstanbul, 2026-07-26 İzmir, 2026-07-27 Bursa, 2026-07-27 Elazığ, 2026-07-28 Ankara, 2026-07-28 Kocaeli, 2026-07-29 İstanbul, 2026-07-29 Elazığ, 2026-07-30 Ankara, 2026-07-30 Kocaeli, 2026-07-31 Bursa, 2026-07-31 İstanbul
+| Tarih | Hipodrom | Durum | Yarış günü no | Ayrıntı |
+|---|---|---|---|---|
+| 2026-07-31 | Bursa | EKSIK |  | program HTTP 200 ICERIK_DOGRULANDI |
+
+Henüz denenmeyen: 2026-07-31 İstanbul
 
 ### 2026-08
 
@@ -110,6 +118,7 @@ Henüz denenmeyen: 2026-11-01 İstanbul, 2026-11-01 Adana, 2026-11-02 Bursa, 202
 | 2026-02-06 İzmir A1, 2026-02-24 Adana A1/A2 | Ortak birincilik, birden çok altılı kombinasyonu | Ayrıştırıcının 5 kanıtı (ayrı GANYAN'lar, ilk N sıra, oran = ödeme, `At Başı`, aynı derece) | Her kazanan kombinasyon kendi ödemesine ve bahis satırına bağlı (`altili_odeme`), geçerli numaralar `ORTAK_BIRINCI`. |
 | 2026-04-03 İzmir (41. yarış günü) | Sonuç dosyasında sonuç yok | Sonuç CSV'si (2133 bayt) yalnızca 9. koşunun başlığını ve 15 atlık start listesini derece/ganyan/fark olmadan içeriyor; 1.–8. koşular yok. 04.04 İzmir program/sonuç adresleri HTTP 404; 05.04 İzmir = 42. yarış günü | Program verisi aktarıldı; 1.–8. koşu `SONUC_YOK`, 9. koşu sonuçları `BILINMEYEN`, altılı ödemeleri boş; gün incelemede (`ESLESMEYEN_PROGRAM_KAYDI` ×68 vb.). Koşuların yapılıp yapılmadığı kaynaklarda yazmıyor. |
 | 2026-04-18 Ankara | Program ve sonuç adresleri HTTP 404 | 16.04 Ankara = 1., 23.04 Ankara = 3. yarış günü; 2. gün 17, 19, 20, 21, 22.04 adreslerinde de yok (12 istek, hepsi 404; `listeler/2026-04_ek_durum.tsv`) | EKSIK. Tahminle doldurulmadı. 2. yarış gününün tarihi/dosyası bulunamadı. |
+| 2025-12-31 Şanlıurfa | Sonuç dosyası 0 bayt | Sonuç adresi iki kez HTTP 200 ve 0 bayt döndü (indirme + elle yeniden deneme); program dosyası doğrulandı (14957 bayt) | EKSIK: program tek başına aktarılmadı (sonuçsuz gün üretilmez). Sonuç yayımlanırsa `ay_isle.sh indir/aktar 2025-12` ile tamamlanır. |
 | 2026-03-15 Adana | İki açık ödeme | Önceki inceleme (`kontrol/mart_istisnalar.md` §5) | Korundu: `GANYAN_SATIRI_BULUNAMADI: 3. koşu`, `ALTILI_ODEMESI_BULUNAMADI: …-A1` (A1 ödemesi NULL). |
 
 ### Erişim
@@ -126,3 +135,12 @@ Henüz denenmeyen: 2026-11-01 İstanbul, 2026-11-01 Adana, 2026-11-02 Bursa, 202
 - 0.14.0 regresyonu: Ocak + Mart (123 gün) yeniden aktarıldı; 16 tablonun tam dökümünde **yalnızca** `ayristirici_surumu` değişti.
 - Kaynak URL/HTTP: v4 şeması değiştirilmedi. `kaynak_dosya.sha256` → `listeler/AY_durum.tsv` (URL, HTTP, bayt, SHA-256, zaman);
   denetim §4 her ayın kullandığı her kaynak dosyanın bu kayıtta HTTP 200 + ICERIK_DOGRULANDI ile bulunduğunu doğrular.
+
+### Ayrıştırıcı 0.15.0 (BB/TGK kodları, eküri ibaresinde kod)
+
+- Bulgu: 14.06.2026 İstanbul'da `ZİNCİR KOPARAN KG K BB` adındaki `BB` kod belirteci tanınmıyordu (eküri üyesi doğrulanamadı);
+  58 dosya satırında `BB`, 2'sinde `TGK` var. `KOD_BELIRTECLERI` listesine `BB`, `TGK` eklendi; eküri ibaresindeki ad da kodlardan arındırılarak karşılaştırılıyor.
+- Testler: birim `bb_ve_tgk_kod_belirtecleri`, uçtan uca `istanbul_14_haziran_*`, `istanbul_10_haziran_*` (tümü geçti).
+- Regresyon (Kasım 2025 + Ocak–Mayıs 2026, 324 gün yeniden aktarıldı; 16 tablonun tam dökümü): `ayristirici_surumu` dışında yalnızca
+  ham adında BB/TGK olan 23 katılımın `at_id`/`isim_kodlari` alanı değişti (`at` tablosunda 13 yinelenen at kaydı birleşti, 4 yeni). Ham ad korundu.
+  Fark dosyası: `raporlar/regresyon_0.15.0_farklar.txt`. Yeniden aktarım sırasında kesilen Mayıs işlemi yeniden çalıştırıldı (journal geri alındı, FK/integrity temiz).
