@@ -39,7 +39,7 @@ const KULLANIM: &str = "Kullanım: tjk_ayristirici PROGRAM.csv SONUC.csv CIKTI_K
 [--ek-sonuc SONUC2.csv]... [--ertelenme-notu METIN]";
 /// Ayrıştırma mantığının sürümü (yalnızca ayrıştırma/doğrulama davranışı değişince artırılır).
 /// Veri tabanındaki yaris_gunu.ayristirici_surumu bu değerdir; toplu aktarımda "aynı sürüm" kontrolü buna bakar.
-pub const AYRISTIRICI_SURUMU: &str = "0.12.0";
+pub const AYRISTIRICI_SURUMU: &str = "0.13.0";
 const ALTILI_IBARE: &str = "6'LI GANYAN Bu koşudan başlar";
 const ESLESME_YONTEMI: &str = "tarih+hipodrom+kosu_no+at_adi (sonuç CSV'sinde program no yok)";
 const ZAMAN_UYARI_KOSMAZLI: &str = "Arşiv dosyası anlık görüntü; zaman damgası yok. Aynı dosyada 'Koşmaz' ibaresi \
@@ -95,8 +95,9 @@ struct Kaynak {
     sha: String,
     kodlama: String,
     gun: Gun,
-    /// Birleştirilmiş sonuçta koşunun geldiği dosya: (koşu no, dosya, sha256, dosyadaki tarih). Boşsa hepsi bu dosyadan.
-    kosu_kaynagi: Vec<(u32, String, String, String)>,
+    /// Birleştirilmiş sonuçta koşunun geldiği dosya: (koşu no, dosya, sha256, dosyadaki tarih, kodlama).
+    /// Boşsa hepsi bu dosyadan.
+    kosu_kaynagi: Vec<(u32, String, String, String, String)>,
 }
 
 impl Kaynak {
@@ -383,8 +384,8 @@ fn calistir() -> Result<(), String> {
         if let Some(yol) = &sec.sqlite {
             let o = veritabani::aktar(yol, gv)?;
             println!(
-                "SQLite                 : {} tek işlemde aktarıldı -> {yol} (koşu {}, katılım {}, sonuç {}, altılı {}, ayak {}, geçerli no {}, AGF gözlemi {})",
-                gv.gun_id, o.kosu, o.katilim, o.sonuc, o.altili, o.ayak, o.gecerli, o.agf
+                "SQLite                 : {} tek işlemde aktarıldı -> {yol} (koşu {}, katılım {}, sonuç {}, altılı {}, altılı ödeme {}, ayak {}, geçerli no {}, AGF gözlemi {})",
+                gv.gun_id, o.kosu, o.katilim, o.sonuc, o.altili, o.odeme, o.ayak, o.gecerli, o.agf
             );
         }
         Ok(())
@@ -549,6 +550,7 @@ fn gunu_isle<T>(
             bahis_kosu: &bahis_kosu,
             ganyan: &ganyan_json,
             altililar: &altililar,
+            kosu_tarihleri: &tarih_satirlari,
         };
         sonra(&gv)
     }
@@ -941,8 +943,12 @@ fn sonuclari_birlestir(sec: &Secenekler, p: &Kaynak, mut s: Kaynak, ek: Vec<Kayn
     if ek.is_empty() && s.gun.tarih == pg.tarih {
         return Ok((s, Vec::new()));
     }
-    let mut kaynak: Vec<(u32, String, String, String)> =
-        s.gun.kosular.iter().map(|k| (k.kosu_no, s.ad.clone(), s.sha.clone(), s.gun.tarih.clone())).collect();
+    let mut kaynak: Vec<(u32, String, String, String, String)> = s
+        .gun
+        .kosular
+        .iter()
+        .map(|k| (k.kosu_no, s.ad.clone(), s.sha.clone(), s.gun.tarih.clone(), s.kodlama.clone()))
+        .collect();
     let mut kosular = std::mem::take(&mut s.gun.kosular);
     for e in ek {
         for k in e.gun.kosular {
@@ -952,7 +958,7 @@ fn sonuclari_birlestir(sec: &Secenekler, p: &Kaynak, mut s: Kaynak, ek: Vec<Kayn
                     k.kosu_no, x.1, e.ad
                 ));
             }
-            kaynak.push((k.kosu_no, e.ad.clone(), e.sha.clone(), e.gun.tarih.clone()));
+            kaynak.push((k.kosu_no, e.ad.clone(), e.sha.clone(), e.gun.tarih.clone(), e.kodlama.clone()));
             kosular.push(k);
         }
     }
@@ -1767,7 +1773,7 @@ hangi altılıya ait olduğu dosyada yazmıyor ve resmî 1./2. AGF tabloları bu
         n
     };
     let mut sonuc_kaynaklari: Vec<(String, String, String, Vec<u32>)> = Vec::new();
-    for (kn, ad, sha, tarih) in &s.kosu_kaynagi {
+    for (kn, ad, sha, tarih, _) in &s.kosu_kaynagi {
         match sonuc_kaynaklari.iter_mut().find(|x| x.1 == *sha) {
             Some(x) => x.3.push(*kn),
             None => sonuc_kaynaklari.push((ad.clone(), sha.clone(), tarih.clone(), vec![*kn])),
@@ -2118,6 +2124,8 @@ pub struct GunVerisi<'a> {
     bahis_kosu: &'a [KosuBahis],
     ganyan: &'a [Json],
     altililar: &'a [Json],
+    /// kosu_tarihleri.csv satırları (planlanan/gerçekleşen tarih, saat, pist, gerçek sonuç kaynağı)
+    kosu_tarihleri: &'a [Satir],
 }
 
 /// `goc --kaynak ESKI.sqlite --hedef YENI.sqlite`: kaynağı hiç değiştirmeden kopyalar ve kopyayı güncel şemaya geçirir.

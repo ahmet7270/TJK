@@ -1,9 +1,11 @@
--- tjk_pilot.sqlite şeması (sürüm 2: devir kaydı ve bahis uyarıları; sürüm 1'den göç: veritabani.rs GOC_1_2)
+-- tjk_pilot.sqlite şeması (sürüm 4; göçler: veritabani.rs GOC_1_2, GOC_2_3, GOC_3_4)
+-- Sürüm 4: koşu başına planlanan/gerçekleşen tarih-saat-pist ve gerçek sonuç kaynağı; altılı ↔ kazanan kombinasyon
+-- ödemeleri (altili_odeme, altili_odeme_ayak); geçerlilik nedeninde ORTAK_BIRINCI.
 -- İlke: ARŞİV tabloları kaynakta görüneni saklar; TAHMİN girdisi yalnızca v_tahmin_girdisi görünümünden okunur.
 -- Her satır kaynak dosyaya (kaynak_dosya: ad + SHA-256) ve kaynak satır numarasına bağlıdır.
 -- Bir koşu ve bir at katılımı, kaç altılıda yer alırsa alsın, TEK satırdır; altılı bağlantısı altili_ayak üzerinden kurulur.
 
-PRAGMA user_version = 3;
+PRAGMA user_version = 4;
 
 CREATE TABLE IF NOT EXISTS kaynak_dosya (
     kaynak_id   INTEGER PRIMARY KEY,
@@ -43,6 +45,17 @@ CREATE TABLE IF NOT EXISTS kosu (
     kosu_bahisleri      TEXT,
     program_kaynak_satir INTEGER NOT NULL,
     kosu_adi            TEXT,                          -- başlıkta yazıyorsa koşunun adı; adsız koşuda NULL (şema 3)
+    -- Şema 4: saat ve pist yukarıda programdaki (planlanan) değerlerdir; aşağıdakiler açık adlarla ve sonuç tarafı.
+    -- Şema 4 öncesinden göçen kayıtlarda NULL (tahmin edilmez; ham dosyadan yeniden aktarılınca dolar).
+    planlanan_tarih     TEXT,                          -- program dosyasının tarihi
+    planlanan_saat      TEXT,
+    planlanan_pist      TEXT,
+    gerceklesen_tarih   TEXT,                          -- koşunun bulunduğu sonuç dosyasının ilk satırındaki tarih
+    gerceklesen_saat    TEXT,
+    gerceklesen_pist    TEXT,
+    tarih_durumu        TEXT CHECK (tarih_durumu IN ('PLANLANDIGI_GUN','ERTELENDI','SONUC_YOK')),
+    ertelenme_notu      TEXT,
+    sonuc_kaynak_id     INTEGER REFERENCES kaynak_dosya(kaynak_id),  -- koşunun GERÇEK sonuç dosyası
     UNIQUE (gun_id, kosu_no)
 );
 
@@ -164,16 +177,48 @@ CREATE TABLE IF NOT EXISTS altili_ayak_gecerli (
     ayak_no         INTEGER NOT NULL,
     program_at_no   INTEGER NOT NULL,
     katilim_id      TEXT REFERENCES katilim(katilim_id) ON DELETE CASCADE,
-    neden           TEXT NOT NULL CHECK (neden IN ('BIRINCI','KOSMAZ','EKURI','ACIKLANMADI')),
+    neden           TEXT NOT NULL CHECK (neden IN ('BIRINCI','ORTAK_BIRINCI','KOSMAZ','EKURI','ACIKLANMADI')),
     PRIMARY KEY (altili_id, ayak_no, program_at_no),
+    FOREIGN KEY (altili_id, ayak_no) REFERENCES altili_ayak(altili_id, ayak_no) ON DELETE CASCADE
+);
+
+-- Şema 4: altılının son ayak bahis satırındaki her ödemesi (tek ödemeli altılıda bir satır; ortak birincilikte
+-- her kazanan kombinasyon ayrı satır). Ödeme satırı bahis_sonucu'ndaki kaynak satırına doğrudan bağlıdır.
+-- Ödemesi dosyada olmayan altılının satırı yoktur (bilinmiyor; sıfır ya da iade yazılmaz).
+CREATE TABLE IF NOT EXISTS altili_odeme (
+    altili_id       TEXT NOT NULL REFERENCES altili(altili_id) ON DELETE CASCADE,
+    sira            INTEGER NOT NULL,
+    kombinasyon_ham TEXT NOT NULL,
+    odeme_ham       TEXT,
+    odeme_tl        REAL,
+    sonuc_durumu    TEXT NOT NULL CHECK (sonuc_durumu IN ('ODENDI','DEVIR')),
+    devir_tl        REAL,
+    bahis_kosu_id   TEXT NOT NULL,
+    bahis_sira      INTEGER NOT NULL,
+    PRIMARY KEY (altili_id, sira),
+    UNIQUE (bahis_kosu_id, bahis_sira),
+    FOREIGN KEY (bahis_kosu_id, bahis_sira) REFERENCES bahis_sonucu(kosu_id, sira) ON DELETE CASCADE
+);
+
+-- Kombinasyonun ayak başına numaraları (ör. 7/8/1/1/8/5 → 6 ayak; "1,12" → iki satır)
+CREATE TABLE IF NOT EXISTS altili_odeme_ayak (
+    altili_id       TEXT NOT NULL,
+    odeme_sira      INTEGER NOT NULL,
+    ayak_no         INTEGER NOT NULL CHECK (ayak_no BETWEEN 1 AND 6),
+    program_at_no   INTEGER NOT NULL,
+    PRIMARY KEY (altili_id, odeme_sira, ayak_no, program_at_no),
+    FOREIGN KEY (altili_id, odeme_sira) REFERENCES altili_odeme(altili_id, sira) ON DELETE CASCADE,
     FOREIGN KEY (altili_id, ayak_no) REFERENCES altili_ayak(altili_id, ayak_no) ON DELETE CASCADE
 );
 
 CREATE INDEX IF NOT EXISTS ix_katilim_at ON katilim(at_id);
 CREATE INDEX IF NOT EXISTS ix_ayak_kosu ON altili_ayak(kosu_id);
 CREATE INDEX IF NOT EXISTS ix_agf_altili ON agf_gozlem(altili_id);
+CREATE INDEX IF NOT EXISTS ix_kosu_sonuc_kaynak ON kosu(sonuc_kaynak_id);
+CREATE INDEX IF NOT EXISTS ix_altili_odeme_ayak ON altili_odeme_ayak(altili_id, ayak_no);
 
--- Kaynak izi: her katılımın program ve sonuç kaynağı
+-- Kaynak izi: her katılımın program ve sonuç kaynağı. Sonuç dosyası koşunun GERÇEK kaynağıdır (kosu.sonuc_kaynak_id);
+-- şema 4 öncesinden kalan (NULL) kayıtta günün sonuç dosyasına düşer.
 CREATE VIEW IF NOT EXISTS v_kaynak_izi AS
 SELECT k.katilim_id,
        kp.dosya_adi AS program_dosyasi, kp.sha256 AS program_sha256, k.program_kaynak_satir,
@@ -182,8 +227,25 @@ FROM katilim k
 JOIN kosu ko       ON ko.kosu_id = k.kosu_id
 JOIN yaris_gunu g  ON g.gun_id = ko.gun_id
 JOIN kaynak_dosya kp ON kp.kaynak_id = g.program_kaynak_id
-JOIN kaynak_dosya ks ON ks.kaynak_id = g.sonuc_kaynak_id
+JOIN kaynak_dosya ks ON ks.kaynak_id = COALESCE(ko.sonuc_kaynak_id, g.sonuc_kaynak_id)
 LEFT JOIN sonuc s  ON s.katilim_id = k.katilim_id;
+
+-- Bahis satırlarının kaynak izi (koşunun gerçek sonuç dosyası + satır)
+CREATE VIEW IF NOT EXISTS v_bahis_kaynak_izi AS
+SELECT b.kosu_id, b.sira, b.oyun, b.kombinasyon_ham, b.tutar_ham, b.tutar_tl, b.sonuc_durumu,
+       ks.dosya_adi AS sonuc_dosyasi, ks.sha256 AS sonuc_sha256, b.sonuc_kaynak_satir
+FROM bahis_sonucu b
+JOIN kosu ko       ON ko.kosu_id = b.kosu_id
+JOIN yaris_gunu g  ON g.gun_id = ko.gun_id
+JOIN kaynak_dosya ks ON ks.kaynak_id = COALESCE(ko.sonuc_kaynak_id, g.sonuc_kaynak_id);
+
+-- Altılı ödemeleri: her kazanan kombinasyon, ödemesi ve kaynak satırı
+CREATE VIEW IF NOT EXISTS v_altili_odeme AS
+SELECT o.altili_id, a.oyun_adi, o.sira, o.kombinasyon_ham, o.odeme_ham, o.odeme_tl, o.sonuc_durumu, o.devir_tl,
+       o.bahis_kosu_id, o.bahis_sira, bk.sonuc_dosyasi, bk.sonuc_kaynak_satir, bk.sonuc_sha256
+FROM altili_odeme o
+JOIN altili a ON a.altili_id = o.altili_id
+JOIN v_bahis_kaynak_izi bk ON bk.kosu_id = o.bahis_kosu_id AND bk.sira = o.bahis_sira;
 
 -- TAHMİN GİRDİSİ: altılı ayağındaki her katılım için yalnızca yarış öncesi türündeki alanlar.
 -- Sonuç tablosuna dokunmaz. AGF yalnızca bu altılıya eşleşmesi belirliyse gelir (aksi hâlde NULL).

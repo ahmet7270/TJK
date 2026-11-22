@@ -82,3 +82,13 @@ iki altılı, ortak koşu bağlantıları, AGF ve eküri ayrımı için sınanı
 - `YP` at adı kod belirteçlerine eklendi (ham ad `at_isim_ham`'da korunur).
 - Yeni alanlar yalnızca ilgili durum varsa yazılır; normal günlerin `program.csv`/`sonuclar.csv`/`altili.json` çıktısı değişmez.
 - Uçtan uca testler: `tests/mart_istisnalar.rs` (girdi: `../kontrol/ham`).
+
+## v0.13: SQLite şema 4
+
+- `kosu`: planlanan/gerçekleşen tarih-saat-pist, `tarih_durumu`, `ertelenme_notu`, koşunun gerçek sonuç dosyası (`sonuc_kaynak_id`).
+  Ek sonuç dosyaları `kaynak_dosya`'da; `v_kaynak_izi` ve yeni `v_bahis_kaynak_izi` gerçek dosyayı gösterir.
+- `altili_odeme` (her kazanan kombinasyon, `bahis_sonucu` satırına yabancı anahtarla bağlı) ve `altili_odeme_ayak`; görünüm `v_altili_odeme`.
+  Tek ödemeli altılıda `altili` alanları eskisi gibi dolu.
+- `altili_ayak_gecerli.neden`: `ORTAK_BIRINCI`.
+- Göç 3→4 (`tjk_ayristirici goc --kaynak ESKI --hedef YENI`): eski satırlar korunur, yeni alanlar NULL kalır (tahmin yok);
+  kayıtlar ham dosyalardan yeniden aktarılınca dolar. Testler: `veritabani::tests`, `tests/sqlite_aktarim.rs` (v3 şeması: `tests/veri/sema_v3.sql`).
