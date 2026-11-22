@@ -1,0 +1,349 @@
+Izgara: 3 sütun x=[27.7, 295.8, 563.9], 4 satır y=[301.7, 522.7, 739.7, 958.0]
+Alt alta iki kod satırı olan gün sayısı (tüm yıl): 30
+
+Yıllık doğrulama (ızgara sayımı vs PDF başlığı):
+  ADA ADANA       ızgara= 89 başlık=  89 OK
+  ANK ANKARA      ızgara= 83 başlık=  83 OK
+  ANT ANTALYA     ızgara= 54 başlık=  54 OK
+  BUR BURSA       ızgara= 92 başlık=  92 OK
+  DYB DİYARBAKIR  ızgara= 30 başlık=  30 OK
+  ELZ ELAZIĞ      ızgara= 49 başlık=  49 OK
+  İST İSTANBUL    ızgara=135 başlık= 135 OK
+  İZM İZMİR       ızgara=125 başlık= 125 OK
+  KOC KOCAELİ     ızgara= 44 başlık=  44 OK
+  URF ŞANLIURFA   ızgara= 57 başlık=  57 OK
+  GENEL TOPLAM ızgara=758 başlık=Some(758)
+  KRB: 1 adet, hipodrom değil (Kurban Bayramı) -> hariç
+  RMZ: 1 adet, hipodrom değil (Ramazan Bayramı) -> hariç
+
+2026-01-01 – 2026-11-22 (gün: sol yuva | sağ yuva):
+  01.01 Per İZM | ANT
+  02.01 Cum ANT | İZM
+  03.01 Cmt ADA | İST
+  04.01 Paz İZM | ADA
+  05.01 Pzt BUR | URF
+  06.01 Sal ADA | ANT
+  07.01 Çar İST | URF
+  08.01 Per İZM | ANT
+  09.01 Cum BUR | İZM
+  10.01 Cmt ADA | İST
+  11.01 Paz İZM | ADA
+  12.01 Pzt BUR | URF
+  13.01 Sal ADA | ANT
+  14.01 Çar İST | URF
+  15.01 Per İZM | ANT
+  16.01 Cum ANT | İZM
+  17.01 Cmt ADA | İST
+  18.01 Paz İZM | ADA
+  19.01 Pzt BUR | URF
+  20.01 Sal ADA | ANT
+  21.01 Çar İST | URF
+  22.01 Per İZM | ANT
+  23.01 Cum BUR | İZM
+  24.01 Cmt ADA | İST
+  25.01 Paz İZM | ADA
+  26.01 Pzt BUR | URF
+  27.01 Sal ADA | ANT
+  28.01 Çar İST | URF
+  29.01 Per İZM | ANT
+  30.01 Cum ANT | İZM
+  31.01 Cmt ADA | İST
+  01.02 Paz İZM | ADA
+  02.02 Pzt BUR | URF
+  03.02 Sal ADA | ANT
+  04.02 Çar İST | URF
+  05.02 Per İZM | ANT
+  06.02 Cum BUR | İZM
+  07.02 Cmt ADA | İST
+  08.02 Paz İZM | ADA
+  09.02 Pzt BUR | URF
+  10.02 Sal ADA | ANT
+  11.02 Çar İST | URF
+  12.02 Per İZM | ANT
+  13.02 Cum ANT | İZM
+  14.02 Cmt ADA | İST
+  15.02 Paz İZM | ADA
+  16.02 Pzt BUR | URF
+  17.02 Sal ADA | ANT
+  18.02 Çar İST | URF
+  19.02 Per İZM | ANT
+  20.02 Cum BUR | İZM
+  21.02 Cmt ADA | İST
+  22.02 Paz İZM | ADA
+  23.02 Pzt BUR | URF
+  24.02 Sal ADA | ANT
+  25.02 Çar İST | URF
+  26.02 Per İZM | ANT
+  27.02 Cum ANT | İZM
+  28.02 Cmt ADA | İST
+  01.03 Paz İZM | ADA
+  02.03 Pzt BUR | URF
+  03.03 Sal ADA | ANT
+  04.03 Çar İST | URF
+  05.03 Per İZM | ANT
+  06.03 Cum BUR | İZM
+  07.03 Cmt ADA | İST
+  08.03 Paz İZM | ADA
+  09.03 Pzt BUR | URF
+  10.03 Sal ADA | ANT
+  11.03 Çar İST | URF
+  12.03 Per İZM | ANT
+  13.03 Cum ANT | İZM
+  14.03 Cmt ADA | İST
+  15.03 Paz İZM | ADA
+  16.03 Pzt BUR | URF
+  17.03 Sal ADA | ANT
+  18.03 Çar İST | URF
+  19.03 Per İZM | ANT
+  20.03 Cum RMZ | İZM
+  21.03 Cmt ADA | İST
+  22.03 Paz İZM | ADA
+  23.03 Pzt BUR | URF
+  24.03 Sal ADA | ANT
+  25.03 Çar İST | URF
+  26.03 Per İZM | ANT
+  27.03 Cum ANT | İZM
+  28.03 Cmt ADA | İST
+  29.03 Paz İZM | ADA
+  30.03 Pzt BUR | URF
+  31.03 Sal ADA | ANT
+  01.04 Çar İST | ELZ
+  02.04 Per İZM | ANT
+  03.04 Cum BUR | İZM
+  04.04 Cmt ADA | İST
+  05.04 Paz ADA | İZM
+  06.04 Pzt BUR | URF
+  07.04 Sal ADA | ANT
+  08.04 Çar İST | ELZ
+  09.04 Per İZM | ANT
+  10.04 Cum ANT | İZM
+  11.04 Cmt ADA | İST
+  12.04 Paz İZM | ADA
+  13.04 Pzt BUR | URF
+  14.04 Sal KOC | ELZ
+  15.04 Çar İST | ELZ
+  16.04 Per ANK | İZM
+  17.04 Cum BUR | İST
+  18.04 Cmt İZM | ANK | DYB
+  19.04 Paz İST | ADA
+  20.04 Pzt BUR | URF
+  21.04 Sal KOC | ELZ
+  22.04 Çar İST | ELZ
+  23.04 Per ANK | İZM
+  24.04 Cum BUR | İST
+  25.04 Cmt İZM | ANK | DYB
+  26.04 Paz İST | ADA
+  27.04 Pzt BUR | URF
+  28.04 Sal KOC | ELZ
+  29.04 Çar İST | ELZ
+  30.04 Per ANK | İZM
+  01.05 Cum BUR | İST
+  02.05 Cmt İZM | ANK | DYB
+  03.05 Paz İST | ADA
+  04.05 Pzt BUR | URF
+  05.05 Sal ANK | KOC
+  06.05 Çar İST | ELZ
+  07.05 Per ANK | İZM
+  08.05 Cum BUR | İST
+  09.05 Cmt İZM | ANK | DYB
+  10.05 Paz İST | ADA
+  11.05 Pzt BUR | URF
+  12.05 Sal ANK | KOC
+  13.05 Çar İST | ELZ
+  14.05 Per ANK | İZM
+  15.05 Cum BUR | İST
+  16.05 Cmt İZM | ANK | DYB
+  17.05 Paz İST | ADA
+  18.05 Pzt BUR | URF
+  19.05 Sal ANK | KOC
+  20.05 Çar İST | ELZ
+  21.05 Per ANK | İZM
+  22.05 Cum BUR | İST
+  23.05 Cmt İZM | ANK | DYB
+  24.05 Paz İST | ADA
+  25.05 Pzt BUR | URF
+  26.05 Sal ANK | KOC
+  27.05 Çar İST | KRB
+  28.05 Per ANK | İZM
+  29.05 Cum BUR | İST
+  30.05 Cmt ANK | İZM | DYB
+  31.05 Paz İST | ADA
+  01.06 Pzt BUR | URF
+  02.06 Sal ANK | KOC
+  03.06 Çar İST | ELZ
+  04.06 Per ANK | KOC
+  05.06 Cum BUR | İST
+  06.06 Cmt İZM | ANK | DYB
+  07.06 Paz İST | İZM
+  08.06 Pzt BUR | URF
+  09.06 Sal ANK | KOC
+  10.06 Çar İST | ELZ
+  11.06 Per ANK | KOC
+  12.06 Cum BUR | İST
+  13.06 Cmt ANK | İZM | DYB
+  14.06 Paz İST | İZM
+  15.06 Pzt BUR | URF
+  16.06 Sal ANK | KOC
+  17.06 Çar İST | ELZ
+  18.06 Per ANK | KOC
+  19.06 Cum BUR | İST
+  20.06 Cmt ANK | İZM | DYB
+  21.06 Paz İST | İZM
+  22.06 Pzt BUR | ELZ
+  23.06 Sal ANK | KOC
+  24.06 Çar İST | ELZ
+  25.06 Per BUR | İST
+  26.06 Cum ANK | KOC
+  27.06 Cmt ANK | İZM | DYB
+  28.06 Paz İST | İZM
+  29.06 Pzt BUR | ELZ
+  30.06 Sal ANK | KOC
+  01.07 Çar İST | ELZ
+  02.07 Per ANK | KOC
+  03.07 Cum BUR | İST
+  04.07 Cmt ANK | İZM | DYB
+  05.07 Paz İST | İZM
+  06.07 Pzt BUR | ELZ
+  07.07 Sal ANK | KOC
+  08.07 Çar İST | ELZ
+  09.07 Per ANK | KOC
+  10.07 Cum BUR | İST
+  11.07 Cmt İZM | ANK | DYB
+  12.07 Paz İST | İZM
+  13.07 Pzt BUR | ELZ
+  14.07 Sal ANK | KOC
+  15.07 Çar İST | ELZ
+  16.07 Per ANK | KOC
+  17.07 Cum BUR | İST
+  18.07 Cmt İZM | ANK | DYB
+  19.07 Paz İST | İZM
+  20.07 Pzt BUR | ELZ
+  21.07 Sal ANK | KOC
+  22.07 Çar İST | ELZ
+  23.07 Per ANK | KOC
+  24.07 Cum BUR | İST
+  25.07 Cmt İZM | ANK | DYB
+  26.07 Paz İST | İZM
+  27.07 Pzt BUR | ELZ
+  28.07 Sal ANK | KOC
+  29.07 Çar İST | ELZ
+  30.07 Per ANK | KOC
+  31.07 Cum BUR | İST
+  01.08 Cmt İZM | ANK | DYB
+  02.08 Paz İST | İZM
+  03.08 Pzt BUR | ELZ
+  04.08 Sal ANK | KOC
+  05.08 Çar İST | ELZ
+  06.08 Per ANK | KOC
+  07.08 Cum BUR | İST
+  08.08 Cmt İZM | ANK | DYB
+  09.08 Paz İST | İZM
+  10.08 Pzt BUR | ELZ
+  11.08 Sal ANK | KOC
+  12.08 Çar İST | ELZ
+  13.08 Per ANK | KOC
+  14.08 Cum BUR | İST
+  15.08 Cmt İZM | ANK | DYB
+  16.08 Paz İST | İZM
+  17.08 Pzt BUR | ELZ
+  18.08 Sal ANK | KOC
+  19.08 Çar İST | ELZ
+  20.08 Per ANK | KOC
+  21.08 Cum BUR | İST
+  22.08 Cmt İZM | ANK | DYB
+  23.08 Paz İST | İZM
+  24.08 Pzt BUR | ELZ
+  25.08 Sal ANK | KOC
+  26.08 Çar İST | ELZ
+  27.08 Per ANK | KOC
+  28.08 Cum BUR | İST
+  29.08 Cmt ANK | İZM | DYB
+  30.08 Paz İST | ADA
+  31.08 Pzt BUR | ELZ
+  01.09 Sal ANK | KOC
+  02.09 Çar İST | ELZ
+  03.09 Per ANK | İZM
+  04.09 Cum BUR | İZM
+  05.09 Cmt ANK | İST
+  06.09 Paz İST | ADA
+  07.09 Pzt BUR | ELZ
+  08.09 Sal ANK | KOC
+  09.09 Çar İST | ELZ
+  10.09 Per ANK | İZM
+  11.09 Cum BUR | İST
+  12.09 Cmt İZM | ANK | DYB
+  13.09 Paz İST | ADA
+  14.09 Pzt BUR | URF
+  15.09 Sal ANK | KOC
+  16.09 Çar İST | ELZ
+  17.09 Per ANK | İZM
+  18.09 Cum BUR | İST
+  19.09 Cmt İZM | ANK | DYB
+  20.09 Paz İST | ADA
+  21.09 Pzt BUR | URF
+  22.09 Sal ANK | KOC
+  23.09 Çar İST | ELZ
+  24.09 Per ANK | İZM
+  25.09 Cum BUR | İST
+  26.09 Cmt İZM | ANK | DYB
+  27.09 Paz İST | ADA
+  28.09 Pzt BUR | URF
+  29.09 Sal ADA | KOC
+  30.09 Çar İST | ELZ
+  01.10 Per ANK | İZM
+  02.10 Cum BUR | İST
+  03.10 Cmt ANK | İZM | DYB
+  04.10 Paz İST | ADA
+  05.10 Pzt BUR | URF
+  06.10 Sal ADA | KOC
+  07.10 Çar İST | ELZ
+  08.10 Per ANK | İZM
+  09.10 Cum BUR | İST
+  10.10 Cmt İZM | ANK | DYB
+  11.10 Paz İST | ADA
+  12.10 Pzt BUR | URF
+  13.10 Sal ADA | KOC
+  14.10 Çar İST | ELZ
+  15.10 Per ANK | İZM
+  16.10 Cum BUR | İST
+  17.10 Cmt İZM | ANK | DYB
+  18.10 Paz İST | ADA
+  19.10 Pzt BUR | URF
+  20.10 Sal ADA | KOC
+  21.10 Çar İST | ELZ
+  22.10 Per ANK | İZM
+  23.10 Cum BUR | İST
+  24.10 Cmt İZM | ANK | DYB
+  25.10 Paz İST | ADA
+  26.10 Pzt BUR | URF
+  27.10 Sal ADA | KOC
+  28.10 Çar İST | ELZ
+  29.10 Per ANK | İZM
+  30.10 Cum BUR | İST
+  31.10 Cmt ANK | DYB | İZM
+  01.11 Paz İST | ADA
+  02.11 Pzt BUR | URF
+  03.11 Sal ADA | KOC
+  04.11 Çar İST | ELZ
+  05.11 Per ANK | İZM
+  06.11 Cum BUR | İST
+  07.11 Cmt İZM | ANK | DYB
+  08.11 Paz İST | ADA
+  09.11 Pzt BUR | URF
+  10.11 Sal ADA | KOC
+  11.11 Çar İST | ELZ
+  12.11 Per ANK | İZM
+  13.11 Cum BUR | İST
+  14.11 Cmt İZM | ANK | DYB
+  15.11 Paz İST | ADA
+  16.11 Pzt BUR | URF
+  17.11 Sal ADA | ANT
+  18.11 Çar İST | ELZ
+  19.11 Per İZM | ANT
+  20.11 Cum ANT | İZM
+  21.11 Cmt ADA | İST
+  22.11 Paz İZM | ADA
+
+Hizalama doğrulaması: hata yok.
+Hariç tutulan (hipodrom değil): ["20.03 RMZ", "27.05 KRB"]
+takvim_2026_0101_1122.tsv: 680 tarih–hipodrom çifti yazıldı.

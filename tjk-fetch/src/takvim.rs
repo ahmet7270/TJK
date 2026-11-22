@@ -9,7 +9,6 @@
 use std::collections::BTreeMap;
 use std::process::{exit, Command};
 
-const YEAR: i32 = 2026;
 const MONTHS: [&str; 12] = [
     "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim",
     "Kasım", "Aralık",
@@ -79,15 +78,23 @@ fn weekday(y: i32, m: u32, d: u32) -> usize {
     ((w + 6) % 7) as usize
 }
 
-fn days_in(m: u32) -> u32 {
+fn days_in(y: i32, m: u32) -> u32 {
+    let artik = (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;
     match m {
+        2 if artik => 29,
         2 => 28,
         4 | 6 | 9 | 11 => 30,
         _ => 31,
     }
 }
 
+/// Eski kullanım: 2026 takvimi, yalnızca Mart çıktısı.
 pub fn run(pdf: &str, out: &str) {
+    run_aralik(pdf, out, 2026, "2026-03-01", "2026-03-31")
+}
+
+/// `yil` takviminden [bas, bit] (YYYY-AA-GG, dahil) aralığındaki Türkiye çiftlerini yazar.
+pub fn run_aralik(pdf: &str, out: &str, year: i32, bas: &str, bit: &str) {
     let ws = words(pdf);
     let mut errors: Vec<String> = Vec::new();
 
@@ -132,10 +139,10 @@ pub fn run(pdf: &str, out: &str) {
                 blk.iter().filter(|w| w.y0 > lab.y0 && w.y0 < lab.y0 + 14.0 && is_code(&w.t)).collect();
             for &(d, _) in &dates {
                 seen_days += 1;
-                if d < 1 || d > days_in(*m) {
+                if d < 1 || d > days_in(year, *m) {
                     errors.push(format!("{m}/{d}: geçersiz gün"));
-                } else if weekday(YEAR, *m, d) != di {
-                    errors.push(format!("{d:02}.{m:02}: '{dn}' satırında ama gerçek gün {}", DAYS[weekday(YEAR, *m, d)]));
+                } else if weekday(year, *m, d) != di {
+                    errors.push(format!("{d:02}.{m:02}: '{dn}' satırında ama gerçek gün {}", DAYS[weekday(year, *m, d)]));
                 }
                 cal.entry((*m, d)).or_default();
             }
@@ -160,8 +167,8 @@ pub fn run(pdf: &str, out: &str) {
                 }
             }
         }
-        if seen_days != days_in(*m) {
-            errors.push(format!("{}: {} gün bulundu, {} olmalı", MONTHS[*m as usize - 1], seen_days, days_in(*m)));
+        if seen_days != days_in(year, *m) {
+            errors.push(format!("{}: {} gün bulundu, {} olmalı", MONTHS[*m as usize - 1], seen_days, days_in(year, *m)));
         }
     }
     // Her hücre satırında (dikey konum) en fazla bir sol, bir sağ yuva.
@@ -230,19 +237,25 @@ pub fn run(pdf: &str, out: &str) {
         }
     }
 
-    // Mart çıktısı.
+    // Aralık çıktısı (sıra: tarih, sonra sol yuva -> sağ yuva).
     let mut rows = Vec::new();
     let mut skipped = Vec::new();
-    println!("\nMart 2026 (gün: sol yuva | sağ yuva):");
-    for d in 1..=31 {
-        let mut v = cal.get(&(3, d)).cloned().unwrap_or_default();
+    println!("\n{bas} – {bit} (gün: sol yuva | sağ yuva):");
+    for (&(m, d), v0) in &cal {
+        let iso = format!("{year}-{m:02}-{d:02}");
+        if iso.as_str() < bas || iso.as_str() > bit {
+            continue;
+        }
+        let mut v = v0.clone();
         v.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap());
         let cs: Vec<&str> = v.iter().map(|(_, c, _)| c.as_str()).collect();
-        println!("  {d:02}.03 {} {}", DAYS[weekday(YEAR, 3, d)], cs.join(" | "));
+        if !cs.is_empty() {
+            println!("  {d:02}.{m:02} {} {}", DAYS[weekday(year, m, d)], cs.join(" | "));
+        }
         for (_, c, _) in &v {
             match TRACKS.iter().find(|t| t.0 == c) {
-                Some(t) => rows.push(format!("{YEAR}-03-{d:02}\t{}", t.2)),
-                None => skipped.push(format!("{d:02}.03 {c}")),
+                Some(t) => rows.push(format!("{iso}\t{}", t.2)),
+                None => skipped.push(format!("{d:02}.{m:02} {c}")),
             }
         }
     }
