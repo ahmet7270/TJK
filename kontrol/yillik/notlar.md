@@ -10,6 +10,7 @@
 | 2026-04-03 İzmir (41. yarış günü) | Sonuç dosyasında sonuç yok | Sonuç CSV'si (2133 bayt) yalnızca 9. koşunun başlığını ve 15 atlık start listesini derece/ganyan/fark olmadan içeriyor; 1.–8. koşular yok. 04.04 İzmir program/sonuç adresleri HTTP 404; 05.04 İzmir = 42. yarış günü | Program verisi aktarıldı; 1.–8. koşu `SONUC_YOK`, 9. koşu sonuçları `BILINMEYEN`, altılı ödemeleri boş; gün incelemede (`ESLESMEYEN_PROGRAM_KAYDI` ×68 vb.). Koşuların yapılıp yapılmadığı kaynaklarda yazmıyor. |
 | 2026-04-18 Ankara | Program ve sonuç adresleri HTTP 404 | 16.04 Ankara = 1., 23.04 Ankara = 3. yarış günü; 2. gün 17, 19, 20, 21, 22.04 adreslerinde de yok (12 istek, hepsi 404; `listeler/2026-04_ek_durum.tsv`) | EKSIK. Tahminle doldurulmadı. 2. yarış gününün tarihi/dosyası bulunamadı. |
 | 2025-12-31 Şanlıurfa | Sonuç dosyası 0 bayt | Sonuç adresi iki kez HTTP 200 ve 0 bayt döndü (indirme + elle yeniden deneme); program dosyası doğrulandı (14957 bayt) | EKSIK: program tek başına aktarılmadı (sonuçsuz gün üretilmez). Sonuç yayımlanırsa `ay_isle.sh indir/aktar 2025-12` ile tamamlanır. |
+| 2026-09-28 Bursa, 2026-09-29 Kocaeli | Sonuç dosyası 0 bayt | Sonuç adresleri iki kez HTTP 200 ve 0 bayt; programlar doğrulandı | EKSIK: sonuçsuz gün aktarılmadı. Sonuç yayımlanırsa `ay_isle.sh indir/aktar 2026-09` ile tamamlanır. |
 | 2026-03-15 Adana | İki açık ödeme | Önceki inceleme (`kontrol/mart_istisnalar.md` §5) | Korundu: `GANYAN_SATIRI_BULUNAMADI: 3. koşu`, `ALTILI_ODEMESI_BULUNAMADI: …-A1` (A1 ödemesi NULL). |
 
 ### Erişim
