@@ -1,0 +1,63 @@
+Izgara: 3 sütun x=[27.7, 295.8, 563.9], 4 satır y=[301.4, 522.5, 739.4, 957.7]
+Alt alta iki kod satırı olan gün sayısı (tüm yıl): 30
+
+Yıllık doğrulama (ızgara sayımı vs PDF başlığı):
+  ADA ADANA       ızgara= 92 başlık=  92 OK
+  ANK ANKARA      ızgara= 83 başlık=  83 OK
+  ANT ANTALYA     ızgara= 52 başlık=  52 OK
+  BUR BURSA       ızgara= 93 başlık=  93 OK
+  DYB DİYARBAKIR  ızgara= 30 başlık=  30 OK
+  ELZ ELAZIĞ      ızgara= 50 başlık=  50 OK
+  İST İSTANBUL    ızgara=136 başlık= 136 OK
+  İZM İZMİR       ızgara=124 başlık= 124 OK
+  KOC KOCAELİ     ızgara= 40 başlık=  40 OK
+  URF ŞANLIURFA   ızgara= 58 başlık=  58 OK
+  GENEL TOPLAM ızgara=758 başlık=Some(758)
+  KRB: 1 adet, hipodrom değil (Kurban Bayramı) -> hariç
+  RMZ: 1 adet, hipodrom değil (Ramazan Bayramı) -> hariç
+
+2025-11-22 – 2025-12-31 (gün: sol yuva | sağ yuva):
+  22.11 Cmt ADA | İST
+  23.11 Paz İZM | ADA
+  24.11 Pzt BUR | URF
+  25.11 Sal ADA | ANT
+  26.11 Çar İST | ELZ
+  27.11 Per İZM | ANT
+  28.11 Cum ANT | İZM
+  29.11 Cmt ADA | İST
+  30.11 Paz İZM | ADA
+  01.12 Pzt BUR | URF
+  02.12 Sal ADA | ANT
+  03.12 Çar İST | URF
+  04.12 Per İZM | ANT
+  05.12 Cum BUR | İZM
+  06.12 Cmt ADA | İST
+  07.12 Paz İZM | ADA
+  08.12 Pzt BUR | URF
+  09.12 Sal ADA | ANT
+  10.12 Çar İST | URF
+  11.12 Per İZM | ANT
+  12.12 Cum ANT | İZM
+  13.12 Cmt ADA | İST
+  14.12 Paz İZM | ADA
+  15.12 Pzt BUR | URF
+  16.12 Sal ADA | ANT
+  17.12 Çar İST | URF
+  18.12 Per İZM | ANT
+  19.12 Cum BUR | İZM
+  20.12 Cmt ADA | İST
+  21.12 Paz İZM | ADA
+  22.12 Pzt BUR | URF
+  23.12 Sal ADA | ANT
+  24.12 Çar İST | URF
+  25.12 Per İZM | ANT
+  26.12 Cum ANT | İZM
+  27.12 Cmt ADA | İST
+  28.12 Paz İZM | ADA
+  29.12 Pzt BUR | URF
+  30.12 Sal ADA | ANT
+  31.12 Çar İST | URF
+
+Hizalama doğrulaması: hata yok.
+Hariç tutulan (hipodrom değil): []
+takvim_2025_1122_1231.tsv: 80 tarih–hipodrom çifti yazıldı.
