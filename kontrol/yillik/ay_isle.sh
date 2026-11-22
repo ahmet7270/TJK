@@ -5,6 +5,9 @@
 #   ay_isle.sh denetim AY   # yalnızca denetim (veri tabanını değiştirmez)
 # AY: YYYY-AA. Takvim: kontrol/yillik/takvim/takvim_hedef.tsv (22.11.2025–22.11.2026 resmî çiftler).
 # Özel girdiler (ertelenen koşular vb.): kontrol/yillik/listeler/AY_ozel.tsv (aktar.sh biçimi).
+# Ek aday indirme (takvim dışı tarihli sonuç dosyası):
+#   tjk-fetch toplu --liste listeler/AY_ek_liste.tsv --ham kontrol/ham/AY --durum listeler/AY_ek_durum.tsv \
+#     --ayristirici .../tjk_ayristirici --cikti calisma/AY/ek --rapor calisma/AY/ek_rapor.md --hata calisma/AY/ek_hata.txt --beklenen-cift N
 # Mart 2026: indirme yok; kontrol/mart_sqlite_girdiler.tsv + kontrol/ham (içerik/SHA-256 ile yeniden kullanım).
 set -u
 ISLEM="$1"; AY="$2"
@@ -21,6 +24,8 @@ else
   HAM="$KOK/kontrol/ham/$AY"; GIRDI="$L/${AY}_girdiler.tsv"
   DURUM=(--durum "$L/${AY}_durum.tsv")
 fi
+# Ek adaylar (ertelenen koşuların başka tarihli dosyaları): AY_ek_liste.tsv -> AY_ek_durum.tsv
+[ -f "$L/${AY}_ek_durum.tsv" ] && DURUM+=(--durum "$L/${AY}_ek_durum.tsv")
 
 denetim() {  # $1 = etiket
   "$BIN/tjk_denetim" --db "$DB" --ay "$AY" --takvim "$TAKVIM" "${DURUM[@]}" \
