@@ -25,3 +25,12 @@
 - 0.14.0 regresyonu: Ocak + Mart (123 gün) yeniden aktarıldı; 16 tablonun tam dökümünde **yalnızca** `ayristirici_surumu` değişti.
 - Kaynak URL/HTTP: v4 şeması değiştirilmedi. `kaynak_dosya.sha256` → `listeler/AY_durum.tsv` (URL, HTTP, bayt, SHA-256, zaman);
   denetim §4 her ayın kullandığı her kaynak dosyanın bu kayıtta HTTP 200 + ICERIK_DOGRULANDI ile bulunduğunu doğrular.
+
+### Ayrıştırıcı 0.15.0 (BB/TGK kodları, eküri ibaresinde kod)
+
+- Bulgu: 14.06.2026 İstanbul'da `ZİNCİR KOPARAN KG K BB` adındaki `BB` kod belirteci tanınmıyordu (eküri üyesi doğrulanamadı);
+  58 dosya satırında `BB`, 2'sinde `TGK` var. `KOD_BELIRTECLERI` listesine `BB`, `TGK` eklendi; eküri ibaresindeki ad da kodlardan arındırılarak karşılaştırılıyor.
+- Testler: birim `bb_ve_tgk_kod_belirtecleri`, uçtan uca `istanbul_14_haziran_*`, `istanbul_10_haziran_*` (tümü geçti).
+- Regresyon (Kasım 2025 + Ocak–Mayıs 2026, 324 gün yeniden aktarıldı; 16 tablonun tam dökümü): `ayristirici_surumu` dışında yalnızca
+  ham adında BB/TGK olan 23 katılımın `at_id`/`isim_kodlari` alanı değişti (`at` tablosunda 13 yinelenen at kaydı birleşti, 4 yeni). Ham ad korundu.
+  Fark dosyası: `raporlar/regresyon_0.15.0_farklar.txt`. Yeniden aktarım sırasında kesilen Mayıs işlemi yeniden çalıştırıldı (journal geri alındı, FK/integrity temiz).

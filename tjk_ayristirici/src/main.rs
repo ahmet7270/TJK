@@ -39,7 +39,7 @@ const KULLANIM: &str = "Kullanım: tjk_ayristirici PROGRAM.csv SONUC.csv CIKTI_K
 [--ek-sonuc SONUC2.csv]... [--ertelenme-notu METIN]";
 /// Ayrıştırma mantığının sürümü (yalnızca ayrıştırma/doğrulama davranışı değişince artırılır).
 /// Veri tabanındaki yaris_gunu.ayristirici_surumu bu değerdir; toplu aktarımda "aynı sürüm" kontrolü buna bakar.
-pub const AYRISTIRICI_SURUMU: &str = "0.14.0";
+pub const AYRISTIRICI_SURUMU: &str = "0.15.0";
 const ALTILI_IBARE: &str = "6'LI GANYAN Bu koşudan başlar";
 const ESLESME_YONTEMI: &str = "tarih+hipodrom+kosu_no+at_adi (sonuç CSV'sinde program no yok)";
 const ZAMAN_UYARI_KOSMAZLI: &str = "Arşiv dosyası anlık görüntü; zaman damgası yok. Aynı dosyada 'Koşmaz' ibaresi \
@@ -2292,7 +2292,8 @@ mod ulke_eki_testleri {
 /// Programdaki ve sonuçtaki eküri ibarelerini koşu koşu denetler. Dönüş: (inceleme nedenleri, özet).
 /// * Her ibare ayrı grup olarak okunur (ardışık ibareler; fazladan "]" yalnızca numara ve ad açıkça okunabiliyorsa).
 /// * Çözülemeyen ibare → EKURI_IBARESI_COZULEMEDI (ham metin ve kaynak satırıyla).
-/// * Her (numara, ad) çifti o koşunun program katılımcısıyla doğrulanır: numara var ve ad aynı
+/// * Her (numara, ad) çifti o koşunun program katılımcısıyla doğrulanır: numara var ve ad aynı (ibaredeki ad sondaki kod
+///   belirteçlerinden ayıklanmış hâliyle de karşılaştırılır)
 ///   (ya da yalnızca bir taraftaki tanınan ülke ekiyle farklı) olmalı → aksi hâlde EKURI_UYESI_DOGRULANAMADI.
 /// * Bir numara iki grupta birden geçerse → EKURI_UYESI_BIRDEN_FAZLA_GRUPTA.
 /// * Program ve sonuç grupları üye numaralarına göre, sıradan bağımsız karşılaştırılır → EKURI_GRUPLARI_CELISIYOR.
@@ -2331,7 +2332,11 @@ fn ekuri_kontrolu(p: &Kaynak, s: &Kaynak, prog: &[ProgAt]) -> (Vec<String>, Stri
                 if !gorulen.insert(*no) {
                     inceleme.push(format!("EKURI_UYESI_BIRDEN_FAZLA_GRUPTA: {} satır {} ({kn}. koşu): {no} numara", kaynak.ad, k.alt_satir_no));
                 }
-                let dogru = prog.iter().any(|r| r.kosu_no == kn && r.at_no == *no && (r.at_adi == *ad || ulke_eki_farki(&r.at_adi, ad)));
+                // 0.15.0: ibaredeki ad da at adı gibi sondaki kod belirteçlerinden ayıklanır (ör. "(5)LO SIENTO BB")
+                let ad_kodsuz = isim_coz(ad).ad;
+                let dogru = prog.iter().any(|r| {
+                    r.kosu_no == kn && r.at_no == *no && (r.at_adi == *ad || r.at_adi == ad_kodsuz || ulke_eki_farki(&r.at_adi, ad))
+                });
                 if !dogru {
                     let program_adi = prog.iter().find(|r| r.kosu_no == kn && r.at_no == *no).map(|r| r.at_adi.as_str()).unwrap_or("(bu numarada katılımcı yok)");
                     inceleme.push(format!(

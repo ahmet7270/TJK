@@ -66,3 +66,21 @@ fn ekuri_ganyani_eküri_ibaresi_yoksa_incelemede_kalir() {
     assert!(j.contains("\"gun_durumu\": \"INCELEME_GEREKLI\""), "{out}");
     assert!(j.contains("ORTAK_BIRINCILIK_DOGRULANAMADI: 3. koşu"));
 }
+
+/// 14.06.2026 İstanbul: "ZİNCİR KOPARAN KG K BB" — BB kod belirteci (0.15.0); eküri "(8)ZİNCİR KOPARAN" doğrulanır.
+#[test]
+fn istanbul_14_haziran_bb_eki_ve_ekuri() {
+    let (kod, out, j) = calistir("i0614", &ham("2026-06", "20260614-ISTANBUL-program.csv"), &ham("2026-06", "20260614-ISTANBUL-sonuc.csv"));
+    assert_eq!(kod, 0, "{out}");
+    assert!(j.contains("\"gun_durumu\": \"TAMAM\""), "{out}");
+    assert!(!j.contains("EKURI_UYESI_DOGRULANAMADI"));
+}
+
+/// 10.06.2026 İstanbul: eküri ibaresinin kendisinde kod var ("LO SIENTO BB"); program adı "LO SIENTO" ile eşleşmeli.
+#[test]
+fn istanbul_10_haziran_ekuri_ibaresinde_kod_eki() {
+    let (kod, out, j) = calistir("i0610", &ham("2026-06", "20260610-ISTANBUL-program.csv"), &ham("2026-06", "20260610-ISTANBUL-sonuc.csv"));
+    assert_eq!(kod, 0, "{out}");
+    assert!(j.contains("\"gun_durumu\": \"TAMAM\""), "{out}");
+    assert!(!j.contains("EKURI_UYESI_DOGRULANAMADI"));
+}

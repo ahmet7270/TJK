@@ -75,19 +75,19 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 
 | Tablo | Bu ay | Tüm veri tabanı |
 |---|---|---|
-| yaris_gunu | 62 | 260 |
-| kosu | 469 | 2053 |
-| katilim | 4610 | 20432 |
-| sonuc | 4610 | 20432 |
-| agf_gozlem | 5794 | 26235 |
-| bahis_sonucu | 3699 | 16361 |
-| ganyan_kontrol | 469 | 2053 |
-| altili | 97 | 447 |
-| altili_ayak | 582 | 2682 |
-| altili_odeme | 95 | 444 |
+| yaris_gunu | 62 | 326 |
+| kosu | 469 | 2615 |
+| katilim | 4610 | 26484 |
+| sonuc | 4610 | 26484 |
+| agf_gozlem | 5794 | 34339 |
+| bahis_sonucu | 3699 | 21120 |
+| ganyan_kontrol | 469 | 2615 |
+| altili | 97 | 573 |
+| altili_ayak | 582 | 3438 |
+| altili_odeme | 95 | 570 |
 | inceleme_nedeni | 2 | 97 |
-| kaynak_dosya (ayın kullandığı) | 125 | 522 |
-| at (tüm) | – | 4933 |
+| kaynak_dosya (ayın kullandığı) | 125 | 654 |
+| at (tüm) | – | 5502 |
 
 ## 3. İnceleme nedenleri
 
@@ -128,9 +128,13 @@ Bu ayda numara boşluğu yok (önceki gün DB'de olan hipodromlar için).
 - `PRAGMA user_version`: 4
 - `PRAGMA foreign_key_check`: 0 satır
 - `PRAGMA integrity_check`: ok
-- Tam döküm SHA-256 (16 tablo): `774526ea8907e99b05052394ac9df049d6244d8219b81048caa53ed048009cd9`
-- Tablo satırları: agf_gozlem 26235, altili 447, altili_ayak 2682, altili_ayak_gecerli 3068, altili_odeme 444, altili_odeme_ayak 3073, at 4933, bahis_sonucu 16361, bahis_uyarisi 75, ganyan_kontrol 2053, inceleme_nedeni 97, katilim 20432, kaynak_dosya 522, kosu 2053, sonuc 20432, yaris_gunu 260
+- Tam döküm SHA-256 (16 tablo): `d7199c58c7c1afe4b9e09feffa1caad4ef5b04c5a3a07b1389b45e0e3a8a0c68`
+- Tablo satırları: agf_gozlem 34339, altili 573, altili_ayak 3438, altili_ayak_gecerli 3975, altili_odeme 570, altili_odeme_ayak 3980, at 5502, bahis_sonucu 21120, bahis_uyarisi 107, ganyan_kontrol 2615, inceleme_nedeni 97, katilim 26484, kaynak_dosya 654, kosu 2615, sonuc 26484, yaris_gunu 326
 
 ## Sonuç
 
 Sert hata yok.
+
+## İkinci aktarım
+
+Aynı girdilerle ikinci aktarımdan sonra tüm tabloların sıralı tam dökümü birinciyle bayt bayt aynı (`cmp`).

@@ -1,0 +1,135 @@
+46882c46882
+< ## at (5504 satır)
+---
+> ## at (5491 satır)
+49088d49087
+< Int(2209)	Null	Text("CARLOS STREET K DB BB|ÇAKAL CARLOS|STREETHEART (USA)")	Text("CARLOS STREET K DB BB")	Text("ÇAKAL CARLOS")	Text("STREETHEART (USA)")	Text("GECICI_AD_BABA_ANNE")
+49734d49732
+< Int(2855)	Null	Text("BODEXCEPTIONAL K DB SKG BB|BODEMEISTER (USA)|NUIT BLANCHE")	Text("BODEXCEPTIONAL K DB SKG BB")	Text("BODEMEISTER (USA)")	Text("NUIT BLANCHE")	Text("GECICI_AD_BABA_ANNE")
+49763d49760
+< Int(2884)	Null	Text("TEKİR BEYİ KG DB SK BB|ÖZGÜNHAN|KEHRİBAR")	Text("TEKİR BEYİ KG DB SK BB")	Text("ÖZGÜNHAN")	Text("KEHRİBAR")	Text("GECICI_AD_BABA_ANNE")
+50362d50358
+< Int(3483)	Null	Text("BEFORE OR AFTER KG K DB BB|RUN AWAY AND HIDE (USA)|BEFORE ME")	Text("BEFORE OR AFTER KG K DB BB")	Text("RUN AWAY AND HIDE (USA)")	Text("BEFORE ME")	Text("GECICI_AD_BABA_ANNE")
+50601d50596
+< Int(3722)	Null	Text("LADY SUPRISE DB SKG SK BB|INVINCIBLE SON (IRE)|STARSHIP SURPRISE (USA)")	Text("LADY SUPRISE DB SKG SK BB")	Text("INVINCIBLE SON (IRE)")	Text("STARSHIP SURPRISE (USA)")	Text("GECICI_AD_BABA_ANNE")
+50613d50607
+< Int(3734)	Null	Text("ÜRGÜP KG BB|ALTINÇEKİÇ|SEÇGÜL")	Text("ÜRGÜP KG BB")	Text("ALTINÇEKİÇ")	Text("SEÇGÜL")	Text("GECICI_AD_BABA_ANNE")
+50628d50621
+< Int(3749)	Null	Text("HEAVEN LIGHT DB BB|SUPER SAVER (USA)|ŞEKER HANIM")	Text("HEAVEN LIGHT DB BB")	Text("SUPER SAVER (USA)")	Text("ŞEKER HANIM")	Text("GECICI_AD_BABA_ANNE")
+50853d50845
+< Int(3974)	Null	Text("DREAM TWICE SK BB|BUSHRANGER (IRE)|ATHENA")	Text("DREAM TWICE SK BB")	Text("BUSHRANGER (IRE)")	Text("ATHENA")	Text("GECICI_AD_BABA_ANNE")
+50920d50911
+< Int(4041)	Null	Text("MAHİRİNİ KG SK TGK|ŞAH ŞEHRİYAR|TUNCAL HANIM")	Text("MAHİRİNİ KG SK TGK")	Text("ŞAH ŞEHRİYAR")	Text("TUNCAL HANIM")	Text("GECICI_AD_BABA_ANNE")
+51231d51221
+< Int(4352)	Null	Text("BODEXCEPTIONAL K DB BB|BODEMEISTER (USA)|NUIT BLANCHE")	Text("BODEXCEPTIONAL K DB BB")	Text("BODEMEISTER (USA)")	Text("NUIT BLANCHE")	Text("GECICI_AD_BABA_ANNE")
+51380d51369
+< Int(4501)	Null	Text("LO SIENTO BB|GOKEN (FR)|PELEKAI (GB)")	Text("LO SIENTO BB")	Text("GOKEN (FR)")	Text("PELEKAI (GB)")	Text("GECICI_AD_BABA_ANNE")
+51383d51371
+< Int(4504)	Null	Text("LAZMAN K DB BB|BAŞSEKLAVİ|SİM SİM")	Text("LAZMAN K DB BB")	Text("BAŞSEKLAVİ")	Text("SİM SİM")	Text("GECICI_AD_BABA_ANNE")
+51394d51381
+< Int(4515)	Null	Text("HAMA DESTINATION DB SKG SK BB|TOROK (IRE)|MILADY (GB)")	Text("HAMA DESTINATION DB SKG SK BB")	Text("TOROK (IRE)")	Text("MILADY (GB)")	Text("GECICI_AD_BABA_ANNE")
+52037d52023
+< Int(5158)	Null	Text("MERİHİN YILDIZI KG DB SK TGK|TÜMÖZ BEY|HATIRSAZ")	Text("MERİHİN YILDIZI KG DB SK TGK")	Text("TÜMÖZ BEY")	Text("HATIRSAZ")	Text("GECICI_AD_BABA_ANNE")
+52046d52031
+< Int(5167)	Null	Text("POWER MAKER DB SK BB|TU BRUTUS (CHI)|CAT GIRL")	Text("POWER MAKER DB SK BB")	Text("TU BRUTUS (CHI)")	Text("CAT GIRL")	Text("GECICI_AD_BABA_ANNE")
+52096d52080
+< Int(5217)	Null	Text("TUĞCU SULTAN DB SK BB|SAADIN GÜCÜ|TUĞCU")	Text("TUĞCU SULTAN DB SK BB")	Text("SAADIN GÜCÜ")	Text("TUĞCU")	Text("GECICI_AD_BABA_ANNE")
+52363d52346
+< Int(5484)	Null	Text("WAITING A SUNNYDAY KG K DB BB|TRAPPE SHOT (USA)|MY SECRET")	Text("WAITING A SUNNYDAY KG K DB BB")	Text("TRAPPE SHOT (USA)")	Text("MY SECRET")	Text("GECICI_AD_BABA_ANNE")
+52386a52370,52373
+> Int(5508)	Null	Text("DREAM TWICE|BUSHRANGER (IRE)|ATHENA")	Text("DREAM TWICE")	Text("BUSHRANGER (IRE)")	Text("ATHENA")	Text("GECICI_AD_BABA_ANNE")
+> Int(5509)	Null	Text("MAHİRİNİ|ŞAH ŞEHRİYAR|TUNCAL HANIM")	Text("MAHİRİNİ")	Text("ŞAH ŞEHRİYAR")	Text("TUNCAL HANIM")	Text("GECICI_AD_BABA_ANNE")
+> Int(5510)	Null	Text("LO SIENTO|GOKEN (FR)|PELEKAI (GB)")	Text("LO SIENTO")	Text("GOKEN (FR)")	Text("PELEKAI (GB)")	Text("GECICI_AD_BABA_ANNE")
+> Int(5511)	Null	Text("MERİHİN YILDIZI|TÜMÖZ BEY|HATIRSAZ")	Text("MERİHİN YILDIZI")	Text("TÜMÖZ BEY")	Text("HATIRSAZ")	Text("GECICI_AD_BABA_ANNE")
+77157c77144
+< Text("20251126-ISTANBUL-K04-A05")	Text("20251126-ISTANBUL-K04")	Int(3974)	Int(5)	Text("DREAM TWICE SK BB")	Text("")	Text("4y d  a")	Int(4)	Text("60")	Real(60.0)	Text("")	Text("H.ÇİZİK")	Text("H.ÇİZİK")	Int(0)	Text("ESRA ATMAN")	Text("E.USLU")	Text("7")	Int(7)	Text("")	Int(84)	Text("Ç6Ç4S6S3Ç5S8")	Int(19)	Int(14)	Text("")	Null	Int(0)	Text("")	Text("%4.96(7)  %5.14(7)")	Int(0)	Int(0)	Int(0)	Int(59)
+---
+> Text("20251126-ISTANBUL-K04-A05")	Text("20251126-ISTANBUL-K04")	Int(5508)	Int(5)	Text("DREAM TWICE SK BB")	Text("SK BB")	Text("4y d  a")	Int(4)	Text("60")	Real(60.0)	Text("")	Text("H.ÇİZİK")	Text("H.ÇİZİK")	Int(0)	Text("ESRA ATMAN")	Text("E.USLU")	Text("7")	Int(7)	Text("")	Int(84)	Text("Ç6Ç4S6S3Ç5S8")	Int(19)	Int(14)	Text("")	Null	Int(0)	Text("")	Text("%4.96(7)  %5.14(7)")	Int(0)	Int(0)	Int(0)	Int(59)
+77491c77478
+< Text("20251128-IZMIR-K06-A09")	Text("20251128-IZMIR-K06")	Int(4041)	Int(9)	Text("MAHİRİNİ KG SK TGK")	Text("")	Text("6y k  a")	Int(6)	Text("56,5 +0.90")	Real(56.5)	Text("+0.90")	Text("Ç.OK")	Text("Ç.OK")	Int(0)	Text("H.TARIK DİKENCİK")	Text("M.ÖZGÜL")	Text("4")	Int(4)	Text("")	Int(79)	Text("K0K7K0K9K7K9")	Int(45)	Int(2)	Text("2:28.24")	Real(148.24)	Int(0)	Text("")	Text("%9.45(5)")	Int(0)	Int(0)	Int(0)	Int(86)
+---
+> Text("20251128-IZMIR-K06-A09")	Text("20251128-IZMIR-K06")	Int(5509)	Int(9)	Text("MAHİRİNİ KG SK TGK")	Text("KG SK TGK")	Text("6y k  a")	Int(6)	Text("56,5 +0.90")	Real(56.5)	Text("+0.90")	Text("Ç.OK")	Text("Ç.OK")	Int(0)	Text("H.TARIK DİKENCİK")	Text("M.ÖZGÜL")	Text("4")	Int(4)	Text("")	Int(79)	Text("K0K7K0K9K7K9")	Int(45)	Int(2)	Text("2:28.24")	Real(148.24)	Int(0)	Text("")	Text("%9.45(5)")	Int(0)	Int(0)	Int(0)	Int(86)
+78010c77997
+< Text("20260102-ANTALYA-K01-A01")	Text("20260102-ANTALYA-K01")	Int(2855)	Int(1)	Text("BODEXCEPTIONAL K DB SKG BB")	Text("")	Text("4y d  a")	Int(4)	Text("57")	Real(57.0)	Text("")	Text("SERH.ÇELİK AP")	Text("SERH.ÇELİK")	Int(1)	Text("NURAY TEMİZKAN")	Text("Ö.F.TAN")	Text("4")	Int(4)	Text("")	Int(40)	Text("K2K3K5K9S5S0")	Int(17)	Int(15)	Text("1:15.69")	Real(75.69)	Int(0)	Text("")	Text("")	Int(0)	Int(0)	Int(0)	Int(6)
+---
+> Text("20260102-ANTALYA-K01-A01")	Text("20260102-ANTALYA-K01")	Int(1884)	Int(1)	Text("BODEXCEPTIONAL K DB SKG BB")	Text("K DB SKG BB")	Text("4y d  a")	Int(4)	Text("57")	Real(57.0)	Text("")	Text("SERH.ÇELİK AP")	Text("SERH.ÇELİK")	Int(1)	Text("NURAY TEMİZKAN")	Text("Ö.F.TAN")	Text("4")	Int(4)	Text("")	Int(40)	Text("K2K3K5K9S5S0")	Int(17)	Int(15)	Text("1:15.69")	Real(75.69)	Int(0)	Text("")	Text("")	Int(0)	Int(0)	Int(0)	Int(6)
+78076c78063
+< Text("20260102-ANTALYA-K07-A12")	Text("20260102-ANTALYA-K07")	Int(2884)	Int(12)	Text("TEKİR BEYİ KG DB SK BB")	Text("")	Text("5y a  a")	Int(5)	Text("51 +2.00")	Real(51.0)	Text("+2.00")	Text("S.TIRPAN")	Text("S.TIRPAN")	Int(0)	Text("HÜSEYİN ÖZKAYAGAN")	Text("MER.KORKMAZ")	Text("8")	Int(8)	Text("")	Int(37)	Text("K7K2K7Ç2Ç6S7")	Int(31)	Int(16)	Text("1:28.80")	Real(88.8)	Int(0)	Text("")	Text("%4(9)")	Int(0)	Int(0)	Int(0)	Int(108)
+---
+> Text("20260102-ANTALYA-K07-A12")	Text("20260102-ANTALYA-K07")	Int(976)	Int(12)	Text("TEKİR BEYİ KG DB SK BB")	Text("KG DB SK BB")	Text("5y a  a")	Int(5)	Text("51 +2.00")	Real(51.0)	Text("+2.00")	Text("S.TIRPAN")	Text("S.TIRPAN")	Int(0)	Text("HÜSEYİN ÖZKAYAGAN")	Text("MER.KORKMAZ")	Text("8")	Int(8)	Text("")	Int(37)	Text("K7K2K7Ç2Ç6S7")	Int(31)	Int(16)	Text("1:28.80")	Real(88.8)	Int(0)	Text("")	Text("%4(9)")	Int(0)	Int(0)	Int(0)	Int(108)
+80872c80859
+< Text("20260121-ISTANBUL-K07-A09")	Text("20260121-ISTANBUL-K07")	Int(3483)	Int(9)	Text("BEFORE OR AFTER KG K DB BB")	Text("")	Text("5y a k")	Int(5)	Text("53 +1.20")	Real(53.0)	Text("+1.20")	Text("U.LEVENT")	Text("U.LEVENT")	Int(0)	Text("KORAL KALPAKLIOĞLU")	Text("T.İMAL")	Text("7")	Int(7)	Text("")	Int(84)	Text("K8Ç3Ç5S4Ç4K4")	Int(178)	Int(17)	Text("2:09.67")	Real(129.67)	Int(0)	Text("")	Text("%2.38(7)")	Int(0)	Int(0)	Int(0)	Int(108)
+---
+> Text("20260121-ISTANBUL-K07-A09")	Text("20260121-ISTANBUL-K07")	Int(943)	Int(9)	Text("BEFORE OR AFTER KG K DB BB")	Text("KG K DB BB")	Text("5y a k")	Int(5)	Text("53 +1.20")	Real(53.0)	Text("+1.20")	Text("U.LEVENT")	Text("U.LEVENT")	Int(0)	Text("KORAL KALPAKLIOĞLU")	Text("T.İMAL")	Text("7")	Int(7)	Text("")	Int(84)	Text("K8Ç3Ç5S4Ç4K4")	Int(178)	Int(17)	Text("2:09.67")	Real(129.67)	Int(0)	Text("")	Text("%2.38(7)")	Int(0)	Int(0)	Int(0)	Int(108)
+83484c83471
+< Text("20260207-ISTANBUL-K08-A11")	Text("20260207-ISTANBUL-K08")	Int(3483)	Int(11)	Text("BEFORE OR AFTER KG K DB BB")	Text("")	Text("5y a k")	Int(5)	Text("55")	Real(55.0)	Text("")	Text("A.KAÇMAZ")	Text("A.KAÇMAZ")	Int(0)	Text("KORAL KALPAKLIOĞLU")	Text("T.İMAL")	Text("6")	Int(6)	Text("")	Int(82)	Text("Ç3Ç5S4Ç4K4-K9")	Int(17)	Int(16)	Text("")	Null	Int(0)	Text("")	Text("%3.98(8)")	Int(0)	Int(0)	Int(0)	Int(129)
+---
+> Text("20260207-ISTANBUL-K08-A11")	Text("20260207-ISTANBUL-K08")	Int(943)	Int(11)	Text("BEFORE OR AFTER KG K DB BB")	Text("KG K DB BB")	Text("5y a k")	Int(5)	Text("55")	Real(55.0)	Text("")	Text("A.KAÇMAZ")	Text("A.KAÇMAZ")	Int(0)	Text("KORAL KALPAKLIOĞLU")	Text("T.İMAL")	Text("6")	Int(6)	Text("")	Int(82)	Text("Ç3Ç5S4Ç4K4-K9")	Int(17)	Int(16)	Text("")	Null	Int(0)	Text("")	Text("%3.98(8)")	Int(0)	Int(0)	Int(0)	Int(129)
+84522c84509
+< Text("20260214-ISTANBUL-K07-A10")	Text("20260214-ISTANBUL-K07")	Int(3722)	Int(10)	Text("LADY SUPRISE DB SKG SK BB")	Text("")	Text("3y d  d")	Int(3)	Text("56")	Real(56.0)	Text("")	Text("E.BOZDAĞ")	Text("E.BOZDAĞ")	Int(0)	Text("İBRAHİM ALTUNBAŞ")	Text("E.USLU")	Text("9")	Int(9)	Text("")	Null	Text("")	Null	Int(20)	Text("")	Null	Int(0)	Text("")	Text("%0.77(11)")	Int(0)	Int(0)	Int(0)	Int(112)
+---
+> Text("20260214-ISTANBUL-K07-A10")	Text("20260214-ISTANBUL-K07")	Int(1616)	Int(10)	Text("LADY SUPRISE DB SKG SK BB")	Text("DB SKG SK BB")	Text("3y d  d")	Int(3)	Text("56")	Real(56.0)	Text("")	Text("E.BOZDAĞ")	Text("E.BOZDAĞ")	Int(0)	Text("İBRAHİM ALTUNBAŞ")	Text("E.USLU")	Text("9")	Int(9)	Text("")	Null	Text("")	Null	Int(20)	Text("")	Null	Int(0)	Text("")	Text("%0.77(11)")	Int(0)	Int(0)	Int(0)	Int(112)
+84975c84962
+< Text("20260218-ISTANBUL-K01-A09")	Text("20260218-ISTANBUL-K01")	Int(3734)	Int(9)	Text("ÜRGÜP KG BB")	Text("")	Text("4y a  a")	Int(4)	Text("58")	Real(58.0)	Text("")	Text("A.SÖZEN")	Text("A.SÖZEN")	Int(0)	Text("ALİ EMİN")	Text("H.YÜZBAŞI")	Text("6")	Int(6)	Text("")	Null	Text("S7")	Int(18)	Int(19)	Text("")	Null	Int(0)	Text("")	Text("%15.8(2)")	Int(0)	Int(0)	Int(0)	Int(14)
+---
+> Text("20260218-ISTANBUL-K01-A09")	Text("20260218-ISTANBUL-K01")	Int(1983)	Int(9)	Text("ÜRGÜP KG BB")	Text("KG BB")	Text("4y a  a")	Int(4)	Text("58")	Real(58.0)	Text("")	Text("A.SÖZEN")	Text("A.SÖZEN")	Int(0)	Text("ALİ EMİN")	Text("H.YÜZBAŞI")	Text("6")	Int(6)	Text("")	Null	Text("S7")	Int(18)	Int(19)	Text("")	Null	Int(0)	Text("")	Text("%15.8(2)")	Int(0)	Int(0)	Int(0)	Int(14)
+84990c84977
+< Text("20260218-ISTANBUL-K03-A08")	Text("20260218-ISTANBUL-K03")	Int(3483)	Int(8)	Text("BEFORE OR AFTER KG K DB BB")	Text("")	Text("5y a k")	Int(5)	Text("54")	Real(54.0)	Text("")	Text("A.KAÇMAZ")	Text("A.KAÇMAZ")	Int(0)	Text("KORAL KALPAKLIOĞLU")	Text("T.İMAL")	Text("9")	Int(9)	Text("")	Int(82)	Text("Ç5S4Ç4K4-K9S0")	Int(11)	Int(15)	Text("1:27.09")	Real(87.09)	Int(0)	Text("")	Text("%3.58(9)  %3.18(9)")	Int(0)	Int(0)	Int(0)	Int(41)
+---
+> Text("20260218-ISTANBUL-K03-A08")	Text("20260218-ISTANBUL-K03")	Int(943)	Int(8)	Text("BEFORE OR AFTER KG K DB BB")	Text("KG K DB BB")	Text("5y a k")	Int(5)	Text("54")	Real(54.0)	Text("")	Text("A.KAÇMAZ")	Text("A.KAÇMAZ")	Int(0)	Text("KORAL KALPAKLIOĞLU")	Text("T.İMAL")	Text("9")	Int(9)	Text("")	Int(82)	Text("Ç5S4Ç4K4-K9S0")	Int(11)	Int(15)	Text("1:27.09")	Real(87.09)	Int(0)	Text("")	Text("%3.58(9)  %3.18(9)")	Int(0)	Int(0)	Int(0)	Int(41)
+85545c85532
+< Text("20260221-ISTANBUL-K05-A05")	Text("20260221-ISTANBUL-K05")	Int(3749)	Int(5)	Text("HEAVEN LIGHT DB BB")	Text("")	Text("3y d  d")	Int(3)	Text("54")	Real(54.0)	Text("")	Text("Y.GÖKÇE AP")	Text("Y.GÖKÇE")	Int(1)	Text("ALİ RIZA ÇELİKOĞLU")	Text("U.BİLİK")	Text("7")	Int(7)	Text("")	Int(36)	Text("S3Ç0K2K0-K0K3")	Int(24)	Int(14)	Text("")	Null	Int(0)	Text("")	Text("%16.11(3)  %16.26(3)")	Int(0)	Int(0)	Int(0)	Int(79)
+---
+> Text("20260221-ISTANBUL-K05-A05")	Text("20260221-ISTANBUL-K05")	Int(373)	Int(5)	Text("HEAVEN LIGHT DB BB")	Text("DB BB")	Text("3y d  d")	Int(3)	Text("54")	Real(54.0)	Text("")	Text("Y.GÖKÇE AP")	Text("Y.GÖKÇE")	Int(1)	Text("ALİ RIZA ÇELİKOĞLU")	Text("U.BİLİK")	Text("7")	Int(7)	Text("")	Int(36)	Text("S3Ç0K2K0-K0K3")	Int(24)	Int(14)	Text("")	Null	Int(0)	Text("")	Text("%16.11(3)  %16.26(3)")	Int(0)	Int(0)	Int(0)	Int(79)
+89382c89369
+< Text("20260317-ANTALYA-K04-A08")	Text("20260317-ANTALYA-K04")	Int(2209)	Int(8)	Text("CARLOS STREET K DB BB")	Text("")	Text("3y d  e")	Int(3)	Text("55 +0.40")	Real(55.0)	Text("+0.40")	Text("U.TEMUR")	Text("U.TEMUR")	Int(0)	Text("NURAY TEMİZKAN")	Text("Ö.F.TAN")	Text("8 - DS")	Int(8)	Text("DS")	Int(44)	Text("S1S3-S7")	Int(18)	Int(18)	Text("1:27.01")	Real(87.01)	Int(0)	Text("")	Text("%2.55(7)")	Int(0)	Int(0)	Int(0)	Int(59)
+---
+> Text("20260317-ANTALYA-K04-A08")	Text("20260317-ANTALYA-K04")	Int(3772)	Int(8)	Text("CARLOS STREET K DB BB")	Text("K DB BB")	Text("3y d  e")	Int(3)	Text("55 +0.40")	Real(55.0)	Text("+0.40")	Text("U.TEMUR")	Text("U.TEMUR")	Int(0)	Text("NURAY TEMİZKAN")	Text("Ö.F.TAN")	Text("8 - DS")	Int(8)	Text("DS")	Int(44)	Text("S1S3-S7")	Int(18)	Int(18)	Text("1:27.01")	Real(87.01)	Int(0)	Text("")	Text("%2.55(7)")	Int(0)	Int(0)	Int(0)	Int(59)
+93710c93697
+< Text("20260414-KOCAELI-K08-A04")	Text("20260414-KOCAELI-K08")	Int(4352)	Int(4)	Text("BODEXCEPTIONAL K DB BB")	Text("")	Text("4y d  a")	Int(4)	Text("58")	Real(58.0)	Text("")	Text("M.KESKİN")	Text("M.KESKİN")	Int(0)	Text("NURAY TEMİZKAN")	Text("Ö.F.TAN")	Text("3")	Int(3)	Text("")	Int(38)	Text("K6S6S4S4S4S5")	Int(26)	Int(17)	Text("2:07.39")	Real(127.39)	Int(0)	Text("")	Text("%6.93(6)")	Int(0)	Int(0)	Int(0)	Int(125)
+---
+> Text("20260414-KOCAELI-K08-A04")	Text("20260414-KOCAELI-K08")	Int(1884)	Int(4)	Text("BODEXCEPTIONAL K DB BB")	Text("K DB BB")	Text("4y d  a")	Int(4)	Text("58")	Real(58.0)	Text("")	Text("M.KESKİN")	Text("M.KESKİN")	Int(0)	Text("NURAY TEMİZKAN")	Text("Ö.F.TAN")	Text("3")	Int(3)	Text("")	Int(38)	Text("K6S6S4S4S4S5")	Int(26)	Int(17)	Text("2:07.39")	Real(127.39)	Int(0)	Text("")	Text("%6.93(6)")	Int(0)	Int(0)	Int(0)	Int(125)
+94181c94168
+< Text("20260417-BURSA-K09-A08")	Text("20260417-BURSA-K09")	Int(4501)	Int(8)	Text("LO SIENTO BB SK")	Text("SK")	Text("2y d  d")	Int(2)	Text("55 +0.20")	Real(55.0)	Text("+0.20")	Text("MÜS.ÇELİK")	Text("MÜS.ÇELİK")	Int(0)	Text("İSHAK ŞAHİN")	Text("H.SUNKAR")	Text("7")	Int(7)	Text("")	Null	Text("")	Null	Int(20)	Text("")	Null	Int(0)	Text("")	Text("%18.73(3)")	Int(0)	Int(0)	Int(0)	Int(159)
+---
+> Text("20260417-BURSA-K09-A08")	Text("20260417-BURSA-K09")	Int(5510)	Int(8)	Text("LO SIENTO BB SK")	Text("BB SK")	Text("2y d  d")	Int(2)	Text("55 +0.20")	Real(55.0)	Text("+0.20")	Text("MÜS.ÇELİK")	Text("MÜS.ÇELİK")	Int(0)	Text("İSHAK ŞAHİN")	Text("H.SUNKAR")	Text("7")	Int(7)	Text("")	Null	Text("")	Null	Int(20)	Text("")	Null	Int(0)	Text("")	Text("%18.73(3)")	Int(0)	Int(0)	Int(0)	Int(159)
+94209c94196
+< Text("20260417-ISTANBUL-K02-A01")	Text("20260417-ISTANBUL-K02")	Int(4504)	Int(1)	Text("LAZMAN K DB BB")	Text("")	Text("5y a  a")	Int(5)	Text("60")	Real(60.0)	Text("")	Text("B.ÇETİN AP")	Text("B.ÇETİN")	Int(1)	Text("METE ÇELİK")	Text("B.ÇAPKIN")	Text("10")	Int(10)	Text("")	Int(75)	Text("K0-S6S6S5S8S7")	Int(6)	Int(13)	Text("2:17.65")	Real(137.65)	Int(0)	Text("")	Text("%3.31(8)")	Int(0)	Int(0)	Int(0)	Int(20)
+---
+> Text("20260417-ISTANBUL-K02-A01")	Text("20260417-ISTANBUL-K02")	Int(2419)	Int(1)	Text("LAZMAN K DB BB")	Text("K DB BB")	Text("5y a  a")	Int(5)	Text("60")	Real(60.0)	Text("")	Text("B.ÇETİN AP")	Text("B.ÇETİN")	Int(1)	Text("METE ÇELİK")	Text("B.ÇAPKIN")	Text("10")	Int(10)	Text("")	Int(75)	Text("K0-S6S6S5S8S7")	Int(6)	Int(13)	Text("2:17.65")	Real(137.65)	Int(0)	Text("")	Text("%3.31(8)")	Int(0)	Int(0)	Int(0)	Int(20)
+94231c94218
+< Text("20260417-ISTANBUL-K04-A03")	Text("20260417-ISTANBUL-K04")	Int(4515)	Int(3)	Text("HAMA DESTINATION DB SKG SK BB")	Text("")	Text("3y d  d")	Int(3)	Text("58")	Real(58.0)	Text("")	Text("M.M.BİLGİN")	Text("M.M.BİLGİN")	Int(0)	Text("SOLAIMAN IRHAIM")	Text("Y.ARHIM")	Text("2")	Int(2)	Text("")	Int(56)	Text("K7-S5S2S7S1S2")	Int(9)	Int(19)	Text("")	Null	Int(0)	Text("")	Text("%1.27(10)  %1.56(10)")	Int(0)	Int(0)	Int(0)	Int(54)
+---
+> Text("20260417-ISTANBUL-K04-A03")	Text("20260417-ISTANBUL-K04")	Int(2397)	Int(3)	Text("HAMA DESTINATION DB SKG SK BB")	Text("DB SKG SK BB")	Text("3y d  d")	Int(3)	Text("58")	Real(58.0)	Text("")	Text("M.M.BİLGİN")	Text("M.M.BİLGİN")	Int(0)	Text("SOLAIMAN IRHAIM")	Text("Y.ARHIM")	Text("2")	Int(2)	Text("")	Int(56)	Text("K7-S5S2S7S1S2")	Int(9)	Int(19)	Text("")	Null	Int(0)	Text("")	Text("%1.27(10)  %1.56(10)")	Int(0)	Int(0)	Int(0)	Int(54)
+95450c95437
+< Text("20260424-ISTANBUL-K02-A12")	Text("20260424-ISTANBUL-K02")	Int(4504)	Int(12)	Text("LAZMAN K DB BB")	Text("")	Text("5y a  a")	Int(5)	Text("53,5 +2.00")	Real(53.5)	Text("+2.00")	Text("K.YILMAZ AP")	Text("K.YILMAZ")	Int(1)	Text("METE ÇELİK")	Text("B.ÇAPKIN")	Text("13")	Int(13)	Text("")	Int(73)	Text("S6S6S5S8S7S0")	Int(7)	Int(12)	Text("1:20.05")	Real(80.05)	Int(0)	Text("")	Text("%0.79(16)")	Int(0)	Int(0)	Int(0)	Int(38)
+---
+> Text("20260424-ISTANBUL-K02-A12")	Text("20260424-ISTANBUL-K02")	Int(2419)	Int(12)	Text("LAZMAN K DB BB")	Text("K DB BB")	Text("5y a  a")	Int(5)	Text("53,5 +2.00")	Real(53.5)	Text("+2.00")	Text("K.YILMAZ AP")	Text("K.YILMAZ")	Int(1)	Text("METE ÇELİK")	Text("B.ÇAPKIN")	Text("13")	Int(13)	Text("")	Int(73)	Text("S6S6S5S8S7S0")	Int(7)	Int(12)	Text("1:20.05")	Real(80.05)	Int(0)	Text("")	Text("%0.79(16)")	Int(0)	Int(0)	Int(0)	Int(38)
+95777c95764
+< Text("20260426-ADANA-K01-A06")	Text("20260426-ADANA-K01")	Int(4501)	Int(6)	Text("LO SIENTO BB SK")	Text("SK")	Text("2y d  d")	Int(2)	Text("55 +0.20")	Real(55.0)	Text("+0.20")	Text("MÜS.ÇELİK")	Text("MÜS.ÇELİK")	Int(0)	Text("İSHAK ŞAHİN")	Text("H.SUNKAR")	Text("3")	Int(3)	Text("")	Null	Text("Ç3")	Int(9)	Int(19)	Text("")	Null	Int(0)	Text("")	Text("%55.66(1)")	Int(0)	Int(0)	Int(0)	Int(11)
+---
+> Text("20260426-ADANA-K01-A06")	Text("20260426-ADANA-K01")	Int(5510)	Int(6)	Text("LO SIENTO BB SK")	Text("BB SK")	Text("2y d  d")	Int(2)	Text("55 +0.20")	Real(55.0)	Text("+0.20")	Text("MÜS.ÇELİK")	Text("MÜS.ÇELİK")	Int(0)	Text("İSHAK ŞAHİN")	Text("H.SUNKAR")	Text("3")	Int(3)	Text("")	Null	Text("Ç3")	Int(9)	Int(19)	Text("")	Null	Int(0)	Text("")	Text("%55.66(1)")	Int(0)	Int(0)	Int(0)	Int(11)
+98120c98107
+< Text("20260508-BURSA-K07-A05")	Text("20260508-BURSA-K07")	Int(4501)	Int(5)	Text("LO SIENTO BB SK")	Text("SK")	Text("2y d  d")	Int(2)	Text("55")	Real(55.0)	Text("")	Text("N.AVCİ")	Text("N.AVCİ")	Int(0)	Text("İSHAK ŞAHİN")	Text("H.SUNKAR")	Text("2")	Int(2)	Text("")	Null	Text("Ç3Ç2")	Int(12)	Int(18)	Text("1:00.07")	Real(60.07)	Int(0)	Text("2,5")	Text("%21.88(2)")	Int(0)	Int(0)	Int(0)	Int(105)
+---
+> Text("20260508-BURSA-K07-A05")	Text("20260508-BURSA-K07")	Int(5510)	Int(5)	Text("LO SIENTO BB SK")	Text("BB SK")	Text("2y d  d")	Int(2)	Text("55")	Real(55.0)	Text("")	Text("N.AVCİ")	Text("N.AVCİ")	Int(0)	Text("İSHAK ŞAHİN")	Text("H.SUNKAR")	Text("2")	Int(2)	Text("")	Null	Text("Ç3Ç2")	Int(12)	Int(18)	Text("1:00.07")	Real(60.07)	Int(0)	Text("2,5")	Text("%21.88(2)")	Int(0)	Int(0)	Int(0)	Int(105)
+98541c98528
+< Text("20260510-ADANA-K05-A05")	Text("20260510-ADANA-K05")	Int(5158)	Int(5)	Text("MERİHİN YILDIZI KG DB SK TGK")	Text("")	Text("3y a  e")	Int(3)	Text("57")	Real(57.0)	Text("")	Text("N.DEMİR")	Text("N.DEMİR")	Int(0)	Text("MEHMET UÇAR")	Text("Y.UÇAR")	Text("2")	Int(2)	Text("")	Null	Text("")	Null	Int(20)	Text("")	Null	Int(0)	Text("")	Text("%22.84(1)  %20.77(1)")	Int(0)	Int(0)	Int(0)	Int(78)
+---
+> Text("20260510-ADANA-K05-A05")	Text("20260510-ADANA-K05")	Int(5511)	Int(5)	Text("MERİHİN YILDIZI KG DB SK TGK")	Text("KG DB SK TGK")	Text("3y a  e")	Int(3)	Text("57")	Real(57.0)	Text("")	Text("N.DEMİR")	Text("N.DEMİR")	Int(0)	Text("MEHMET UÇAR")	Text("Y.UÇAR")	Text("2")	Int(2)	Text("")	Null	Text("")	Null	Int(20)	Text("")	Null	Int(0)	Text("")	Text("%22.84(1)  %20.77(1)")	Int(0)	Int(0)	Int(0)	Int(78)
+98626c98613
+< Text("20260510-ISTANBUL-K04-A09")	Text("20260510-ISTANBUL-K04")	Int(5167)	Int(9)	Text("POWER MAKER DB SK BB")	Text("")	Text("3y d  d")	Int(3)	Text("58")	Real(58.0)	Text("")	Text("M.M.BİLGİN")	Text("M.M.BİLGİN")	Int(0)	Text("TUĞÇE KEKEÇ")	Text("E.KOCA")	Text("5")	Int(5)	Text("")	Int(41)	Text("S2Ç3S2-K7S1")	Int(18)	Int(20)	Text("")	Null	Int(0)	Text("")	Text("%2.91(10)  %2.71(10)")	Int(0)	Int(0)	Int(0)	Int(53)
+---
+> Text("20260510-ISTANBUL-K04-A09")	Text("20260510-ISTANBUL-K04")	Int(1685)	Int(9)	Text("POWER MAKER DB SK BB")	Text("DB SK BB")	Text("3y d  d")	Int(3)	Text("58")	Real(58.0)	Text("")	Text("M.M.BİLGİN")	Text("M.M.BİLGİN")	Int(0)	Text("TUĞÇE KEKEÇ")	Text("E.KOCA")	Text("5")	Int(5)	Text("")	Int(41)	Text("S2Ç3S2-K7S1")	Int(18)	Int(20)	Text("")	Null	Int(0)	Text("")	Text("%2.91(10)  %2.71(10)")	Int(0)	Int(0)	Int(0)	Int(53)
+99219c99206
+< Text("20260513-ISTANBUL-K07-A08")	Text("20260513-ISTANBUL-K07")	Int(5217)	Int(8)	Text("TUĞCU SULTAN DB SK BB")	Text("")	Text("5y d k")	Int(5)	Text("59,5")	Real(59.5)	Text("")	Text("A.KURŞUN")	Text("A.KURŞUN")	Int(0)	Text("MESUT VOLKAN SEZGİN")	Text("GAL.KILIÇ")	Text("5")	Int(5)	Text("")	Int(89)	Text("Ç5Ç2S4-S5S4Ç8")	Int(17)	Int(16)	Text("1:30.61")	Real(90.61)	Int(0)	Text("")	Text("%1.43(6)")	Int(0)	Int(0)	Int(0)	Int(124)
+---
+> Text("20260513-ISTANBUL-K07-A08")	Text("20260513-ISTANBUL-K07")	Int(1958)	Int(8)	Text("TUĞCU SULTAN DB SK BB")	Text("DB SK BB")	Text("5y d k")	Int(5)	Text("59,5")	Real(59.5)	Text("")	Text("A.KURŞUN")	Text("A.KURŞUN")	Int(0)	Text("MESUT VOLKAN SEZGİN")	Text("GAL.KILIÇ")	Text("5")	Int(5)	Text("")	Int(89)	Text("Ç5Ç2S4-S5S4Ç8")	Int(17)	Int(16)	Text("1:30.61")	Real(90.61)	Int(0)	Text("")	Text("%1.43(6)")	Int(0)	Int(0)	Int(0)	Int(124)
+99956c99943
+< Text("20260517-ADANA-K06-A04")	Text("20260517-ADANA-K06")	Int(4501)	Int(4)	Text("LO SIENTO BB SK")	Text("SK")	Text("2y d  d")	Int(2)	Text("57 +0.10")	Real(57.0)	Text("+0.10")	Text("M.A.SOLMAZ")	Text("M.A.SOLMAZ")	Int(0)	Text("İSHAK ŞAHİN")	Text("M.DOLAK")	Text("3")	Int(3)	Text("")	Int(34)	Text("Ç3Ç2Ç3")	Int(9)	Int(17)	Text("")	Null	Int(0)	Text("1,4")	Text("%28.94(2)  %28.92(2)")	Int(0)	Int(0)	Int(0)	Int(91)
+---
+> Text("20260517-ADANA-K06-A04")	Text("20260517-ADANA-K06")	Int(5510)	Int(4)	Text("LO SIENTO BB SK")	Text("BB SK")	Text("2y d  d")	Int(2)	Text("57 +0.10")	Real(57.0)	Text("+0.10")	Text("M.A.SOLMAZ")	Text("M.A.SOLMAZ")	Int(0)	Text("İSHAK ŞAHİN")	Text("M.DOLAK")	Text("3")	Int(3)	Text("")	Int(34)	Text("Ç3Ç2Ç3")	Int(9)	Int(17)	Text("")	Null	Int(0)	Text("1,4")	Text("%28.94(2)  %28.92(2)")	Int(0)	Int(0)	Int(0)	Int(91)
+102223c102210
+< Text("20260529-ISTANBUL-K01-A12")	Text("20260529-ISTANBUL-K01")	Int(5484)	Int(12)	Text("WAITING A SUNNYDAY KG K DB BB (Koşmaz)")	Text("")	Text("4y d k")	Int(4)	Text("53")	Real(53.0)	Text("")	Text("E.AKTUĞ")	Text("E.AKTUĞ")	Int(0)	Text("ESRA ATMAN")	Text("E.USLU")	Text("11")	Int(11)	Text("")	Int(45)	Text("S2S0S5S4K7Ç6")	Int(9)	Int(14)	Text("1:24.77")	Real(84.77)	Int(1)	Text("")	Text("%0.43(16)")	Int(0)	Int(0)	Int(0)	Int(17)
+---
+> Text("20260529-ISTANBUL-K01-A12")	Text("20260529-ISTANBUL-K01")	Int(3405)	Int(12)	Text("WAITING A SUNNYDAY KG K DB BB (Koşmaz)")	Text("KG K DB BB")	Text("4y d k")	Int(4)	Text("53")	Real(53.0)	Text("")	Text("E.AKTUĞ")	Text("E.AKTUĞ")	Int(0)	Text("ESRA ATMAN")	Text("E.USLU")	Text("11")	Int(11)	Text("")	Int(45)	Text("S2S0S5S4K7Ç6")	Int(9)	Int(14)	Text("1:24.77")	Real(84.77)	Int(1)	Text("")	Text("%0.43(16)")	Int(0)	Int(0)	Int(0)	Int(17)
