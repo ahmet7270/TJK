@@ -4,7 +4,7 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 
 ## 1. Takvim kapsamı
 
-**takvim 61 çift: TAMAMLANDI 60, INCELEME_GEREKLI 1, EKSIK 0, HENUZ_DENENMEDI 0; takvim dışı DB günü 0**
+**takvim 61 çift: TAMAMLANDI 60, INCELEME_GEREKLI 1, EKSIK 0, AKTARILMADI 0, HENUZ_DENENMEDI 0; takvim dışı DB günü 0**
 
 | Tarih | Hipodrom | Durum | Yarış günü no | Ayrıntı |
 |---|---|---|---|---|
@@ -74,19 +74,19 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 
 | Tablo | Bu ay | Tüm veri tabanı |
 |---|---|---|
-| yaris_gunu | 61 | 125 |
-| kosu | 481 | 966 |
-| katilim | 4776 | 9511 |
-| sonuc | 4776 | 9511 |
-| agf_gozlem | 6342 | 12326 |
-| bahis_sonucu | 3828 | 7625 |
-| ganyan_kontrol | 481 | 966 |
-| altili | 105 | 206 |
-| altili_ayak | 630 | 1236 |
-| altili_odeme | 105 | 200 |
-| inceleme_nedeni | 2 | 4 |
-| kaynak_dosya (ayın kullandığı) | 123 | 252 |
-| at (tüm) | – | 3619 |
+| yaris_gunu | 61 | 260 |
+| kosu | 481 | 2053 |
+| katilim | 4776 | 20432 |
+| sonuc | 4776 | 20432 |
+| agf_gozlem | 6342 | 26235 |
+| bahis_sonucu | 3828 | 16361 |
+| ganyan_kontrol | 481 | 2053 |
+| altili | 105 | 447 |
+| altili_ayak | 630 | 2682 |
+| altili_odeme | 105 | 444 |
+| inceleme_nedeni | 2 | 97 |
+| kaynak_dosya (ayın kullandığı) | 123 | 522 |
+| at (tüm) | – | 4933 |
 
 ## 3. İnceleme nedenleri
 
@@ -120,17 +120,12 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 - `20260321-ADANA-K09`: planlanan 2026-03-21 18:00 → gerçekleşen 2026-03-23 14:45 · kaynak `20260323-ADANA-sonuc.csv`
 
 - Birden çok güne bağlı sonuç dosyası (tüm DB): 0
-- Aynı hipodrom + yarış günü no'su 90 gün içinde iki gün (tüm DB): 0
+- Aynı hipodrom + yarış günü no'su 14 gün içinde iki gün (erteleme sonrası çift aktarım belirtisi; numaralar sezon başında sıfırlanır) (tüm DB): 0
 - Aynı gün + koşu no iki kez: 0
 
 ## 6. Yarış günü numarası sürekliliği (hipodrom başına, önceki DB günüyle)
 
-- Adana: 2026-01-31 no 13 → 2026-03-01 no 26
-- Antalya: 2026-01-30 no 12 → 2026-03-03 no 23
-- Bursa: 2026-01-26 no 6 → 2026-03-02 no 13
-- İstanbul: 2026-01-31 no 9 → 2026-03-04 no 18
-- İzmir: 2026-01-30 no 14 → 2026-03-01 no 27
-- Şanlıurfa: 2026-01-28 no 8 → 2026-03-02 no 17
+Bu ayda numara boşluğu yok (önceki gün DB'de olan hipodromlar için).
 
 ## 7. Altılı kombinasyon ve ödemeleri
 
@@ -144,13 +139,9 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 - `PRAGMA user_version`: 4
 - `PRAGMA foreign_key_check`: 0 satır
 - `PRAGMA integrity_check`: ok
-- Tam döküm SHA-256 (16 tablo): `e31cfe596c7c7ec52e1f3b2fa9def041f47a182ec20780a3f02d6708a28e945d`
-- Tablo satırları: agf_gozlem 12326, altili 206, altili_ayak 1236, altili_ayak_gecerli 1388, altili_odeme 200, altili_odeme_ayak 1364, at 3619, bahis_sonucu 7625, bahis_uyarisi 35, ganyan_kontrol 966, inceleme_nedeni 4, katilim 9511, kaynak_dosya 252, kosu 966, sonuc 9511, yaris_gunu 125
+- Tam döküm SHA-256 (16 tablo): `774526ea8907e99b05052394ac9df049d6244d8219b81048caa53ed048009cd9`
+- Tablo satırları: agf_gozlem 26235, altili 447, altili_ayak 2682, altili_ayak_gecerli 3068, altili_odeme 444, altili_odeme_ayak 3073, at 4933, bahis_sonucu 16361, bahis_uyarisi 75, ganyan_kontrol 2053, inceleme_nedeni 97, katilim 20432, kaynak_dosya 522, kosu 2053, sonuc 20432, yaris_gunu 260
 
 ## Sonuç
 
 Sert hata yok.
-
-## İkinci aktarım
-
-Aynı girdilerle ikinci aktarımdan sonra tüm tabloların sıralı tam dökümü birinciyle bayt bayt aynı (`cmp`).

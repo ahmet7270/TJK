@@ -69,19 +69,19 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 
 | Tablo | Bu ay | Tüm veri tabanı |
 |---|---|---|
-| yaris_gunu | 56 | 181 |
-| kosu | 431 | 1397 |
-| katilim | 4203 | 13714 |
-| sonuc | 4203 | 13714 |
-| agf_gozlem | 5620 | 17946 |
-| bahis_sonucu | 3393 | 11018 |
-| ganyan_kontrol | 431 | 1397 |
-| altili | 96 | 302 |
-| altili_ayak | 576 | 1812 |
-| altili_odeme | 99 | 299 |
-| inceleme_nedeni | 1 | 5 |
-| kaynak_dosya (ayın kullandığı) | 112 | 364 |
-| at (tüm) | – | 3780 |
+| yaris_gunu | 56 | 260 |
+| kosu | 431 | 2053 |
+| katilim | 4203 | 20432 |
+| sonuc | 4203 | 20432 |
+| agf_gozlem | 5620 | 26235 |
+| bahis_sonucu | 3393 | 16361 |
+| ganyan_kontrol | 431 | 2053 |
+| altili | 96 | 447 |
+| altili_ayak | 576 | 2682 |
+| altili_odeme | 99 | 444 |
+| inceleme_nedeni | 1 | 97 |
+| kaynak_dosya (ayın kullandığı) | 112 | 522 |
+| at (tüm) | – | 4933 |
 
 ## 3. İnceleme nedenleri
 
@@ -100,7 +100,7 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 Bu ay planlandığı gün dışında koşulan ya da sonucu olmayan koşu yok.
 
 - Birden çok güne bağlı sonuç dosyası (tüm DB): 0
-- Aynı hipodrom + yarış günü no'su aynı takvim yılında iki gün (tüm DB): 0
+- Aynı hipodrom + yarış günü no'su 14 gün içinde iki gün (erteleme sonrası çift aktarım belirtisi; numaralar sezon başında sıfırlanır) (tüm DB): 0
 - Aynı gün + koşu no iki kez: 0
 
 ## 6. Yarış günü numarası sürekliliği (hipodrom başına, önceki DB günüyle)
@@ -123,13 +123,9 @@ Bu ayda numara boşluğu yok (önceki gün DB'de olan hipodromlar için).
 - `PRAGMA user_version`: 4
 - `PRAGMA foreign_key_check`: 0 satır
 - `PRAGMA integrity_check`: ok
-- Tam döküm SHA-256 (16 tablo): `fcc43a64dc46181631c00e90040e6eccd6a84ee3dc38979470e9161619e8397c`
-- Tablo satırları: agf_gozlem 17946, altili 302, altili_ayak 1812, altili_ayak_gecerli 2042, altili_odeme 299, altili_odeme_ayak 2033, at 3780, bahis_sonucu 11018, bahis_uyarisi 45, ganyan_kontrol 1397, inceleme_nedeni 5, katilim 13714, kaynak_dosya 364, kosu 1397, sonuc 13714, yaris_gunu 181
+- Tam döküm SHA-256 (16 tablo): `774526ea8907e99b05052394ac9df049d6244d8219b81048caa53ed048009cd9`
+- Tablo satırları: agf_gozlem 26235, altili 447, altili_ayak 2682, altili_ayak_gecerli 3068, altili_odeme 444, altili_odeme_ayak 3073, at 4933, bahis_sonucu 16361, bahis_uyarisi 75, ganyan_kontrol 2053, inceleme_nedeni 97, katilim 20432, kaynak_dosya 522, kosu 2053, sonuc 20432, yaris_gunu 260
 
 ## Sonuç
 
 Sert hata yok.
-
-## İkinci aktarım
-
-Aynı girdilerle ikinci aktarımdan sonra tüm tabloların sıralı tam dökümü birinciyle bayt bayt aynı (`cmp`); bu denetimdeki döküm de aynı.

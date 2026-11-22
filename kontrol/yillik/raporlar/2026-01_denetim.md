@@ -4,7 +4,7 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 
 ## 1. Takvim kapsamı
 
-**takvim 62 çift: TAMAMLANDI 61, INCELEME_GEREKLI 1, EKSIK 0, HENUZ_DENENMEDI 0; takvim dışı DB günü 0**
+**takvim 62 çift: TAMAMLANDI 61, INCELEME_GEREKLI 1, EKSIK 0, AKTARILMADI 0, HENUZ_DENENMEDI 0; takvim dışı DB günü 0**
 
 | Tarih | Hipodrom | Durum | Yarış günü no | Ayrıntı |
 |---|---|---|---|---|
@@ -75,19 +75,19 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 
 | Tablo | Bu ay | Tüm veri tabanı |
 |---|---|---|
-| yaris_gunu | 62 | 125 |
-| kosu | 469 | 966 |
-| katilim | 4610 | 9511 |
-| sonuc | 4610 | 9511 |
-| agf_gozlem | 5794 | 12326 |
-| bahis_sonucu | 3699 | 7625 |
-| ganyan_kontrol | 469 | 966 |
-| altili | 97 | 206 |
-| altili_ayak | 582 | 1236 |
-| altili_odeme | 95 | 200 |
-| inceleme_nedeni | 2 | 4 |
-| kaynak_dosya (ayın kullandığı) | 125 | 252 |
-| at (tüm) | – | 3619 |
+| yaris_gunu | 62 | 260 |
+| kosu | 469 | 2053 |
+| katilim | 4610 | 20432 |
+| sonuc | 4610 | 20432 |
+| agf_gozlem | 5794 | 26235 |
+| bahis_sonucu | 3699 | 16361 |
+| ganyan_kontrol | 469 | 2053 |
+| altili | 97 | 447 |
+| altili_ayak | 582 | 2682 |
+| altili_odeme | 95 | 444 |
+| inceleme_nedeni | 2 | 97 |
+| kaynak_dosya (ayın kullandığı) | 125 | 522 |
+| at (tüm) | – | 4933 |
 
 ## 3. İnceleme nedenleri
 
@@ -111,7 +111,7 @@ Veri tabanı: `/home/user/TJK/calisma/tjk_yillik.sqlite` (salt okunur açıldı)
 - `20260111-ADANA-K08`: planlanan 2026-01-11 22:00 → gerçekleşen 2026-01-12 18:45 · kaynak `20260112-ADANA-sonuc.csv`
 
 - Birden çok güne bağlı sonuç dosyası (tüm DB): 0
-- Aynı hipodrom + yarış günü no'su 90 gün içinde iki gün (tüm DB): 0
+- Aynı hipodrom + yarış günü no'su 14 gün içinde iki gün (erteleme sonrası çift aktarım belirtisi; numaralar sezon başında sıfırlanır) (tüm DB): 0
 - Aynı gün + koşu no iki kez: 0
 
 ## 6. Yarış günü numarası sürekliliği (hipodrom başına, önceki DB günüyle)
@@ -128,13 +128,9 @@ Bu ayda numara boşluğu yok (önceki gün DB'de olan hipodromlar için).
 - `PRAGMA user_version`: 4
 - `PRAGMA foreign_key_check`: 0 satır
 - `PRAGMA integrity_check`: ok
-- Tam döküm SHA-256 (16 tablo): `3320b58d0719ee8fe7ddb7490f68dc0b78fa690a62e6d676c0b81c4c5934f399`
-- Tablo satırları: agf_gozlem 12326, altili 206, altili_ayak 1236, altili_ayak_gecerli 1388, altili_odeme 200, altili_odeme_ayak 1364, at 3619, bahis_sonucu 7625, bahis_uyarisi 35, ganyan_kontrol 966, inceleme_nedeni 4, katilim 9511, kaynak_dosya 252, kosu 966, sonuc 9511, yaris_gunu 125
+- Tam döküm SHA-256 (16 tablo): `774526ea8907e99b05052394ac9df049d6244d8219b81048caa53ed048009cd9`
+- Tablo satırları: agf_gozlem 26235, altili 447, altili_ayak 2682, altili_ayak_gecerli 3068, altili_odeme 444, altili_odeme_ayak 3073, at 4933, bahis_sonucu 16361, bahis_uyarisi 75, ganyan_kontrol 2053, inceleme_nedeni 97, katilim 20432, kaynak_dosya 522, kosu 2053, sonuc 20432, yaris_gunu 260
 
 ## Sonuç
 
 Sert hata yok.
-
-## İkinci aktarım
-
-Aynı girdilerle ikinci aktarımdan sonra tüm tabloların sıralı tam dökümü birinciyle bayt bayt aynı (`cmp`).

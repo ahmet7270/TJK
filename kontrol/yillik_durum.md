@@ -1,7 +1,7 @@
 # Yıllık durum: 22.11.2025 – 22.11.2026
 
-Üretim: `kontrol/yillik/durum_yaz.sh` (her ay için `tjk_denetim`, veri tabanı salt okunur) · 2026-11-22T17:02Z
-Veri tabanı: `tjk_yillik.sqlite` · SHA-256 `2bb8a8a7756af9a5b2c45efb09891074af621266639eb040dc3f1bd49abe7c72`
+Üretim: `kontrol/yillik/durum_yaz.sh` (her ay için `tjk_denetim`, veri tabanı salt okunur) · 2026-11-22T17:06Z
+Veri tabanı: `tjk_yillik.sqlite` · SHA-256 `60edc984bdf0f62f701dec38f61ac11a134cc9df16e4fefc0273082546c1d83d`
 
 Takvim: resmî 2025 ve 2026 PDF'leri (`kontrol/yillik/takvim/KAYNAKLAR.md`), 760 çift. Sınıflar: TAMAMLANDI (gün TAMAM),
 INCELEME_GEREKLI (gün aktarıldı, gerekçeli açık kayıt var), EKSIK (denendi, dosya alınamadı/doğrulanamadı),
@@ -9,26 +9,28 @@ AKTARILMADI (iki dosya doğrulandı, aktarım bekliyor), HENUZ_DENENMEDI (indirm
 
 | Ay | Takvim çifti | Tamam | İnceleme | Eksik | İndirildi, aktarılmadı | Denenmedi | Takvim dışı | Koşu | Katılım | Altılı | FK | integrity | 2. aktarım | Sert hata | Durum |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-11 | 18 | 0 | 0 | 0 | 0 | 18 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | henüz başlanmadı |
+| 2025-11 | 18 | 18 | 0 | 0 | 0 | 0 | 0 | 149 | 1489 | 31 | 0 | ok | — | yok | tamamlandı |
 | 2025-12 | 62 | 1 | 0 | 0 | 0 | 61 | 0 | 8 | 68 | 2 | 0 | ok | — | **VAR** | denenmedi |
-| 2026-01 | 62 | 61 | 1 | 0 | 0 | 0 | 0 | 469 | 4610 | 97 | 0 | ok | aynı | yok | inceleme var |
-| 2026-02 | 56 | 55 | 1 | 0 | 0 | 0 | 0 | 431 | 4203 | 96 | 0 | ok | aynı | yok | inceleme var |
-| 2026-03 | 61 | 60 | 1 | 0 | 0 | 0 | 0 | 481 | 4776 | 105 | 0 | ok | aynı | yok | inceleme var |
-| 2026-04 | 62 | 0 | 0 | 0 | 33 | 29 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | denenmedi |
-| 2026-05 | 66 | 0 | 0 | 0 | 0 | 66 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | henüz başlanmadı |
+| 2026-01 | 62 | 61 | 1 | 0 | 0 | 0 | 0 | 469 | 4610 | 97 | 0 | ok | — | yok | inceleme var |
+| 2026-02 | 56 | 55 | 1 | 0 | 0 | 0 | 0 | 431 | 4203 | 96 | 0 | ok | — | yok | inceleme var |
+| 2026-03 | 61 | 60 | 1 | 0 | 0 | 0 | 0 | 481 | 4776 | 105 | 0 | ok | — | yok | inceleme var |
+| 2026-04 | 62 | 60 | 1 | 1 | 0 | 0 | 0 | 507 | 5229 | 114 | 0 | ok | aynı | yok | eksik var |
+| 2026-05 | 66 | 0 | 0 | 0 | 39 | 27 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | denenmedi |
 | 2026-06 | 64 | 1 | 0 | 0 | 0 | 63 | 0 | 8 | 57 | 2 | 0 | ok | — | **VAR** | denenmedi |
 | 2026-07 | 66 | 0 | 0 | 0 | 0 | 66 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | henüz başlanmadı |
 | 2026-08 | 67 | 0 | 0 | 0 | 0 | 67 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | henüz başlanmadı |
 | 2026-09 | 63 | 0 | 0 | 0 | 0 | 63 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | henüz başlanmadı |
 | 2026-10 | 67 | 0 | 0 | 0 | 0 | 67 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | henüz başlanmadı |
 | 2026-11 | 46 | 0 | 0 | 0 | 0 | 46 | 0 | 0 | 0 | 0 | 0 | ok | — | yok | henüz başlanmadı |
-| **Toplam** | **760** | **178** | **3** | **0** | **33** | **546** | | | | | | | | | |
+| **Toplam** | **760** | **256** | **4** | **1** | **39** | **460** | | | | | | | | | |
 
 ## Tamamlanmamış çiftler (ay bazında)
 
 ### 2025-11
 
-Henüz denenmeyen: 2025-11-22 Adana, 2025-11-22 İstanbul, 2025-11-23 İzmir, 2025-11-23 Adana, 2025-11-24 Bursa, 2025-11-24 Şanlıurfa, 2025-11-25 Adana, 2025-11-25 Antalya, 2025-11-26 İstanbul, 2025-11-26 Elazığ, 2025-11-27 İzmir, 2025-11-27 Antalya, 2025-11-28 Antalya, 2025-11-28 İzmir, 2025-11-29 Adana, 2025-11-29 İstanbul, 2025-11-30 İzmir, 2025-11-30 Adana
+Takvimdeki tüm çiftler TAMAMLANDI.
+
+Altılı, birden çok kazanan kombinasyonlu: 20251127-ANTALYA-A1, 20251127-ANTALYA-A2 (her kombinasyon kendi ödemesine bağlı).
 
 ### 2025-12
 
@@ -62,11 +64,16 @@ Altılı, birden çok kazanan kombinasyonlu: 20260331-ANTALYA-A2 (her kombinasyo
 
 ### 2026-04
 
-Henüz denenmeyen: 2026-04-17 İstanbul, 2026-04-18 İzmir, 2026-04-18 Ankara, 2026-04-18 Diyarbakır, 2026-04-19 İstanbul, 2026-04-19 Adana, 2026-04-20 Bursa, 2026-04-20 Şanlıurfa, 2026-04-21 Kocaeli, 2026-04-21 Elazığ, 2026-04-22 İstanbul, 2026-04-22 Elazığ, 2026-04-23 Ankara, 2026-04-23 İzmir, 2026-04-24 Bursa, 2026-04-24 İstanbul, 2026-04-25 İzmir, 2026-04-25 Ankara, 2026-04-25 Diyarbakır, 2026-04-26 İstanbul, 2026-04-26 Adana, 2026-04-27 Bursa, 2026-04-27 Şanlıurfa, 2026-04-28 Kocaeli, 2026-04-28 Elazığ, 2026-04-29 İstanbul, 2026-04-29 Elazığ, 2026-04-30 Ankara, 2026-04-30 İzmir
+| Tarih | Hipodrom | Durum | Yarış günü no | Ayrıntı |
+|---|---|---|---|---|
+| 2026-04-03 | İzmir | INCELEME_GEREKLI | 41 | ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K01-A01 BIG RUGGED (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K01-A02 SPARK (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K01-A03 ATLASIN LEYDİSİ (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K01-A04 AYLEMA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K01-A05 BOLUN (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K01-A06 GÜLFEM HATUN (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K01-A07 HARD TIGER (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K01-A08 HOLLABACK GIRL (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K01-A09 KIZIL ANKA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K01-A10 SEBELLA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K01-A11 VAHŞİ YILDIZ (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K02-A01 PHANTOM STRIKE (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K02-A02 ERİNÖZ ALP (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K02-A03 AVENGING (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K02-A04 MR DEMİRAYAK (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K02-A05 ROOCKET OF RUNNER (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K02-A06 BURNING HEART (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K03-A01 OLAYIN ASLI (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K03-A02 CASHOUT (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K03-A03 MAGGIE (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K03-A04 ALFA ORENDA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K03-A05 AMORE GARDEN (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K03-A06 DARK RİSHA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K03-A07 KAİMEİ (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K03-A08 LADY ONAT (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K03-A09 QUEEN TUANA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K03-A10 RISE REASON (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K04-A01 OBRADA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K04-A02 MUĞLALI ADNAN (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K04-A03 THE ADMIRAL (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K04-A04 BORN FOR GLORY (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K04-A05 THE BIG BANG (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K04-A06 BEULIEU (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K04-A07 THUNDER JEST (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K04-A08 TIZ A ROCKET (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K04-A09 DILO (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K04-A10 LA BOMBONERA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K04-A11 LATİF AĞA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K04-A12 MİKEA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K05-A01 ÇİFTÇİ STELLA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K05-A02 DAUGHTER OF GODDES (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K05-A03 HALEP MEKTUBU (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K05-A04 MAKE IT RAIN (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K05-A05 MAMMA LUNA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K05-A06 POP ART (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K05-A07 ROYAL CANDY (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K05-A08 ROYAL CIPHER (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K05-A09 SENSE OF GRACE (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K05-A10 STRONG WIND (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K06-A01 BER KEMAL (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K06-A02 CANMETE (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K06-A03 İTAATSİZ (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K06-A04 KARİZMATİK (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K06-A05 RÜZGAR BARIŞ (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K06-A06 SEÇERHAN (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K06-A07 TABİP (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K06-A08 TUNÇ SİPERİ (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K07-A01 BRAVE ORPHAN (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K07-A02 ÇEPNİ (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K07-A03 GLORIOUS LIFE (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K07-A04 MOĞOL (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K07-A05 ÖNDERBEYİM (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K08-A01 JOLENE (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K08-A02 PEHLİVAN YILDIZI (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K08-A03 PRENSES SYLVESTER (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K08-A04 AEGEAN QUEEN (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K08-A05 EL RIO (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20260403-IZMIR-K08-A06 MAKUL (aday satırlar: []) \| EKURI_GRUPLARI_CELISIYOR: 4. koşu program [[9, 12]] sonuç [] (üye numaraları, sıradan bağımsız) \| BIRINCI_BULUNAMADI: 1. koşu (GANYAN []) \| BIRINCI_BULUNAMADI: 2. koşu (GANYAN []) \| BIRINCI_BULUNAMADI: 3. koşu (GANYAN []) \| BIRINCI_BULUNAMADI: 4. koşu (GANYAN []) \| BIRINCI_BULUNAMADI: 5. koşu (GANYAN []) \| BIRINCI_BULUNAMADI: 6. koşu (GANYAN []) \| BIRINCI_BULUNAMADI: 7. koşu (GANYAN []) \| BIRINCI_BULUNAMADI: 8. koşu (GANYAN []) \| BIRINCI_BULUNAMADI: 9. koşu (GANYAN []) \| ALTILI_AYAGI_EKSIK: 20260403-IZMIR-A1 1. ayak (1. koşu): sonuç dosyasında koşu yok \| ALTILI_AYAGI_EKSIK: 20260403-IZMIR-A1 2. ayak (2. koşu): sonuç dosyasında koşu yok \| ALTILI_AYAGI_EKSIK: 20260403-IZMIR-A1 3. ayak (3. koşu): sonuç dosyasında koşu yok \| ALTILI_AYAGI_EKSIK: 20260403-IZMIR-A1 4. ayak (4. koşu): sonuç dosyasında koşu yok \| ALTILI_AYAGI_EKSIK: 20260403-IZMIR-A1 5. ayak (5. koşu): sonuç dosyasında koşu yok \| ALTILI_AYAGI_EKSIK: 20260403-IZMIR-A1 6. ayak (6. koşu): sonuç dosyasında koşu yok \| ALTILI_ODEMESI_BULUNAMADI: 20260403-IZMIR-A1 son ayak (6. koşu) bahis satırında '1. 6'LI GANYAN' yok \| ALTILI_AYAGI_EKSIK: 20260403-IZMIR-A2 1. ayak (4. koşu): sonuç dosyasında koşu yok \| ALTILI_AYAGI_EKSIK: 20260403-IZMIR-A2 2. ayak (5. koşu): sonuç dosyasında koşu yok \| ALTILI_AYAGI_EKSIK: 20260403-IZMIR-A2 3. ayak (6. koşu): sonuç dosyasında koşu yok \| ALTILI_AYAGI_EKSIK: 20260403-IZMIR-A2 4. ayak (7. koşu): sonuç dosyasında koşu yok \| ALTILI_AYAGI_EKSIK: 20260403-IZMIR-A2 5. ayak (8. koşu): sonuç dosyasında koşu yok \| ALTILI_AYAGI_EKSIK: 20260403-IZMIR-A2 6. ayak (9. koşu): sonuçta birinci at yok \| ALTILI_ODEMESI_BULUNAMADI: 20260403-IZMIR-A2 son ayak (9. koşu) bahis satırında '2. 6'LI GANYAN' yok |
+| 2026-04-18 | Ankara | EKSIK |  | program HTTP 404 URL_YOK; sonuc HTTP 404 URL_YOK |
+
+Planlandığı gün dışında koşulan koşu: 8 (ayrıntı: `raporlar/2026-04_denetim.md` §5).
 
 ### 2026-05
 
-Henüz denenmeyen: 2026-05-01 Bursa, 2026-05-01 İstanbul, 2026-05-02 İzmir, 2026-05-02 Ankara, 2026-05-02 Diyarbakır, 2026-05-03 İstanbul, 2026-05-03 Adana, 2026-05-04 Bursa, 2026-05-04 Şanlıurfa, 2026-05-05 Ankara, 2026-05-05 Kocaeli, 2026-05-06 İstanbul, 2026-05-06 Elazığ, 2026-05-07 Ankara, 2026-05-07 İzmir, 2026-05-08 Bursa, 2026-05-08 İstanbul, 2026-05-09 İzmir, 2026-05-09 Ankara, 2026-05-09 Diyarbakır, 2026-05-10 İstanbul, 2026-05-10 Adana, 2026-05-11 Bursa, 2026-05-11 Şanlıurfa, 2026-05-12 Ankara, 2026-05-12 Kocaeli, 2026-05-13 İstanbul, 2026-05-13 Elazığ, 2026-05-14 Ankara, 2026-05-14 İzmir, 2026-05-15 Bursa, 2026-05-15 İstanbul, 2026-05-16 İzmir, 2026-05-16 Ankara, 2026-05-16 Diyarbakır, 2026-05-17 İstanbul, 2026-05-17 Adana, 2026-05-18 Bursa, 2026-05-18 Şanlıurfa, 2026-05-19 Ankara, 2026-05-19 Kocaeli, 2026-05-20 İstanbul, 2026-05-20 Elazığ, 2026-05-21 Ankara, 2026-05-21 İzmir, 2026-05-22 Bursa, 2026-05-22 İstanbul, 2026-05-23 İzmir, 2026-05-23 Ankara, 2026-05-23 Diyarbakır, 2026-05-24 İstanbul, 2026-05-24 Adana, 2026-05-25 Bursa, 2026-05-25 Şanlıurfa, 2026-05-26 Ankara, 2026-05-26 Kocaeli, 2026-05-27 İstanbul, 2026-05-28 Ankara, 2026-05-28 İzmir, 2026-05-29 Bursa, 2026-05-29 İstanbul, 2026-05-30 Ankara, 2026-05-30 İzmir, 2026-05-30 Diyarbakır, 2026-05-31 İstanbul, 2026-05-31 Adana
+Henüz denenmeyen: 2026-05-19 Ankara, 2026-05-19 Kocaeli, 2026-05-20 İstanbul, 2026-05-20 Elazığ, 2026-05-21 Ankara, 2026-05-21 İzmir, 2026-05-22 Bursa, 2026-05-22 İstanbul, 2026-05-23 İzmir, 2026-05-23 Ankara, 2026-05-23 Diyarbakır, 2026-05-24 İstanbul, 2026-05-24 Adana, 2026-05-25 Bursa, 2026-05-25 Şanlıurfa, 2026-05-26 Ankara, 2026-05-26 Kocaeli, 2026-05-27 İstanbul, 2026-05-28 Ankara, 2026-05-28 İzmir, 2026-05-29 Bursa, 2026-05-29 İstanbul, 2026-05-30 Ankara, 2026-05-30 İzmir, 2026-05-30 Diyarbakır, 2026-05-31 İstanbul, 2026-05-31 Adana
 
 ### 2026-06
 
@@ -92,3 +99,30 @@ Henüz denenmeyen: 2026-10-01 Ankara, 2026-10-01 İzmir, 2026-10-02 Bursa, 2026-
 
 Henüz denenmeyen: 2026-11-01 İstanbul, 2026-11-01 Adana, 2026-11-02 Bursa, 2026-11-02 Şanlıurfa, 2026-11-03 Adana, 2026-11-03 Kocaeli, 2026-11-04 İstanbul, 2026-11-04 Elazığ, 2026-11-05 Ankara, 2026-11-05 İzmir, 2026-11-06 Bursa, 2026-11-06 İstanbul, 2026-11-07 İzmir, 2026-11-07 Ankara, 2026-11-07 Diyarbakır, 2026-11-08 İstanbul, 2026-11-08 Adana, 2026-11-09 Bursa, 2026-11-09 Şanlıurfa, 2026-11-10 Adana, 2026-11-10 Kocaeli, 2026-11-11 İstanbul, 2026-11-11 Elazığ, 2026-11-12 Ankara, 2026-11-12 İzmir, 2026-11-13 Bursa, 2026-11-13 İstanbul, 2026-11-14 İzmir, 2026-11-14 Ankara, 2026-11-14 Diyarbakır, 2026-11-15 İstanbul, 2026-11-15 Adana, 2026-11-16 Bursa, 2026-11-16 Şanlıurfa, 2026-11-17 Adana, 2026-11-17 Antalya, 2026-11-18 İstanbul, 2026-11-18 Elazığ, 2026-11-19 İzmir, 2026-11-19 Antalya, 2026-11-20 Antalya, 2026-11-20 İzmir, 2026-11-21 Adana, 2026-11-21 İstanbul, 2026-11-22 İzmir, 2026-11-22 Adana
 
+## Kaynak hataları ve kararlar
+
+| Tarih / gün | Konu | Kanıt | Karar |
+|---|---|---|---|
+| 2026-01-11 Adana (5. yarış günü) | 4.–8. koşular 11.01 sonuç dosyasında yok | 12.01 Adana program/sonuç dosyaları (takvimde 12.01 Adana yok) başlıkları `Adana;(5. Yarış Günü);12/01/2026`, yalnızca 4.–8. koşular; saatler 20:00–22:00 → 17:15–18:45, cins/yaş/kilo/mesafe aynı | `--ek-sonuc 20260112-ADANA-sonuc.csv` + erteleme notu (`listeler/2026-01_ozel.tsv`). 5 koşu ERTELENDI, tek kez sayıldı. |
+| 2026-01-11 Adana | 1. ve 2. altılının ödemesi yok | 12.01 dosyasında `6'LI GANYAN` ödemesi yok; 8. koşuda 5'li/4'lü ganyan ödenmiş. İade/iptal ibaresi yok | Ödemeler boş (NULL, ödeme satırı yok), `ALTILI_ODEMESI_BULUNAMADI` ×2 ile incelemede (15.03 Adana ile aynı durum). |
+| 2026-02-28 İstanbul | 4. koşu bahis satırında numaralar boş | `GANYAN() :2,35 TL, İKİLİ() :4,30 TL, SIRALI İKİLİ() :9,70 TL, 3. ÇİFTE() :6,20 TL` | Kaynak hatası. Birinci sonuç listesinden (6 LUCERYS) biliniyor; ödeme numarası uydurulmadı. `GANYAN_SATIRI_BULUNAMADI` ile incelemede. |
+| 2026-02-02 Bursa K3, 2026-02-16 Bursa K6 | İki GANYAN ödemesi aynı tutar | Kazanan ile eküri eşi (`[(1)…,(7)…] eküridir.` / `[(3)…,(4)…]`) aynı GANYAN tutarıyla; dereceler farklı, Fark `Burun` / `Yarım Boy` | Ölü yarış değil, eküri ödemesi. Ayrıştırıcı 0.14.0: yalnızca ölü yarış kanıtı tutmadığında ve tüm numaralar aynı eküride, tutarlar eşit, liste 1. atı bunlardan biriyse incelemeye düşürmez (`tests/yillik_istisnalar.rs`, olumsuz testlerle). GANYAN kontrolü `EKURI_ILE_ACIKLANDI`. |
+| 2026-02-06 İzmir A1, 2026-02-24 Adana A1/A2 | Ortak birincilik, birden çok altılı kombinasyonu | Ayrıştırıcının 5 kanıtı (ayrı GANYAN'lar, ilk N sıra, oran = ödeme, `At Başı`, aynı derece) | Her kazanan kombinasyon kendi ödemesine ve bahis satırına bağlı (`altili_odeme`), geçerli numaralar `ORTAK_BIRINCI`. |
+| 2026-04-03 İzmir (41. yarış günü) | Sonuç dosyasında sonuç yok | Sonuç CSV'si (2133 bayt) yalnızca 9. koşunun başlığını ve 15 atlık start listesini derece/ganyan/fark olmadan içeriyor; 1.–8. koşular yok. 04.04 İzmir program/sonuç adresleri HTTP 404; 05.04 İzmir = 42. yarış günü | Program verisi aktarıldı; 1.–8. koşu `SONUC_YOK`, 9. koşu sonuçları `BILINMEYEN`, altılı ödemeleri boş; gün incelemede (`ESLESMEYEN_PROGRAM_KAYDI` ×68 vb.). Koşuların yapılıp yapılmadığı kaynaklarda yazmıyor. |
+| 2026-04-18 Ankara | Program ve sonuç adresleri HTTP 404 | 16.04 Ankara = 1., 23.04 Ankara = 3. yarış günü; 2. gün 17, 19, 20, 21, 22.04 adreslerinde de yok (12 istek, hepsi 404; `listeler/2026-04_ek_durum.tsv`) | EKSIK. Tahminle doldurulmadı. 2. yarış gününün tarihi/dosyası bulunamadı. |
+| 2026-03-15 Adana | İki açık ödeme | Önceki inceleme (`kontrol/mart_istisnalar.md` §5) | Korundu: `GANYAN_SATIRI_BULUNAMADI: 3. koşu`, `ALTILI_ODEMESI_BULUNAMADI: …-A1` (A1 ödemesi NULL). |
+
+### Erişim
+
+- `medya-cdn.tjk.org/robots.txt`: HTTP 404 (kural yok). Bu çalışmada hiçbir medya-cdn isteği 403/429/5xx almadı (ayrıntı: `listeler/AY_durum.tsv`).
+- `www.tjk.org/robots.txt`: HTTP 200, `User-agent: *` → `Disallow: /`. Bu siteye otomatik istek yapılmadı; resmî erteleme duyuruları
+  okunmadı. Ertelemeler dosya içeriğinden (aynı yarış günü numarası, aynı koşu tanımları) kuruldu, not metninde belirtildi.
+
+### Araç değişiklikleri
+
+- `tjk-fetch takvim PDF ÇIKTI YIL İLK SON`: herhangi bir yılın takviminden tarih aralığı (Mart çıktısı değişmedi).
+- `tjk-fetch girdiler`: doğrulanmış çiftlerden aktarım girdisi (SHA-256 indirme kaydıyla eşleşmeli).
+- `tjk_denetim`: aylık denetim (salt okunur). `tjk_ayristirici` 0.14.0: eküri GANYAN ödemesi.
+- 0.14.0 regresyonu: Ocak + Mart (123 gün) yeniden aktarıldı; 16 tablonun tam dökümünde **yalnızca** `ayristirici_surumu` değişti.
+- Kaynak URL/HTTP: v4 şeması değiştirilmedi. `kaynak_dosya.sha256` → `listeler/AY_durum.tsv` (URL, HTTP, bayt, SHA-256, zaman);
+  denetim §4 her ayın kullandığı her kaynak dosyanın bu kayıtta HTTP 200 + ICERIK_DOGRULANDI ile bulunduğunu doğrular.

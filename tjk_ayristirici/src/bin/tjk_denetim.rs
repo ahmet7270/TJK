@@ -246,11 +246,11 @@ fn calistir() -> Result<(), String> {
     let cift = q("SELECT sonuc_kaynak_id, group_concat(DISTINCT gun_id) FROM kosu WHERE sonuc_kaynak_id IS NOT NULL GROUP BY 1 HAVING COUNT(DISTINCT gun_id) > 1")?;
     // aynı hipodrom + yarış günü no 90 gün içinde iki kez
     let cift_no = q(
-        "SELECT a.gun_id, b.gun_id FROM yaris_gunu a JOIN yaris_gunu b ON a.hipodrom = b.hipodrom AND a.yaris_gunu_no = b.yaris_gunu_no AND a.gun_id < b.gun_id AND substr(a.tarih, 1, 4) = substr(b.tarih, 1, 4)",
+        "SELECT a.gun_id, b.gun_id FROM yaris_gunu a JOIN yaris_gunu b ON a.hipodrom = b.hipodrom AND a.yaris_gunu_no = b.yaris_gunu_no AND a.gun_id < b.gun_id AND julianday(b.tarih) - julianday(a.tarih) <= 14",
     )?;
     let cift_kosu = q("SELECT COUNT(*) FROM (SELECT gun_id, kosu_no FROM kosu GROUP BY 1, 2 HAVING COUNT(*) > 1)")?;
     r += &format!(
-        "\n- Birden çok güne bağlı sonuç dosyası (tüm DB): {}\n- Aynı hipodrom + yarış günü no'su aynı takvim yılında iki gün (tüm DB): {}\n- Aynı gün + koşu no iki kez: {}\n\n",
+        "\n- Birden çok güne bağlı sonuç dosyası (tüm DB): {}\n- Aynı hipodrom + yarış günü no'su 14 gün içinde iki gün (erteleme sonrası çift aktarım belirtisi; numaralar sezon başında sıfırlanır) (tüm DB): {}\n- Aynı gün + koşu no iki kez: {}\n\n",
         cift.len(),
         cift_no.len(),
         cift_kosu[0][0].metin()
