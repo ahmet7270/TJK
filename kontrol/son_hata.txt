@@ -1,0 +1,8 @@
+Adım: Mart 2026 istisna incelemesi (2026-11-22). İlk HTTP 403'te ağ istekleri durduruldu.
+
+1) https://www.tjk.org/robots.txt
+curl: (56) CONNECT tunnel failed, response 403
+(bulut ortamı ağ politikası www.tjk.org'a izin vermiyor; istek TJK'ya ulaşmadı)
+
+2) https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-15/
+HTTP 403 — 403 - Forbidden: Access is denied.
