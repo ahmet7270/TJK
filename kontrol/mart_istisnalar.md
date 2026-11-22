@@ -125,3 +125,24 @@ Ertelemeye ilişkin bilgiler kullanıcı beyanı olarak `--ertelenme-notu` ile k
   - Beklenmedik değişiklik yok. Daha önce TAMAM olan 46 günün hepsi hâlâ TAMAM.
 - Normal günlerde yeni alanlar (`ertelenen_kosular`, `ortak_birincilikler`, `kazanan_kombinasyonlar`) yazılmıyor. Her güne yeni
   `kosu_tarihleri.csv` dosyası ekleniyor; normal günde tüm koşular PLANLANDIGI_GUN.
+
+## 5. Ek araştırma: 15.03.2026 Adana açık ödeme kayıtları (2026-11-22)
+
+- **Aranan:** 3. koşu GANYAN ödemesi ve 1. altılının (A1, 1.–6. koşu) ödemesi ya da iade kararı.
+- **İncelenen resmî belge:** 16.03 Adana program CSV'si, `kontrol/ham/20260316-ADANA-program.csv`
+  (https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-16/CSV/GunlukYarisProgrami/16.03.2026-Adana-GunlukYarisProgrami-TR.csv,
+  HTTP 200, 12063 bayt, SHA-256 `655800eeed82567d53d9c689784e8d68b2ecfcfd2b56ddf7bbcebb9f6aafdb2b`). Başlık `Adana;(32. Yarış Günü);16/03/2026`;
+  yalnızca 3.–8. koşular var.
+  - 3. koşu bahis listesi: `7'Lİ PLASE;7'Lİ GANYAN;2. 6'LI GANYAN Bu koşudan başlar;3. ÇİFTE Bu koşudan başlar;GANYAN;İKİLİ;SIRALI İKİLİ;SABİT GANYAN;SABİT İKİLİ;…`.
+    GANYAN programda var, ama 16.03 sonuç dosyasının 3. koşu satırında GANYAN ödemesi yok.
+  - `1. 6'LI GANYAN` 16.03 programında geçmiyor.
+  - 15.03 ve 16.03 program/sonuç dosyalarında "iade", "iptal", "geçersiz", "ertel" ibaresi yok.
+- **www.tjk.org:** Ortamın izin listesine kullanıcı onayıyla eklendi. Siteye yapılan ilk istek (robots.txt) oturumun otomatik izin
+  denetimi tarafından reddedildi (`Unauthorized Access`); başka yoldan denenmedi. Resmî sonuç sayfası ve bahis duyuruları okunamadı.
+- **Karar:** Tutar ya da iade için doğrudan kanıt yok. `GANYAN_SATIRI_BULUNAMADI: 3. koşu` ve `ALTILI_ODEMESI_BULUNAMADI: 20260315-ADANA-A1`
+  **açık** kalıyor. Doğrulanmış sekiz koşu (1–2: 15.03 dosyası; 3–8: 16.03 dosyası; 77/77 at) değişmeden korunuyor.
+
+## Mart toplamı (güncel)
+
+6–10 Mart'ın 10 çifti indirilip işlendi; hepsi TAMAM (`kontrol/son_test.md`). Resmî takvimdeki 61 planlı çiftin **60'ı tamamlandı**,
+**1'i (15.03 Adana) incelemede**.

@@ -31,6 +31,8 @@ struct Satir {
     rol: String,
     url: String,
     yerel: String,
+    /// Listede içeriği doğrulanmış olarak işaretli mevcut ham dosya: (dosya adı, sha256)
+    mevcut: Option<(String, String)>,
 }
 
 #[derive(Clone, Default)]
@@ -155,12 +157,18 @@ fn simdi() -> u64 {
 pub fn run(a: &[String]) {
     let m = secenekler(a);
     let g = |k: &str| m.get(k).cloned().unwrap_or_else(|| dur(format!("--{k} gerekli")));
-    let (liste, atla, ham, durum_yol, ayristirici, cikti, rapor) =
-        (g("liste"), g("atla"), PathBuf::from(g("ham")), PathBuf::from(g("durum")), g("ayristirici"), PathBuf::from(g("cikti")), g("rapor"));
+    let (liste, ham, durum_yol, ayristirici, cikti, rapor) =
+        (g("liste"), PathBuf::from(g("ham")), PathBuf::from(g("durum")), g("ayristirici"), PathBuf::from(g("cikti")), g("rapor"));
+    // --atla isteğe bağlı: verilirse listede tam bir çift (2 satır) atlanır
+    let atla = m.get("atla").cloned();
     let hata_yol = g("hata");
     let beklenen_cift: usize = g("beklenen-cift").parse().unwrap();
     let bekle_ms: u64 = m.get("bekle-ms").map_or(2000, |x| x.parse().unwrap());
-    let (atla_t, atla_h) = atla.split_once('|').unwrap_or_else(|| dur("--atla 'TARİH|HİPODROM' olmalı".into()));
+    let (atla_t, atla_h) = match &atla {
+        Some(a) => a.split_once('|').unwrap_or_else(|| dur("--atla 'TARİH|HİPODROM' olmalı".into())),
+        None => ("", ""),
+    };
+    let beklenen_atlanan = if atla.is_some() { 2 } else { 0 };
 
     // ---- 1) çalışma listesi ve sayım kontrolü
     let t = std::fs::read_to_string(&liste).unwrap_or_else(|e| dur(format!("{liste}: {e}")));
@@ -168,11 +176,18 @@ pub fn run(a: &[String]) {
     let head: Vec<&str> = lines.next().unwrap_or("").split('\t').collect();
     let ix = |n: &str| head.iter().position(|c| *c == n).unwrap_or_else(|| dur(format!("{liste}: '{n}' sütunu yok")));
     let (it, ih, ir, iu, iy) = (ix("tarih"), ix("hipodrom"), ix("rol"), ix("url"), ix("yerel_dosya"));
+    let opt = |n: &str| head.iter().position(|c| *c == n);
+    let (id, ish, ik) = (opt("url_durumu"), opt("sha256"), opt("kanit"));
     let tum: Vec<Satir> = lines
         .filter(|l| !l.trim().is_empty())
         .map(|l| {
             let c: Vec<&str> = l.split('\t').collect();
-            Satir { tarih: c[it].into(), hipodrom: c[ih].into(), rol: c[ir].into(), url: c[iu].into(), yerel: c[iy].into() }
+            let al = |i: Option<usize>| i.and_then(|i| c.get(i)).copied().unwrap_or("");
+            let mevcut = (al(id) == "ICERIK_DOGRULANDI")
+                .then(|| al(ik).strip_prefix("elde olan ham dosya: ").map(|ad| (ad.to_string(), al(ish).to_string())))
+                .flatten()
+                .filter(|(_, sha)| sha.len() == 64);
+            Satir { tarih: c[it].into(), hipodrom: c[ih].into(), rol: c[ir].into(), url: c[iu].into(), yerel: c[iy].into(), mevcut }
         })
         .collect();
     let atlanan: Vec<&Satir> = tum.iter().filter(|s| s.tarih == atla_t && s.hipodrom == atla_h).collect();
@@ -199,9 +214,9 @@ pub fn run(a: &[String]) {
         .filter(|(_, r)| r.len() != 2 || !r.contains_key("program") || !r.contains_key("sonuc"))
         .map(|(k, r)| format!("{} {} roller={:?}", k.0, k.1, r.keys().collect::<Vec<_>>()))
         .collect();
-    if atlanan.len() != 2 || ciftler.len() != beklenen_cift || is.len() != 2 * beklenen_cift || urller.len() != is.len() || !eksik_rol.is_empty() {
+    if atlanan.len() != beklenen_atlanan || ciftler.len() != beklenen_cift || is.len() != 2 * beklenen_cift || urller.len() != is.len() || !eksik_rol.is_empty() {
         dur(format!(
-            "sayılar tutmuyor: atlanan satır {} (beklenen 2), çift {} (beklenen {beklenen_cift}), satır {} (beklenen {}), benzersiz URL {} ; rol sorunları: {eksik_rol:?}",
+            "sayılar tutmuyor: atlanan satır {} (beklenen {beklenen_atlanan}), çift {} (beklenen {beklenen_cift}), satır {} (beklenen {}), benzersiz URL {} ; rol sorunları: {eksik_rol:?}",
             atlanan.len(),
             ciftler.len(),
             is.len(),
@@ -284,9 +299,35 @@ pub fn run(a: &[String]) {
             continue;
         }
         let mut dosyalar: BTreeMap<String, Dosya> = BTreeMap::new();
+        let mut yollar: BTreeMap<&str, PathBuf> = BTreeMap::new();
         for rol in ["program", "sonuc"] {
             let s = &roller[rol];
             let hedef = ham.join(&s.yerel);
+            yollar.insert(rol, hedef.clone());
+            // depoda zaten olan ham dosya: listedeki SHA-256 hâlâ eşleşiyor ve içerik (tarih, hipodrom, rol) doğruysa indirilmez
+            if let Some((ad, sha)) = &s.mevcut {
+                let yol = ham.join(ad);
+                if let Ok(b) = std::fs::read(&yol) {
+                    let ic = icerik(&b);
+                    let uygun = matches!(&ic, Ok((t, h, ro)) if *t == s.tarih && slug(h) == slug(&s.hipodrom) && *ro == s.rol);
+                    if hex(&b) == *sha && uygun {
+                        println!("  {} {} {:<7} depodaki ham dosya: {ad} ({} bayt, SHA-256 eşleşti)", s.tarih, s.hipodrom, rol, b.len());
+                        dosyalar.insert(
+                            rol.into(),
+                            Dosya {
+                                http: "-".into(),
+                                bayt: b.len().to_string(),
+                                sha: sha.clone(),
+                                dogrulama: "ICERIK_DOGRULANDI".into(),
+                                ayrinti: format!("depodaki ham dosya yeniden kullanıldı: {ad} (SHA-256 eşleşti)"),
+                                yeniden: true,
+                            },
+                        );
+                        yollar.insert(rol, yol);
+                        continue;
+                    }
+                }
+            }
             // yeniden kullan: önceki kayıt doğrulanmış ve SHA hâlâ eşleşiyor
             if let (Some(c), Ok(b)) = (onceki.get(&s.url), std::fs::read(&hedef)) {
                 if c[8] == "ICERIK_DOGRULANDI" && c[7] == hex(&b) {
@@ -363,8 +404,8 @@ pub fn run(a: &[String]) {
             // birlikte ayrıştır
             let od = cikti.join(format!("{}-{}", k.0, slug(&k.1)));
             let o = Command::new(&ayristirici)
-                .arg(ham.join(&roller["program"].yerel))
-                .arg(ham.join(&roller["sonuc"].yerel))
+                .arg(&yollar["program"])
+                .arg(&yollar["sonuc"])
                 .arg(&od)
                 .output()
                 .unwrap_or_else(|e| dur(format!("{ayristirici}: {e}")));
@@ -397,10 +438,11 @@ pub fn run(a: &[String]) {
     let mut r = String::new();
     r += "# Son veri testi\n\n";
     r += &format!(
-        "- **Durum:** {}\n- **Çalışma:** Mart 2026 toplu indirme, `{liste}` (01.03.2026 Adana önceden doğrulandığı için atlandı)\n",
-        if erisim_hatasi.is_some() { "ERİŞİM HATASIYLA DURDU" } else { "TAMAMLANDI (liste sonuna kadar işlendi)" }
+        "- **Durum:** {}\n- **Çalışma:** Mart 2026 toplu indirme, `{liste}`{}\n",
+        if erisim_hatasi.is_some() { "ERİŞİM HATASIYLA DURDU" } else { "TAMAMLANDI (liste sonuna kadar işlendi)" },
+        if atla.is_some() { format!(" ({atla_t} {atla_h} önceden doğrulandığı için atlandı)") } else { String::new() }
     );
-    r += "- **Araçlar:** `tjk-fetch toplu` (curl ile HTTPS; içerik doğrulaması `tjk_ayristirici/src/ayristir.rs` ile), birlikte ayrıştırma `tjk_ayristirici` 0.11.0\n";
+    r += "- **Araçlar:** `tjk-fetch toplu` (curl ile HTTPS; içerik doğrulaması `tjk_ayristirici/src/ayristir.rs` ile), birlikte ayrıştırma `tjk_ayristirici`\n";
     r += "- **SQLite:** kullanılmadı\n";
     r += &format!("- **Ön kontrol:** {} çift, {} satır, {} benzersiz URL; her çiftte bir program ve bir sonuç\n", ciftler.len(), is.len(), urller.len());
     r += &format!("- **robots.txt:** {robots_notu}\n\n");

@@ -1,0 +1,21 @@
+tarih	hipodrom	rol	url	yerel_dosya	url_durumu	sha256	kanit
+2026-03-06	Bursa	program	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-06/CSV/GunlukYarisProgrami/06.03.2026-Bursa-GunlukYarisProgrami-TR.csv	20260306-BURSA-program.csv	KALIPTAN_URETILDI		
+2026-03-06	Bursa	sonuc	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-06/CSV/GunlukYarisSonuclari/06.03.2026-Bursa-GunlukYarisSonuclari-TR.csv	20260306-BURSA-sonuc.csv	KALIPTAN_URETILDI		
+2026-03-06	İzmir	program	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-06/CSV/GunlukYarisProgrami/06.03.2026-%C4%B0zmir-GunlukYarisProgrami-TR.csv	20260306-IZMIR-program.csv	ICERIK_DOGRULANDI	45801a1bafe2fdf3bd299759844c25d59766b8d5f753cc2ebf89b0064ffbf594	elde olan ham dosya: 06.03.2026-İzmir-GunlukYarisProgrami-TR.csv
+2026-03-06	İzmir	sonuc	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-06/CSV/GunlukYarisSonuclari/06.03.2026-%C4%B0zmir-GunlukYarisSonuclari-TR.csv	20260306-IZMIR-sonuc.csv	KALIPTAN_URETILDI		
+2026-03-07	Adana	program	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-07/CSV/GunlukYarisProgrami/07.03.2026-Adana-GunlukYarisProgrami-TR.csv	20260307-ADANA-program.csv	KALIPTAN_URETILDI		
+2026-03-07	Adana	sonuc	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-07/CSV/GunlukYarisSonuclari/07.03.2026-Adana-GunlukYarisSonuclari-TR.csv	20260307-ADANA-sonuc.csv	KALIPTAN_URETILDI		
+2026-03-07	İstanbul	program	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-07/CSV/GunlukYarisProgrami/07.03.2026-%C4%B0stanbul-GunlukYarisProgrami-TR.csv	20260307-ISTANBUL-program.csv	KALIPTAN_URETILDI		
+2026-03-07	İstanbul	sonuc	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-07/CSV/GunlukYarisSonuclari/07.03.2026-%C4%B0stanbul-GunlukYarisSonuclari-TR.csv	20260307-ISTANBUL-sonuc.csv	KALIPTAN_URETILDI		
+2026-03-08	Adana	program	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-08/CSV/GunlukYarisProgrami/08.03.2026-Adana-GunlukYarisProgrami-TR.csv	20260308-ADANA-program.csv	KALIPTAN_URETILDI		
+2026-03-08	Adana	sonuc	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-08/CSV/GunlukYarisSonuclari/08.03.2026-Adana-GunlukYarisSonuclari-TR.csv	20260308-ADANA-sonuc.csv	KALIPTAN_URETILDI		
+2026-03-08	İzmir	program	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-08/CSV/GunlukYarisProgrami/08.03.2026-%C4%B0zmir-GunlukYarisProgrami-TR.csv	20260308-IZMIR-program.csv	KALIPTAN_URETILDI		
+2026-03-08	İzmir	sonuc	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-08/CSV/GunlukYarisSonuclari/08.03.2026-%C4%B0zmir-GunlukYarisSonuclari-TR.csv	20260308-IZMIR-sonuc.csv	KALIPTAN_URETILDI		
+2026-03-09	Bursa	program	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-09/CSV/GunlukYarisProgrami/09.03.2026-Bursa-GunlukYarisProgrami-TR.csv	20260309-BURSA-program.csv	KALIPTAN_URETILDI		
+2026-03-09	Bursa	sonuc	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-09/CSV/GunlukYarisSonuclari/09.03.2026-Bursa-GunlukYarisSonuclari-TR.csv	20260309-BURSA-sonuc.csv	KALIPTAN_URETILDI		
+2026-03-09	Şanlıurfa	program	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-09/CSV/GunlukYarisProgrami/09.03.2026-%C5%9Eanl%C4%B1urfa-GunlukYarisProgrami-TR.csv	20260309-SANLIURFA-program.csv	KALIPTAN_URETILDI		
+2026-03-09	Şanlıurfa	sonuc	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-09/CSV/GunlukYarisSonuclari/09.03.2026-%C5%9Eanl%C4%B1urfa-GunlukYarisSonuclari-TR.csv	20260309-SANLIURFA-sonuc.csv	KALIPTAN_URETILDI		
+2026-03-10	Adana	program	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-10/CSV/GunlukYarisProgrami/10.03.2026-Adana-GunlukYarisProgrami-TR.csv	20260310-ADANA-program.csv	KALIPTAN_URETILDI		
+2026-03-10	Adana	sonuc	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-10/CSV/GunlukYarisSonuclari/10.03.2026-Adana-GunlukYarisSonuclari-TR.csv	20260310-ADANA-sonuc.csv	KALIPTAN_URETILDI		
+2026-03-10	Antalya	program	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-10/CSV/GunlukYarisProgrami/10.03.2026-Antalya-GunlukYarisProgrami-TR.csv	20260310-ANTALYA-program.csv	KALIPTAN_URETILDI		
+2026-03-10	Antalya	sonuc	https://medya-cdn.tjk.org/raporftp/TJKPDF/2026/2026-03-10/CSV/GunlukYarisSonuclari/10.03.2026-Antalya-GunlukYarisSonuclari-TR.csv	20260310-ANTALYA-sonuc.csv	KALIPTAN_URETILDI		
