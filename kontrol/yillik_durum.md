@@ -1,7 +1,7 @@
 # Yıllık durum: 22.11.2025 – 22.11.2026
 
-Üretim: `kontrol/yillik/durum_yaz.sh` (her ay için `tjk_denetim`, veri tabanı salt okunur) · 2026-11-22T17:36Z
-Veri tabanı: `tjk_yillik.sqlite` · SHA-256 `ebe96ef81dcb868352a617f72ca85e14a13002638db66bb42722173143caf6ab`
+Üretim: `kontrol/yillik/durum_yaz.sh` (her ay için `tjk_denetim`, veri tabanı salt okunur) · 2026-11-22T18:54Z
+Veri tabanı: `tjk_yillik.sqlite` · SHA-256 `ab997fc3dc56eacdf4a1f7364698a115f601896dfb4d78defc0e53e11a00bae5`
 
 Takvim: resmî 2025 ve 2026 PDF'leri (`kontrol/yillik/takvim/KAYNAKLAR.md`), 760 çift. Sınıflar: TAMAMLANDI (gün TAMAM),
 INCELEME_GEREKLI (gün aktarıldı, gerekçeli açık kayıt var), EKSIK (denendi, dosya alınamadı/doğrulanamadı),
@@ -21,8 +21,8 @@ AKTARILMADI (iki dosya doğrulandı, aktarım bekliyor), HENUZ_DENENMEDI (indirm
 | 2026-08 | 67 | 67 | 0 | 0 | 0 | 0 | 0 | 569 | 5799 | 124 | 0 | ok | aynı | yok | tamamlandı |
 | 2026-09 | 63 | 61 | 0 | 2 | 0 | 0 | 0 | 516 | 5583 | 115 | 0 | ok | aynı | yok | eksik var |
 | 2026-10 | 67 | 64 | 1 | 2 | 0 | 0 | 0 | 549 | 5779 | 120 | 0 | ok | aynı | yok | eksik var |
-| 2026-11 | 46 | 45 | 1 | 0 | 0 | 0 | 0 | 380 | 3895 | 84 | 0 | ok | aynı | yok | inceleme var |
-| **Toplam** | **760** | **748** | **6** | **6** | **0** | **0** | | | | | | | | | |
+| 2026-11 | 46 | 46 | 0 | 0 | 0 | 0 | 0 | 380 | 3895 | 84 | 0 | ok | aynı | yok | tamamlandı |
+| **Toplam** | **760** | **749** | **5** | **6** | **0** | **0** | | | | | | | | | |
 
 ## Tamamlanmamış çiftler (ay bazında)
 
@@ -112,11 +112,7 @@ Planlandığı gün dışında koşulan koşu: 7 (ayrıntı: `raporlar/2026-10_d
 
 ### 2026-11
 
-| Tarih | Hipodrom | Durum | Yarış günü no | Ayrıntı |
-|---|---|---|---|---|
-| 2026-11-22 | Adana | INCELEME_GEREKLI | 3 | ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A01 PRINCESS DENİZ (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A02 HIZLI GÖR (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A03 ONE PAGE (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A04 SKYDIVE (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A05 LEADER TULIP (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A06 ROSAS DEL ROSEDAL (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A07 DİNAMİT KIZ (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A08 ELEGİE (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A09 FATMA ZERYAM (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A10 STAR GATE (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A11 TEK NERGİZ (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A12 MALCOOBA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A13 PRINCESS BALA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K06-A14 MY LOVE GÖKSU (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K07-A01 ALPLİ (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K07-A02 AMİRSOYLU (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K07-A03 DOĞU SEVDASI (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K07-A04 ÖLDÜRMEYEN GÜÇLENDİRİR (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K07-A05 RAYNART (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K07-A06 ŞAMPİYONEREN (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K07-A07 VAHİT BEY (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K07-A08 YARKAYA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K07-A09 ZUBİR (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K07-A10 MADAM DAISY (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A01 BERMEDEE (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A02 KING ANCESTOR (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A03 AKIN BEYLİ (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A04 THON KHITCHIBA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A05 SILVEN (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A06 MAMDANI (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A07 KARAMAÇABEY (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A08 MYBOYFRIEND (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A09 GOOD LUCK CHARM (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A10 YOU AND ME (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A11 TIME CHANGER (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A12 O PAPATYA (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A13 DEEP GIRL (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A14 NAMASTE (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A15 KARACI (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A16 TAKEACHANCEONME (aday satırlar: []) \| ESLESMEYEN_PROGRAM_KAYDI: 20261122-ADANA-K08-A17 MY FAIRY (aday satırlar: []) \| BIRINCI_BULUNAMADI: 6. koşu (GANYAN []) \| BIRINCI_BULUNAMADI: 7. koşu (GANYAN []) \| BIRINCI_BULUNAMADI: 8. koşu (GANYAN []) \| ALTILI_AYAGI_EKSIK: 20261122-ADANA-A1 6. ayak (6. koşu): sonuç dosyasında koşu yok \| ALTILI_ODEMESI_BULUNAMADI: 20261122-ADANA-A1 son ayak (6. koşu) bahis satırında '1. 6'LI GANYAN' yok \| ALTILI_AYAGI_EKSIK: 20261122-ADANA-A2 4. ayak (6. koşu): sonuç dosyasında koşu yok \| ALTILI_AYAGI_EKSIK: 20261122-ADANA-A2 5. ayak (7. koşu): sonuç dosyasında koşu yok \| ALTILI_AYAGI_EKSIK: 20261122-ADANA-A2 6. ayak (8. koşu): sonuç dosyasında koşu yok \| ALTILI_ODEMESI_BULUNAMADI: 20261122-ADANA-A2 son ayak (8. koşu) bahis satırında '2. 6'LI GANYAN' yok |
-
-Planlandığı gün dışında koşulan koşu: 3 (ayrıntı: `raporlar/2026-11_denetim.md` §5).
+Takvimdeki tüm çiftler TAMAMLANDI.
 
 ## Kaynak hataları ve kararlar
 

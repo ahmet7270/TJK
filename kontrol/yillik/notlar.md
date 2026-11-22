@@ -13,7 +13,7 @@
 | 2026-09-28 Bursa, 2026-09-29 Kocaeli | Sonuç dosyası 0 bayt | Sonuç adresleri iki kez HTTP 200 ve 0 bayt; programlar doğrulandı | EKSIK: sonuçsuz gün aktarılmadı. Sonuç yayımlanırsa `ay_isle.sh indir/aktar 2026-09` ile tamamlanır. |
 | 2026-10-16 Bursa, 2026-10-19 Bursa | Sonuç dosyası 0 bayt | Adresler yeniden denemede de HTTP 200 / 0 bayt; programlar doğrulandı | EKSIK: sonuçsuz gün aktarılmadı. |
 | 2026-10-28 Elazığ (45. yarış günü) | Sonuç dosyası yarım | 1592 bayt: yalnızca 1. koşunun başlığı ve ikramiyeler, atlar/sonuç yok; yeniden denemede aynı | Program aktarıldı, sonuçlar boş; gün incelemede (`ESLESMEYEN_PROGRAM_KAYDI` ×69 vb.). |
-| 2026-11-22 Adana | Sonuç dosyası yarım (hedef aralığın son günü) | 9426 bayt, yalnızca bir kısım koşu sonucu; yeniden denemede aynı | Program aktarıldı, sonuçsuz koşular boş; gün incelemede. Sonuç tamamlanırsa `ay_isle.sh indir/aktar 2026-11` ile yenilenir. |
+| 2026-11-22 Adana | Sonuç dosyası ilk alımda yarımdı (9426 bayt), gün sonunda tamamlandı | 18:51 UTC'de 17554 bayt, 8 koşu + 8 GANYAN satırı (SHA-256 `87f54203…5e29f`); CDN kısa süre farklı uzunlukta sürümler de döndürdü (14200/16872) | Tam sürüm aktarıldı, 2. aktarım aynı; çift TAMAMLANDI. Kısmi sürümün kaydı `2026-11_durum.tsv` içinde duruyor. |
 | 2026-03-15 Adana | İki açık ödeme | Önceki inceleme (`kontrol/mart_istisnalar.md` §5) | Korundu: `GANYAN_SATIRI_BULUNAMADI: 3. koşu`, `ALTILI_ODEMESI_BULUNAMADI: …-A1` (A1 ödemesi NULL). |
 
 ### Erişim

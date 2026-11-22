@@ -40,4 +40,10 @@ kullanılmadı: resmî duyurular, komiser raporu sayfaları ve yıllık program 
 ## Sonuç
 
 Hiçbir çiftin iptal edildiği ya da başka tarihte koşulduğu (11.01 Adana hariç; o zaten kayıtlı) doğrudan kanıtlanamadı. Bu 11 çift için
-verilerde değişiklik yapılmadı; kaynak durumu yukarıdaki ayrımla kaydedildi. 22.11 Adana ayrı izleniyor (aşağıda güncellenecek).
+verilerde değişiklik yapılmadı; kaynak durumu yukarıdaki ayrımla kaydedildi. 
+## 22.11.2026 Adana (güncel sonuç)
+
+- 18:51 UTC (21:51 TR; son koşu 21:30) sonuç CSV'si: HTTP 200, **17554 bayt**, SHA-256 `87f54203c487c945f775e7399d2ea7f30afd31fa72fed0d6a1950e5cc5a5e29f`; 8 koşunun tümü, 8 GANYAN satırı, 8. koşu için `2. 6'LI GANYAN` ve `7'Lİ GANYAN` (bilen çıkmamış, 516.852,82 TL devir) var.
+- **CDN uyarısı:** aynı adres kısa aralıklarla farklı uzunlukta sürümler döndürdü (14200, 16872, 17554 bayt; 8. koşunun bahis satırı yalnızca sonuncuda). En eski kısmi sürüm 9426 bayt (`7746c99d…`). Yalnızca tam (17554) sürüm aktarıldı; kısmi sürümlerin kaydı `listeler/2026-11_durum.tsv` içinde kaldı (SHA-256 eşleşmesi son kayda göre).
+- Aktarım (`ay_isle.sh aktar 2026-11`): 46/46 gün TAMAM, inceleme nedeni 0, 2. aktarım dökümü aynı, FK 0, integrity ok. Çift **TAMAMLANDI**.
+
